@@ -41,7 +41,7 @@ int main () {
     bool visited[20][20] = {0};
     int x = 7, y = 7;
     string line;
-    ifstream file("c:/Programming/NTUIM/test/map.txt");
+    ifstream file("../map.txt");
 
     while (getline(file, line)) {
         map.push_back(line);
