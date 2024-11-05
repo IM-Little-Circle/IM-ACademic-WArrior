@@ -42,7 +42,7 @@ int main () {
     int x = 7, y = 7;
     string line;
     ifstream file("c:/Programming/NTUIM/test/testmap.txt");
-
+ 
     while (getline(file, line)) {
         map.push_back(line);
     }
