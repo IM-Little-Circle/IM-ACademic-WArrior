@@ -6,6 +6,10 @@
 #include <cstdlib>
 #include <chrono>
 #include <thread>
+#include <iomanip>
+
+// below are user-made header files
+#include "event.h"
 
 using namespace std;
 
@@ -13,15 +17,14 @@ using namespace std;
 // console will keep running the input 
 // fix, maybe with this_thread sleep or something
 
-
-// conio.h keys
+//// conio.h keys ////
 #define KEY_UP 72
 #define KEY_DOWN 80
 #define KEY_LEFT 75
 #define KEY_RIGHT 77
 #define KEY_ENTER 13
 
-// game settings 
+//// game settings ////
 #define MAP_W 32
 #define MAP_H 32
 #define SCRN_HW 4 // half width of 9, for printing camera screen
@@ -34,7 +37,20 @@ int x = 7;
 int y = 7; //btw the pos is temp too
 
 
+//// header file member functions ////
 
+// add things here later
+
+
+// BIG QUESTION: how do we read the generated pos/info for each event? 
+// -> how do we read all the current existing events
+// store them in a vector, then once it's triggered, delete the element? list? some other data structure?
+
+// info can be generated beforehand, or when event is triggered ig
+
+
+
+//// functions (for game loop) ////
 void readMap() {
     string line;
     ifstream file("../map.txt");
@@ -45,8 +61,13 @@ void readMap() {
 }
 
 // for updating camera screen
+// question: how should we print the guide (press i for smtn smtn), at the right or bottom?
+// to do here: figure out/design the guide!
 void printMaze (bool visited[][MAP_W], int x, int y) {
     for (int j = y-SCRN_HW; j <= y+SCRN_HW; j++) {
+
+        cout << setw(50); // for setting screen to center
+
         for (int i = x-SCRN_HW; i <= x+SCRN_HW; i++) {
 
             if (i == x && j == y) {
@@ -96,11 +117,14 @@ switch(ch) {
 }
 
 
-
+//// main function //// 
 int main () {
     int ch; // for reading arrow key
     bool end; // for game loop
     bool visited[MAP_H][MAP_W] = {0}; // is this necessary? (recording trodden paths with ',')
+
+    // test event
+    Event testevent;
 
     readMap();
 
