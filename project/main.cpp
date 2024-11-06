@@ -7,6 +7,7 @@
 #include <chrono>
 #include <thread>
 #include <iomanip>
+#include <chrono> 
 
 // below are user-made header files
 #include "event.h"
@@ -143,7 +144,7 @@ int main () {
                 if (x == 18 && y == 18) end = 1; // temp, for ending game
             }
         }
-        this_thread::sleep_for(25ms);
+        this_thread::sleep_for(chrono::milliseconds(25));
     }
 
 }
