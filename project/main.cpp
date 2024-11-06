@@ -7,7 +7,6 @@
 #include <chrono>
 #include <thread>
 #include <iomanip>
-#include <chrono> 
 
 // below are user-made header files
 #include "event.h"
