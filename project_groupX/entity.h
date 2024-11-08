@@ -1,18 +1,20 @@
 /*
 放一些暫時想到的數值和可能用到的函式
 */
-#include <bits/stdc++.h> //by eric, 這東西在只有裝vscode的電腦會跑不了 而且理論上把用到的函式庫列出來會比姣好
-using namespace std;
-class NPC
+
+class Entity
 {
 	private:
-		int HP, ATK, DEF;
-		double magic_buff, physical_buff;
-		double magic_RES, physical_RES;
+		int hpCurr, atk, def, hpMax;
+		double magicBuff, physicalBuff;
+		//double magicRes, physical_RES;
 		// a bag for skill
 		//vector<skill> Skill;
 	public:	
-		void attack(NPC);
-        void heal(NPC);
+		void attack();
+        void heal();
 		void use_skill();		
-}
+};
+
+
+//comment
