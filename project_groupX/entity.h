@@ -14,4 +14,10 @@ class Entity
 		void attack();
         void heal();
 		void use_skill();		
+
+}
+// haha
 };
+
+
+//comment
