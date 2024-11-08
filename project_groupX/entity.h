@@ -16,7 +16,6 @@ class Entity
 		void use_skill();		
 
 };
-// haha
 
 //test
 
