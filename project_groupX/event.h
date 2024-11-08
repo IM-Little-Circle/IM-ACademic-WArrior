@@ -29,7 +29,7 @@ Event::Event() {
 char* Event::readPlot()
 {
     char* str = NULL;
-    ifstream in("chance1.txt");
+    ifstream in("../chance1.txt");
 
     //for(int i = 0; i < 9; i++)
     //    in.ignore();
@@ -37,7 +37,7 @@ char* Event::readPlot()
     in >> str;
 
     if(in.fail())
-        return "Event file NOT FOUND";
+        return "Event file NOT FOUND"; // fix this part
     else
         return str;
 }
