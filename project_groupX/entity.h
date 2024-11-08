@@ -16,3 +16,4 @@ class NPC
         void heal(NPC);
 		void use_skill();		
 }
+// haha
