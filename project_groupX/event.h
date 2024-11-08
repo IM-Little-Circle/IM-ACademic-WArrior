@@ -5,6 +5,7 @@ class Event {
     private:
         int x;
         int y;
+        
     public:
         Event();
         
@@ -15,3 +16,4 @@ Event::Event() {
     x = 5;
     y = 5;
 }
+
