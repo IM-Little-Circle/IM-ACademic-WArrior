@@ -123,6 +123,7 @@ int main () {
     int ch; // for reading arrow key
     bool end; // for game loop
     bool visited[MAP_H][MAP_W] = {0}; // is this necessary? (recording trodden paths with ',')
+    Event chance;
 
     // test event
     Event testevent;
