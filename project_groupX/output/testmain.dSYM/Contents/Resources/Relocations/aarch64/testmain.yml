@@ -1,0 +1,5 @@
+---
+triple:          'arm64-apple-darwin'
+binary-path:     '/Users/eric/Documents/2024F_PD/Final_Project/2024f-pd-zhuan-an/project_groupX/output/testmain'
+relocations:     []
+...
