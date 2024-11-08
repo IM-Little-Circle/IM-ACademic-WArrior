@@ -15,6 +15,3 @@ class Entity
         void heal();
 		void use_skill();		
 };
-
-
-//comment
