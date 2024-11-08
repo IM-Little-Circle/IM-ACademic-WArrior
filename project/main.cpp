@@ -67,7 +67,7 @@ void readMap() {
 void printMaze (bool visited[][MAP_W], int x, int y) {
     for (int j = y-SCRN_HW; j <= y+SCRN_HW; j++) {
 
-        cout << setw(50); // for setting screen to center
+        cout << string(50, ' ');
 
         for (int i = x-SCRN_HW; i <= x+SCRN_HW; i++) {
 
