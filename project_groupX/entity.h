@@ -18,20 +18,20 @@ class Entity
 		void updateStatus(int academic, int social, int emo);
 };
 
-void socialAttack(Entity enemy)
+void Entity::socialAttack(Entity enemy)
 {
-	int atkCurr = atk * (1 + magicBuff);
+	int atkCurr = atk * (1 + socialBuff);
 	enemy.hpCurr -= atkCurr - enemy.def * (1 + mentalRes);
 	if (enemy.hpCurr <= 0)
 		enemy.death();
 }
 
-void death()
+void Entity::death()
 {
 	alive = false;
 }
 
-void updateStatus(int academic, int social ,int emo)
+void Entity::updateStatus(int academic, int social ,int emo)
 {
 	socialBuff = (social + emo) / 100;
 	studyBuff = (academic + emo) / 100;
