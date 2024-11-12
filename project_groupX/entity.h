@@ -14,6 +14,7 @@ class Entity
 	public:	
 		Entity(int hp, int Atk, int Def);
 		void socialAttack(Entity enemy);
+		void studyAttack(Entity enemy);
         void heal();
 		void death();
 		void updateStatus(int academic, int social, int emo);
@@ -33,6 +34,14 @@ void Entity::socialAttack(Entity enemy)
 		enemy.death();
 }
 
+void Entity::studyAttack(Entity enemy)
+{
+	int atkCurr = atk * (1 + studyBuff);
+	enemy.hpCurr -= atkCurr - enemy.def * (1 + physicalRes);
+	if (enemy.hpCurr <= 0)
+		enemy.death();
+}
+f
 void Entity::death()
 {
 	alive = false;
