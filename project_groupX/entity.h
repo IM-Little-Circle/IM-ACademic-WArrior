@@ -60,6 +60,7 @@ bool Entity::living()
 void Battle(Entity player1, Entity player2)
 {
 	int round = 0;
+	bool stop = 0;
 	while (true)
 	{
 		round++;
@@ -70,7 +71,7 @@ void Battle(Entity player1, Entity player2)
 			if (!player2.living())
 			{
 				cout << "Congratulation! You win!" << endl;
-				break;
+				stop = 1;
 			}
 		}
 		else
@@ -79,8 +80,10 @@ void Battle(Entity player1, Entity player2)
 			if (!player1.living())
 			{
 				cout << "You lose!" << endl;
-				break;
+				stop = 1;
 			}
 		}
+		if (stop)
+			break;
 	}
 }
