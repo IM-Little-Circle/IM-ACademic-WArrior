@@ -6,26 +6,33 @@ using namespace std;
 class Entity
 {
 	protected:
-		int hpCurr, atk, def, hpMax, level;
+		int hpCurr, atk, def, hpMax;
+		int level = 1;
 		double socialBuff = 0, studyBuff = 0;
 		bool alive = true;
 		double mentalRes, physicalRes;
 
+		// wanna add name
+
 	public:	
+		Entity () {};
 		Entity(int hp, int Atk, int Def);
-		void socialAttack(Entity enemy);
-		void studyAttack(Entity enemy);
+		void socialAttack(Entity& enemy);
+		void studyAttack(Entity& enemy);
         void heal();
 		void death();
 		void levelUp();
 		bool living();
+
+		void printHealth();
 };
+
 Entity::Entity(int hp, int Atk, int Def)
 {
 	hpCurr = hp, hpMax = hp, atk = Atk, def = Def;
 }
 
-void Entity::socialAttack(Entity enemy)
+void Entity::socialAttack(Entity& enemy)
 {
 	int atkCurr = atk * (1 + socialBuff);
 	enemy.hpCurr -= atkCurr - enemy.def * (1 + mentalRes);
@@ -33,7 +40,7 @@ void Entity::socialAttack(Entity enemy)
 		enemy.death();
 }
 
-void Entity::studyAttack(Entity enemy)
+void Entity::studyAttack(Entity& enemy)
 {
 	int atkCurr = atk * (1 + studyBuff);
 	enemy.hpCurr -= atkCurr - enemy.def * (1 + physicalRes);
@@ -54,11 +61,18 @@ void Entity::levelUp()
 	hpMax += level * 2;
 	hpCurr = hpMax;
 }
+
+
 bool Entity::living()
 {
 	return alive;
 }
-void Battle(Entity player1, Entity player2)
+
+void Entity::printHealth() {
+	cout << hpCurr << "/" << hpMax << endl;
+}
+
+void Battle(Entity& player1, Entity& player2)
 {
 	int round = 0;
 	bool stop = 0;
