@@ -41,7 +41,7 @@ void Entity::studyAttack(Entity enemy)
 	if (enemy.hpCurr <= 0)
 		enemy.death();
 }
-f
+
 void Entity::death()
 {
 	alive = false;
