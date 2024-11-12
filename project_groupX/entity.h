@@ -12,6 +12,7 @@ class Entity
 		double mentalRes, physicalRes;
 
 	public:	
+		Entity(int hp, int Atk, int Def);
 		void socialAttack(Entity enemy);
         void heal();
 		void death();
@@ -19,6 +20,10 @@ class Entity
 		void levelUp();
 		bool living();
 };
+Entity::Entity(int hp, int Atk, int Def)
+{
+	hpCurr = hp, hpMax = hp, atk = Atk, def = Def;
+}
 
 void Entity::socialAttack(Entity enemy)
 {
@@ -33,7 +38,7 @@ void Entity::death()
 	alive = false;
 }
 
-void Entity::updateStatus(int academic, int social ,int emo)
+void Entity::updateStatus(int academic, int social, int emo)
 {
 	socialBuff = (social + emo) / 100;
 	studyBuff = (academic + emo) / 100;
