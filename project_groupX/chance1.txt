@@ -1,9 +1,10 @@
-d01
-i10
-d20
-false
-//the first three indicates academic, social, emo respectively. i for increase, d for deduct. 
-//the forth indicates whether this event is rejectable.
-
-//the following is the plot
-Someone who's really adorable ask you to go out for a date.
+10 4 6 2 5 8
+There's one day left until the Calculus exam.
+[Y:Study | N:Procrastinate]
+#
+You get A+ for Calc 1!!!
+:D
+#
+You get B- for Calc 1...
+D:
+#
