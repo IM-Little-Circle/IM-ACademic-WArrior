@@ -17,6 +17,7 @@ class Entity
 		void death();
 		void updateStatus(int academic, int social, int emo);
 		void levelUp();
+		bool living();
 };
 
 void Entity::socialAttack(Entity enemy)
@@ -46,4 +47,35 @@ void Entity::levelUp()
 	def += level;
 	hpMax += level * 2;
 	hpCurr = hpMax;
+}
+bool Entity::living()
+{
+	return alive;
+}
+void Battle(Entity player1, Entity player2)
+{
+	int round = 0;
+	while (true)
+	{
+		round++;
+		if (round % 2)
+		{
+			// may be you can choose socialATK or studyATK; but now there is only socialATK for you :D
+			player1.socialAttack(player2);
+			if (!player2.living())
+			{
+				cout << "Congratulation! You win!" << endl;
+				break;
+			}
+		}
+		else
+		{
+			player2.socialAttack(player1);
+			if (!player1.living())
+			{
+				cout << "You lose!" << endl;
+				break;
+			}
+		}
+	}
 }
