@@ -133,12 +133,6 @@ int main () {
     bool end = 0; // for game loop
     bool visited[MAP_H][MAP_W] = {0};
 
-
-    //Event chance;
-
-    // test event
-    //Event testevent;
-
     readMap();
 
     printMaze(visited);

@@ -5,7 +5,7 @@
 using namespace std;
 class Entity
 {
-	private:
+	protected:
 		int hpCurr, atk, def, hpMax, level;
 		double socialBuff = 0, studyBuff = 0;
 		bool alive = true;
@@ -17,7 +17,6 @@ class Entity
 		void studyAttack(Entity enemy);
         void heal();
 		void death();
-		void updateStatus(int academic, int social, int emo);
 		void levelUp();
 		bool living();
 };
@@ -45,13 +44,6 @@ void Entity::studyAttack(Entity enemy)
 void Entity::death()
 {
 	alive = false;
-}
-
-void Entity::updateStatus(int academic, int social, int emo)
-{
-	socialBuff = (social + emo) / 100;
-	studyBuff = (academic + emo) / 100;
-	mentalRes = emo / 100;
 }
 
 void Entity::levelUp()
