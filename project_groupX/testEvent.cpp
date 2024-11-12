@@ -83,4 +83,6 @@ int main () {
 
     // print modified result (org is 0, 0, 0)
     player.printStat();
+
+    // REMEMBER TO CLOSE FILE!
 }
