@@ -1,4 +1,5 @@
-10 4 6 2 5 8
+10 4 6 
+2 5 8
 There's one day left until the Calculus exam.
 [Y:Study | N:Procrastinate]
 #
