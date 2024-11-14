@@ -6,8 +6,7 @@
 #include <cstdlib>
 #include <chrono>
 #include <iomanip>
-#include <Windows.h>
-
+#include <thread>
 // below are user-made header files
 //#include "event.h"
 //#include "../Windows_Only_Header_Files/windows.h" //still working on this...
@@ -151,7 +150,7 @@ int main () {
                 if (x == 18 && y == 18) end = 1; // temp, for ending game
             }
         }
-        Sleep(25);
+        this_thread::sleep_for(25ms)
     }
 
 }
