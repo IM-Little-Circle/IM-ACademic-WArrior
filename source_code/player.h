@@ -39,23 +39,29 @@ Player::Player(int hp, int Atk, int Def) {
 
 void Player::modifyAcademic(int change) {
     academic += change;
+    updateStatus();
 }
 
 
 void Player::modifySocial(int change) {
     social += change;
+    updateStatus();
 }
 
 
 void Player::modifyEmo(int change) {
     emo += change;
+    updateStatus();
 }
 
 void Player::updateStatus()
 {
-	socialBuff = (social + emo) / 100;
-	studyBuff = (academic + emo) / 100;
-	mentalRes = emo / 100;
+	socialBuff = static_cast<double>(social + emo) / 100;
+    studyBuff = static_cast<double>(academic + emo) / 100;
+    mentalRes = static_cast<double>(emo) / 100;
+    cout << "now socialBuff = " << socialBuff << endl;
+    cout << "studyBuff = " << studyBuff << endl;
+    cout << "mentalRes = " << mentalRes << endl;
 }
 
 void Player::printStat(){
@@ -70,4 +76,5 @@ void Player::setInitialStat(int aca, int soc, int e) {
     academic = aca;
     social = soc;
     emo = e;
+    updateStatus();
 }

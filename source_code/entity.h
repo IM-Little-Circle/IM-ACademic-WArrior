@@ -10,7 +10,7 @@ class Entity
 		int level = 1;
 		double socialBuff = 0, studyBuff = 0;
 		bool alive = true;
-		double mentalRes, physicalRes;
+		double mentalRes = 0, physicalRes = 0;
 
 		// wanna add name
 
@@ -35,17 +35,35 @@ Entity::Entity(int hp, int Atk, int Def)
 void Entity::socialAttack(Entity& enemy)
 {
 	int atkCurr = atk * (1 + socialBuff);
-	enemy.hpCurr -= atkCurr - enemy.def * (1 + mentalRes);
-	if (enemy.hpCurr <= 0)
+	int defCurr = enemy.def * (1 + mentalRes);
+/*
+	cout << "atkCurr = " << atkCurr << endl;
+	cout << "Enemy's def = " << defCurr << endl;
+*/
+	int damage = atkCurr - defCurr;
+	cout << "Cause damage: " << damage << endl;
+	enemy.hpCurr -= damage;
+	if (enemy.hpCurr <= 0){
 		enemy.death();
+		enemy.hpCurr = 0;
+	}
 }
 
 void Entity::studyAttack(Entity& enemy)
 {
-	int atkCurr = atk * (1 + studyBuff);
-	enemy.hpCurr -= atkCurr - enemy.def * (1 + physicalRes);
-	if (enemy.hpCurr <= 0)
+	int atkCurr = double(atk * (1 + studyBuff));
+	int defCurr = enemy.def * (1 + physicalRes);
+/*
+	cout << "atkCurr = " << atkCurr << endl;
+	cout << "defCurr = " << defCurr << endl;
+*/
+	int damage = atkCurr - defCurr;
+	cout << "Cause damage: " << damage << endl;
+	enemy.hpCurr -= damage;
+	if (enemy.hpCurr <= 0){
 		enemy.death();
+		enemy.hpCurr = 0;
+	}	
 }
 
 void Entity::death()
