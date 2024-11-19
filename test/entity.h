@@ -1,6 +1,33 @@
-#include "entity.h"
+/*
+放一些暫時想到的數值和可能用到的函式
+*/
+
+// temp version for testing
+
 #include <iostream>
 using namespace std;
+class Entity
+{
+	protected:
+		int hpCurr, atk, def, hpMax;
+		int level = 1;
+		double socialBuff = 0, studyBuff = 0;
+		bool alive = true;
+		double mentalRes = 0, physicalRes = 0;
+
+		// wanna add name
+
+	public:	
+		Entity(int hp, int Atk, int Def);
+		void socialAttack(Entity& enemy);
+		void studyAttack(Entity& enemy);
+        void heal();
+		void death();
+		void levelUp();
+		bool living();
+
+		void printHealth();
+};
 
 
 // entity member and related functions
@@ -8,7 +35,7 @@ using namespace std;
 Entity::Entity(int hp, int Atk, int Def)
 {
 	hpCurr = hp, hpMax = hp, atk = Atk, def = Def;
-    cout << "player created!!!!!\n"; // temp, delete later
+    cout << "entity created!!!!!\n"; // temp, delete later
 }
 
 void Entity::socialAttack(Entity& enemy)
@@ -19,7 +46,7 @@ void Entity::socialAttack(Entity& enemy)
 	cout << "atkCurr = " << atkCurr << endl;
 	cout << "Enemy's def = " << defCurr << endl;
 */
-	int damage = atkCurr - defCurr;
+	int damage = max(0, atkCurr - defCurr);
 	cout << "Cause damage: " << damage << endl;
 	enemy.hpCurr -= damage;
 	if (enemy.hpCurr <= 0){
@@ -36,7 +63,7 @@ void Entity::studyAttack(Entity& enemy)
 	cout << "atkCurr = " << atkCurr << endl;
 	cout << "defCurr = " << defCurr << endl;
 */
-	int damage = atkCurr - defCurr;
+	int damage = max(0, atkCurr - defCurr);
 	cout << "Cause damage: " << damage << endl;
 	enemy.hpCurr -= damage;
 	if (enemy.hpCurr <= 0){

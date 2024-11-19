@@ -1,5 +1,5 @@
 #include <iostream>
-#include "../source_code/player.h"
+#include "player.h"
 using namespace std;
 
 void battleLoop(Player player, Entity opponent) { // should these be references instead?
@@ -47,8 +47,8 @@ void battleLoop(Player player, Entity opponent) { // should these be references 
 }
 
 int main () {
-    Player player(60, 10, 10);
-    Entity opponent(60, 10, 10);
+    Player player(60, 50, 50);
+    Entity opponent(60, 60, 40);
 
     player.setInitialStat(10, 10, 10);
     cout << "Battle Time!\n";
@@ -56,6 +56,5 @@ int main () {
     cout << endl;
 
     battleLoop(player, opponent);
-
 
 }
