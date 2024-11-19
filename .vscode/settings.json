@@ -1,7 +1,10 @@
 {
   "files.associations": {
+    ".fantomasignore": "ignore",
     "string": "cpp",
-    "iostream": "cpp"
+    "iostream": "cpp",
+    "conio.h": "c",
+    "myconio.h": "c"
   },
   "C_Cpp_Runner.cCompilerPath": "gcc",
   "C_Cpp_Runner.cppCompilerPath": "g++",

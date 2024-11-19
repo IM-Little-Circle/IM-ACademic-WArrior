@@ -25,7 +25,7 @@ SOFTWARE.*/
 
 #include <windows.h>
 #include <conio.h>
-#include "conio.h"
+#include "myconio.h"
 #include <limits.h>
 #include <stdbool.h>
 
@@ -226,7 +226,7 @@ void c_clrscr()
 #include <unistd.h>
 #include <fcntl.h>
 #include <sys/ioctl.h>
-#include "conio.h"
+#include "myconio.h"
 
 int c_kbhit(void)
 {
