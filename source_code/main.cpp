@@ -45,7 +45,7 @@ int y = 7; //btw the pos is temp too
 //// functions (for game loop) ////
 void readMap() {
     string line;
-    ifstream file("../project_groupX/testEventMap.txt");
+    ifstream file("../assets/testEventMap.txt");
 
     while (getline(file, line)) {
         map.push_back(line);
