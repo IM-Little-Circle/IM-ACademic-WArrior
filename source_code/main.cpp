@@ -7,6 +7,9 @@
 #include <chrono>
 #include <iomanip>
 #include <thread>
+#include <Windows.h>
+#include "player.h"
+
 // below are user-made header files
 //#include "event.h"
 //#include "../Windows_Only_Header_Files/windows.h" //still working on this...
@@ -45,7 +48,9 @@ int y = 7; //btw the pos is temp too
 //// functions (for game loop) ////
 void readMap() {
     string line;
-    ifstream file("../assets/testEventMap.txt");
+    ifstream file("../assets/testEventMap.txt"); 
+    // note to self: the current path setting will not run from VSCode execution
+    // you will have to rely on batch compiling and exe for now
 
     while (getline(file, line)) {
         map.push_back(line);
@@ -131,6 +136,10 @@ int main () {
     int ch; // for reading arrow key
     bool end = 0; // for game loop
     bool visited[MAP_H][MAP_W] = {0};
+
+    // initialize player (test)
+    Player(10, 10, 10);
+
 
     readMap();
 

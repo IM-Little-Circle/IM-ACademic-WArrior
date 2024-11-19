@@ -26,14 +26,13 @@ class Player : public Entity {
         
 };
 
-Player::Player(int hp, int Atk, int Def) {
+Player::Player(int hp, int Atk, int Def) : Entity(hp, Atk, Def) {
     // temp, set random pos upon initialization
     x = 5;
     y = 5;
 	socialBuff = (social + emo) / 100;
 	studyBuff = (academic + emo) / 100;
 	mentalRes = emo / 100;
-	hpCurr = hp, hpMax = hp, atk = Atk, def = Def;
 }
 
 
