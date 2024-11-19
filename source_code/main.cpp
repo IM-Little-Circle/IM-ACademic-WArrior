@@ -2,12 +2,11 @@
 #include <vector>
 #include <string>
 #include <fstream>
-#include <conio.h>
+#include "conio.h"
 #include <cstdlib>
 #include <chrono>
 #include <iomanip>
 #include <thread>
-#include <Windows.h>
 #include "player.h"
 
 // below are user-made header files
@@ -147,8 +146,8 @@ int main () {
 
     while (!end) {
         ch = 0;
-        if (kbhit()) {
-                ch = getch(); // for modifications, see testMaze.cpp for ref
+        if (c_kbhit()) {
+                ch = c_getch(); // for modifications, see testMaze.cpp for ref
             if (ch == KEY_UP||ch == KEY_DOWN ||ch == KEY_LEFT||ch == KEY_RIGHT) {
                 
                 moveCamera(ch);
