@@ -18,7 +18,8 @@ console will keep running the input
 fix, maybe with this_thread sleep or something
 new issue found @2024/11/24: if right arrow key pressed for a while and then ran into a chance, 
                              as cin >> choice is waiting for input, 
-                             the right arrow key will result in a 'y' input
+                             the right arrow key will result in a 'y' input.
+                             note that 'y' could be the last input before the cin
 */
 
 //// conio.h keys ////
