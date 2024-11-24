@@ -12,13 +12,14 @@
 #include "player.h"
 
 using namespace std;
-
-// found new bug: if arrow key pressed for too long (more than 25ms i think)
-// console will keep running the input 
-// fix, maybe with this_thread sleep or something
-// new issue found @2024/11/24: if right arrow key pressed for a while and then ran into a chance, 
-//                  as cin >> choice is waiting for input, 
-//                  the right arrow key will result in a 'y' input
+/* ###bug notes###
+found new bug: if arrow key pressed for too long (more than 25ms i think)
+console will keep running the input 
+fix, maybe with this_thread sleep or something
+new issue found @2024/11/24: if right arrow key pressed for a while and then ran into a chance, 
+                             as cin >> choice is waiting for input, 
+                             the right arrow key will result in a 'y' input
+*/
 
 //// conio.h keys ////
 #define KEY_UP 72
