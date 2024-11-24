@@ -45,10 +45,13 @@ void printMaze(bool visited[][MAP_W]);
 void moveCamera(int ch);
 void detectEvent(Player& player);
 void displayEvent(ifstream& inFile);
-void displayChoice(ifstream& inFile, string choice);
+void displayChoiceChance(ifstream& inFile, string choice);
+void displayChoiceDestiny(ifstream& inFile, string choice);
 void modifyParameters(Player& player, int parameters[], string choice);
-void parseEvent(ifstream& inFile, Player& player);
+void parseChance(ifstream& inFile, Player& player);
+void parseDestiny(ifstream& inFile, Player& player);
 void triggerChance(Player& player);
+void triggerDestiny(Player& player);
 
 // add things here later
 
@@ -140,6 +143,7 @@ void detectEvent (Player& player){
         }
         else if (c == 'd' || c == 'D') {
             cout << string(50, ' ') << "Destiny!";
+            triggerDestiny(player);
         }
         else if (c == 'B') {
             cout << string(50, ' ') << "Battle!";
@@ -149,6 +153,7 @@ void detectEvent (Player& player){
 
 }
 
+
 //// functions (for events handling) ////
 void displayEvent(ifstream& inFile) {
     string readFile;
@@ -156,7 +161,7 @@ void displayEvent(ifstream& inFile) {
     cout << readFile;
 }
 
-void displayChoice(ifstream& inFile, string choice) {
+void displayChoiceChance(ifstream& inFile, string choice) {
     string readFile;
 
     if (choice == "Y") {
@@ -172,6 +177,14 @@ void displayChoice(ifstream& inFile, string choice) {
     }
 }
 
+void displayChoiceDestiny(ifstream& inFile, string choice) {
+    string readFile;
+
+    //forced to choose Y
+    getline(inFile, readFile, '#');
+    cout << readFile;
+}
+
 void modifyParameters(Player& player, int parameters[], string choice) {
     if (choice == "Y") {
         player.modifyAcademic(parameters[0]);
@@ -185,7 +198,7 @@ void modifyParameters(Player& player, int parameters[], string choice) {
     }
 }
 
-void parseEvent(ifstream& inFile, Player& player) {
+void parseChance(ifstream& inFile, Player& player) {
     string choice = "";
 
     int parameters[6] = {0}; // acaTrue, socTrue, emoTrue, acaFalse, socFalse, emoFalse
@@ -203,7 +216,23 @@ void parseEvent(ifstream& inFile, Player& player) {
     }
 
     // print result based on choice
-    displayChoice(inFile, choice);
+    displayChoiceChance(inFile, choice);
+    modifyParameters(player, parameters, choice);
+}
+
+void parseDestiny(ifstream& inFile, Player& player) {
+    const string choice = "Y"; //forced to choose Y
+
+    int parameters[3] = {0}; // acaTrue, socTrue, emoTrue
+    for (int i = 0; i < 3; i++) {
+        inFile >> parameters[i];
+    }
+
+    // print the event
+    displayEvent(inFile);
+
+    // print result based on choice
+    displayChoiceChance(inFile, choice);
     modifyParameters(player, parameters, choice);
 }
 
@@ -217,13 +246,27 @@ void triggerChance(Player& player) {
         return;
     }
 
-    parseEvent(inFile, player);
+    parseChance(inFile, player);
     player.printStat();
 
     inFile.close();
 }
 
+void triggerDestiny(Player& player) {
+    int i = rand() % (destinyCnt - 1 + 1) + 1; //i = a random number between 1 and chanceCnt
+    ifstream inFile("../assets/destiny" + to_string(i) + ".txt");
+    cout << "Destiny " << i << " triggered\n"; //shall be deleted as game development finishes
 
+    if (inFile.fail()) {
+        cout << "File not found\n";
+        return;
+    }
+
+    parseDestiny(inFile, player);
+    player.printStat();
+
+    inFile.close();
+}
 
 
 //// main function //// 
