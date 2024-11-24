@@ -3,8 +3,7 @@
 */
 #include <iostream>
 using namespace std;
-class Entity
-{
+class Entity {
 	protected:
 		int hpCurr, atk, def, hpMax;
 		int level = 1;

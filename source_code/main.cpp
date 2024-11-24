@@ -2,16 +2,14 @@
 #include <vector>
 #include <string>
 #include <fstream>
-#include "myconio.h"
 #include <cstdlib>
 #include <chrono>
 #include <iomanip>
 #include <thread>
-#include "player.h"
 
 // below are user-made header files
-//#include "event.h"
-//#include "../Windows_Only_Header_Files/windows.h" //still working on this...
+#include "myconio.h"
+#include "player.h"
 
 using namespace std;
 
@@ -37,6 +35,8 @@ vector<string> map;
 // pos mainly to control camera movement, put in player class
 int x = 7;
 int y = 7; //btw the pos is temp too
+const int chanceCnt = 2; //number of chances, must >= 1
+const int destinyCnt = 2; //number of destinies, must >= 1
 
 
 //// declare functions ////
@@ -149,15 +149,7 @@ void detectEvent (Player& player){
 
 }
 
-//#######################
-
-
-
-
-const int chanceCnt = 2; // number of chances, must >= 1
-const int destinyCnt = 2; // number of destinies, must >= 1
-
-
+//// functions (for events handling) ////
 void displayEvent(ifstream& inFile) {
     string readFile;
     getline(inFile, readFile, '#');
@@ -216,9 +208,9 @@ void parseEvent(ifstream& inFile, Player& player) {
 }
 
 void triggerChance(Player& player) {
-    int i = rand()%(chanceCnt - 1 + 1) + 1; //i = a random number between 1 and chanceCnt
+    int i = rand() % (chanceCnt - 1 + 1) + 1; //i = a random number between 1 and chanceCnt
     ifstream inFile("../assets/chance" + to_string(i) + ".txt");
-    cout << "Chance " << i << " triggered\n";
+    cout << "Chance " << i << " triggered\n"; //shall be deleted as game development finishes
 
     if (inFile.fail()) {
         cout << "File not found\n";
@@ -233,7 +225,6 @@ void triggerChance(Player& player) {
 
 
 
-//#######################
 
 //// main function //// 
 int main () {
@@ -268,7 +259,7 @@ int main () {
         }
         this_thread::sleep_for(25ms);
 
-        // input mode
+        // input mode || by eric, @liz shall we delete this?
         /*
             else {
                 cout << "Type 'Y' to continue";

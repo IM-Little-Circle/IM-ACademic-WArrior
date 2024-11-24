@@ -32,8 +32,7 @@ void Player::modifyEmo(int change) {
     updateStatus();
 }
 
-void Player::updateStatus()
-{
+void Player::updateStatus() {
 	socialBuff = static_cast<double>(social + emo) / 100;
     studyBuff = static_cast<double>(academic + emo) / 100;
     mentalRes = static_cast<double>(emo) / 100;
@@ -42,7 +41,7 @@ void Player::updateStatus()
     cout << "mentalRes = " << mentalRes << endl;
 }
 
-void Player::printStat(){
+void Player::printStat() {
     cout << "ACA " << academic << "\nSOC " << social << "\nEMO " << emo << endl;
 }
 
