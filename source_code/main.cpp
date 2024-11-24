@@ -43,7 +43,12 @@ int y = 7; //btw the pos is temp too
 void readMap();
 void printMaze(bool visited[][MAP_W]);
 void moveCamera(int ch);
-bool detectEvent();
+void detectEvent(Player& player);
+void displayEvent(ifstream& inFile);
+void displayChoice(ifstream& inFile, string choice);
+void modifyParameters(Player& player, int parameters[], string choice);
+void parseEvent(ifstream& inFile, Player& player);
+void triggerChance(Player& player);
 
 // add things here later
 
@@ -101,55 +106,144 @@ void printMaze (bool visited[][MAP_W]) {
 
 void moveCamera(int ch) {
 switch(ch) {
-        case KEY_UP:
-            if (y-1 >= 0 && map[y-1][x] != '#') {
-                y-=1;
-            }
-            break;
-        case KEY_DOWN:
-            if (y+1 < MAP_H && map[y+1][x] != '#') {
-                y+=1;
-            }
-            break;
-        case KEY_LEFT:
-            if (x-1 >= 0 && map[y][x-1] != '#') {
-                x-=1;
-            }
-            break;
-        case KEY_RIGHT:
-            if (x+1 < MAP_W && map[y][x+1] != '#') {
-                x+=1;
-            }
-            break;
+    case KEY_UP:
+        if (y-1 >= 0 && map[y-1][x] != '#') {
+            y-=1;
+        }
+        break;
+    case KEY_DOWN:
+        if (y+1 < MAP_H && map[y+1][x] != '#') {
+            y+=1;
+        }
+        break;
+    case KEY_LEFT:
+        if (x-1 >= 0 && map[y][x-1] != '#') {
+            x-=1;
+        }
+        break;
+    case KEY_RIGHT:
+        if (x+1 < MAP_W && map[y][x+1] != '#') {
+            x+=1;
+        }
+        break;
     }
 }
 
-bool detectEvent (){
-    bool detectedEvent = false;
+void detectEvent (Player& player){
     char c = map[y][x];
     // replace cout below with functions to call
     if (c != '.') {
-        detectedEvent = true;
-        if (c == 'c' || c == 'C') cout << string(50, ' ') << "Chance!";
-        else if (c == 'd' || c == 'D') cout << string(50, ' ') << "Destiny!";
-        else if (c == 'B') cout << string(50, ' ') << "Battle!";
+        //detectedEvent = true;
+        if (c == 'c' || c == 'C') {
+            cout << string(50, ' ') << "Chance!";
+            triggerChance(player);
+        }
+        else if (c == 'd' || c == 'D') {
+            cout << string(50, ' ') << "Destiny!";
+        }
+        else if (c == 'B') {
+            cout << string(50, ' ') << "Battle!";
+        }
     }
     cout << endl;
 
-    return detectedEvent;
 }
 
+//#######################
+
+
+
+
+const int chanceCnt = 2; // number of chances, must >= 1
+const int destinyCnt = 2; // number of destinies, must >= 1
+
+
+void displayEvent(ifstream& inFile) {
+    string readFile;
+    getline(inFile, readFile, '#');
+    cout << readFile;
+}
+
+void displayChoice(ifstream& inFile, string choice) {
+    string readFile;
+
+    if (choice == "Y") {
+        // chosen Y
+        getline(inFile, readFile, '#');
+        cout << readFile;
+    }
+    else {
+        //chosen N
+        std::getline(inFile, readFile, '#'); // ignore Y choice section
+        std::getline(inFile, readFile, '#');
+        cout << readFile;
+    }
+}
+
+void modifyParameters(Player& player, int parameters[], string choice) {
+    if (choice == "Y") {
+        player.modifyAcademic(parameters[0]);
+        player.modifySocial(parameters[1]);
+        player.modifyEmo(parameters[2]);
+    }
+    else {
+        player.modifyAcademic(parameters[3]);
+        player.modifySocial(parameters[4]);
+        player.modifyEmo(parameters[5]);
+    }
+}
+
+void parseEvent(ifstream& inFile, Player& player) {
+    string choice = "";
+
+    int parameters[6] = {0}; // acaTrue, socTrue, emoTrue, acaFalse, socFalse, emoFalse
+    for (int i = 0; i < 6; i++) {
+        inFile >> parameters[i];
+    }
+
+    // print the event
+    displayEvent(inFile);
+
+    // choose [Y | N]
+    while (!(choice == "Y" || choice == "N"|| choice == "y"|| choice == "n")) {
+        cin >> choice;
+        if (!(choice == "Y" || choice == "N"|| choice == "y"|| choice == "n")) cout << "Wrong input. Please try again.\n";
+    }
+
+    // print result based on choice
+    displayChoice(inFile, choice);
+    modifyParameters(player, parameters, choice);
+}
+
+void triggerChance(Player& player) {
+    int i = rand()%(chanceCnt - 1 + 1) + 1; //i = a random number between 1 and chanceCnt
+    ifstream inFile("../assets/chance" + to_string(i) + ".txt");
+    cout << "Chance " << i << " triggered\n";
+
+    if (inFile.fail()) {
+        cout << "File not found\n";
+        return;
+    }
+
+    parseEvent(inFile, player);
+    player.printStat();
+
+    inFile.close();
+}
+
+
+
+//#######################
 
 //// main function //// 
 int main () {
     int ch; // for reading arrow key
     bool end = 0; // for game loop
     bool visited[MAP_H][MAP_W] = {0};
-    bool inputMode = false; // input mode: not detecting arrow keys
     string input;
 
     // initialize player (test)
-    Player(10, 10, 10);
+    Player player(10, 10, 10);
 
 
     readMap();
@@ -160,32 +254,33 @@ int main () {
         ch = 0;
 
         // arrow key mode
-        if (inputMode == false) {
-            if (c_kbhit()) {
-                ch = c_getch(); // for modifications, see testMaze.cpp for ref
-                if (ch == KEY_UP||ch == KEY_DOWN ||ch == KEY_LEFT||ch == KEY_RIGHT) {
-                    
-                    moveCamera(ch);
+        if (c_kbhit()) {
+            ch = c_getch(); // for modifications, see testMaze.cpp for ref
+            if (ch == KEY_UP||ch == KEY_DOWN ||ch == KEY_LEFT||ch == KEY_RIGHT) {
+                
+                moveCamera(ch);
 
-                    system("cls");
-                    printMaze(visited);
-                    inputMode = detectEvent();
-                    if (x == 18 && y == 18) end = 1; // temp, for ending game
-                }
-            }
-            this_thread::sleep_for(25ms);
-        }
-
-        // input mode
-        else {
-            cout << "Type 'Y' to continue";
-            cin >> input;
-            if (input == "Y") {
-                inputMode = false;
                 system("cls");
                 printMaze(visited);
+                detectEvent(player);
+                if (x == 18 && y == 18) end = 1; // temp, for ending game
             }
         }
+        this_thread::sleep_for(25ms);
+
+        // input mode
+        /*
+            else {
+                cout << "Type 'Y' to continue";
+                cin >> input;
+                if (input == "Y") {
+                    inputMode = false;
+                    system("cls");
+                    printMaze(visited);
+                }
+            }
+        */
+        
         
     }
 
