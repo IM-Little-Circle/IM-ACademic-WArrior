@@ -1,0 +1,29 @@
+chance (using chance1 as an example):
+10 4 6  //effects on academic, social, and Emo when replies "Yes" 
+2 5 8   //effects on academic, social, and Emo when replies "No"
+There's one day left until the Calculus exam.
+[Y:Study | N:Procrastinate]
+# //print out event description till here, i.e. line 4-5 are event descriptions
+You get A+ for Calc 1!!!
+:D
+# //print out description for "Yes" till here, i.e. line 7-8 are descriptions for "Yes"
+You get B- for Calc 1...
+D:
+# //print out description for "No" till here, i.e. line 10-11 are descriptions for "No"
+
+
+
+
+destiny (using destiny1 as an example):
+10 4 6  //effects on academic, social, and Emo when replies "Yes" 
+2 5 8   //effects on academic, social, and Emo when replies "No"
+There's one day left until the Calculus exam.
+[Y:Study | N:Procrastinate]
+# //print out event description till here, i.e. line 4-5 are event descriptions
+You get A+ for Calc 1!!!
+:D
+# //print out description for "Yes" till here, i.e. line 7-8 are descriptions for "Yes"
+You get B- for Calc 1...
+D:
+# //print out description for "No" till here, i.e. line 10-11 are descriptions for "No"
+
