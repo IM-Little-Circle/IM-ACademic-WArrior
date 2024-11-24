@@ -39,7 +39,11 @@ int x = 7;
 int y = 7; //btw the pos is temp too
 
 
-//// header file member functions ////
+//// declare functions ////
+void readMap();
+void printMaze(bool visited[][MAP_W]);
+void moveCamera(int ch);
+bool detectEvent();
 
 // add things here later
 
@@ -120,13 +124,19 @@ switch(ch) {
     }
 }
 
-void detectEvent() {
+bool detectEvent (){
+    bool detectedEvent = false;
     char c = map[y][x];
     // replace cout below with functions to call
-    if (c == 'c' || c == 'C') cout << string(50, ' ') << "Chance!";
-    else if (c == 'd' || c == 'D') cout << string(50, ' ') << "Destiny!";
-    else if (c == 'B') cout << string(50, ' ') << "Battle!";
+    if (c != '.') {
+        detectedEvent = true;
+        if (c == 'c' || c == 'C') cout << string(50, ' ') << "Chance!";
+        else if (c == 'd' || c == 'D') cout << string(50, ' ') << "Destiny!";
+        else if (c == 'B') cout << string(50, ' ') << "Battle!";
+    }
     cout << endl;
+
+    return detectedEvent;
 }
 
 
@@ -135,6 +145,8 @@ int main () {
     int ch; // for reading arrow key
     bool end = 0; // for game loop
     bool visited[MAP_H][MAP_W] = {0};
+    bool inputMode = false; // input mode: not detecting arrow keys
+    string input;
 
     // initialize player (test)
     Player(10, 10, 10);
@@ -146,19 +158,35 @@ int main () {
 
     while (!end) {
         ch = 0;
-        if (c_kbhit()) {
-                ch = c_getch(); // for modifications, see testMaze.cpp for ref
-            if (ch == KEY_UP||ch == KEY_DOWN ||ch == KEY_LEFT||ch == KEY_RIGHT) {
-                
-                moveCamera(ch);
 
+        // arrow key mode
+        if (inputMode == false) {
+            if (c_kbhit()) {
+                ch = c_getch(); // for modifications, see testMaze.cpp for ref
+                if (ch == KEY_UP||ch == KEY_DOWN ||ch == KEY_LEFT||ch == KEY_RIGHT) {
+                    
+                    moveCamera(ch);
+
+                    system("cls");
+                    printMaze(visited);
+                    inputMode = detectEvent();
+                    if (x == 18 && y == 18) end = 1; // temp, for ending game
+                }
+            }
+            this_thread::sleep_for(25ms);
+        }
+
+        // input mode
+        else {
+            cout << "Type 'Y' to continue";
+            cin >> input;
+            if (input == "Y") {
+                inputMode = false;
                 system("cls");
                 printMaze(visited);
-                detectEvent();
-                if (x == 18 && y == 18) end = 1; // temp, for ending game
             }
         }
-        this_thread::sleep_for(25ms);
+        
     }
 
 }
