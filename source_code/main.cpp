@@ -23,11 +23,11 @@ new issue found @2024/11/24: if right arrow key pressed for a while and then ran
                              note that 'y' could be the last input before the cin
 */
 
-//// conio.h WASD keys ////
-#define KEY_UP 72
-#define KEY_DOWN 80
-#define KEY_LEFT 75
-#define KEY_RIGHT 77
+//// conio.h keys ////
+#define KEY_UP 119
+#define KEY_DOWN 115
+#define KEY_LEFT 97
+#define KEY_RIGHT 100
 #define KEY_ENTER 13
 
 //// game settings ////
