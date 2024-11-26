@@ -172,7 +172,7 @@ void displayEvent(ifstream& inFile) {
 void displayChoiceChance(ifstream& inFile, string choice) {
     string readFile;
 
-    if (choice == "Y") {
+    if (choice == "Y" || choice == 'y') {
         // chosen Y
         getline(inFile, readFile, '#');
         cout << readFile;
@@ -279,7 +279,7 @@ void triggerDestiny(Player& player) {
 }
 
 void triggerBattle(Player& player){
-    Entity oppoment(60, 60, 50); // 要怎麼找敵人?
+    Entity oppoment(30, 30, 30); // 要怎麼找敵人?
     battle(player, oppoment);
 }
 
