@@ -308,28 +308,18 @@ int main () {
                 
                 moveCamera(ch);
 
+                #ifdef _WIN32
+                system("cls");
+                #elif __linux__
                 system("clear");
+                #endif
+
                 printMaze(visited);
                 detectEvent(player);
                 if (x == 18 && y == 18) end = 1; // temp, for ending game
             }
         }
-        this_thread::sleep_for(50ms);
-
-        // input mode || by eric, @liz shall we delete this?
-        /*
-            else {
-                cout << "Type 'Y' to continue";
-                cin >> input;
-                if (input == "Y") {
-                    inputMode = false;
-                    system("cls");
-                    printMaze(visited);
-                }
-            }
-        */
-        
-        
+        this_thread::sleep_for(25ms);
     }
 
 }
