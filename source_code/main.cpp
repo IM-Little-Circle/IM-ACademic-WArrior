@@ -9,7 +9,8 @@
 
 // below are user-made header files
 #include "myconio.h"
-#include "player.h"
+//#include "player.h"
+#include "battle.h"
 
 using namespace std;
 /* ###bug notes###
@@ -58,6 +59,7 @@ void parseDestiny(ifstream& inFile, Player& player);
 void triggerChance(Player& player);
 void triggerDestiny(Player& player);
 void triggerBattle(Player& player);
+//void battle(Player& player, Entity oppoment);
 // add things here later
 
 
@@ -274,6 +276,10 @@ void triggerDestiny(Player& player) {
     inFile.close();
 }
 
+void triggerBattle(Player& player){
+    Entity oppoment(60, 60, 50); // 要怎麼找敵人?
+    battle(player, oppoment);
+}
 
 //// main function //// 
 int main () {

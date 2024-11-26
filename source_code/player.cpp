@@ -39,6 +39,10 @@ void Player::updateStatus() {
     cout << "mentalRes = " << mentalRes << endl;
 }
 
+void Player::fullRecover(){
+    hpCurr = hpMax;
+}
+
 void Player::printStat() {
     cout << "ACA " << academic << "\nSOC " << social << "\nEMO " << emo << endl;
 }
