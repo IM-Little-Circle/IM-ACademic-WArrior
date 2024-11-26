@@ -49,7 +49,7 @@ const int destinyCnt = 2; //number of destinies, must >= 1
 void readMap();
 void printMaze(bool visited[][MAP_W]);
 void moveCamera(int ch);
-void detectEvent(Player& player);
+bool detectEvent(Player& player, bool visited[][MAP_W]);
 void displayEvent(ifstream& inFile);
 void displayChoiceChance(ifstream& inFile, string choice);
 void displayChoiceDestiny(ifstream& inFile, string choice);
@@ -91,7 +91,6 @@ void printMaze (bool visited[][MAP_W]) {
 
             else if (i == x && j == y) {
                 cout << "@ "; // player marker
-                visited[j][i] = 1;
             }
 
             else if (visited[j][i]) cout << ". ";
@@ -139,26 +138,37 @@ switch(ch) {
     }
 }
 
-void detectEvent (Player& player){
-    char c = map[y][x];
-    // replace cout below with functions to call
-    if (c != '.') {
-        //detectedEvent = true;
-        if (c == 'c' || c == 'C') {
-            cout << string(50, ' ') << "Chance!";
-            triggerChance(player);
-        }
-        else if (c == 'd' || c == 'D') {
-            cout << string(50, ' ') << "Destiny!";
-            triggerDestiny(player);
-        }
-        else if (c == 'B') {
-            cout << string(50, ' ') << "Battle!";
-            triggerBattle(player);
+bool detectEvent (Player& player, bool visited[][MAP_W]){
+    if (!visited[y][x]) {
+        visited[y][x] = 1;
+        char c = map[y][x];
+        // replace cout below with functions to call
+        if (c != '.') {
+            //detectedEvent = true;
+            if (c == 'c' || c == 'C') {
+                cout << string(50, ' ') << "Chance!\n";
+                triggerChance(player);
+                cin.ignore();
+            }
+            else if (c == 'd' || c == 'D') {
+                cout << string(50, ' ') << "Destiny!\n";
+                triggerDestiny(player);
+            }
+            else if (c == 'B') {
+                cout << string(50, ' ') << "Battle!\n";
+                triggerBattle(player);
+                cin.ignore();
+            }
+
+            // buffer
+            this_thread::sleep_for(100ms);
+            cout << "Press Enter to Continue\n";
+            cin.ignore();
+            
+            return true;
         }
     }
-    cout << endl;
-
+    return false;
 }
 
 
@@ -287,6 +297,7 @@ void triggerBattle(Player& player){
 int main () {
     int ch; // for reading arrow key
     bool end = 0; // for game loop
+    bool eventDetected;
     bool visited[MAP_H][MAP_W] = {0};
     string input;
 
@@ -315,8 +326,19 @@ int main () {
                 #endif
 
                 printMaze(visited);
-                detectEvent(player);
                 if (x == 18 && y == 18) end = 1; // temp, for ending game
+                eventDetected = detectEvent(player, visited);
+                if (eventDetected) {
+                    // clear screen
+                    #ifdef _WIN32
+                    system("cls");
+                    #elif __linux__
+                    system("clear");
+                    #endif
+
+                    //reprint maze
+                    printMaze(visited);
+                }
             }
         }
         this_thread::sleep_for(25ms);
