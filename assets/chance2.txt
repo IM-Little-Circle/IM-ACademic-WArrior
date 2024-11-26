@@ -1,5 +1,5 @@
-2 7 -5 
-4 5 5
+2 7 -2 
+4 5 2
 You classmate invite you to join the department volleyball team.
 [Y:Join | N:Refuse]
 #

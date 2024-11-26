@@ -9,10 +9,10 @@ Player::Player(int hp, int Atk, int Def) : Entity(hp, Atk, Def) {
     // temp, set random pos upon initialization
     x = 5;
     y = 5;
-	socialBuff = (social + emo) / 100;
-	studyBuff = (academic + emo) / 100;
-    healBuff = emo / 100;
-	mentalRes = emo / 100;
+	socialBuff = social / 100;
+	studyBuff = academic / 100;
+    healBuff = (100 - emo) / 100;
+	mentalRes = (100 - emo) / 100;
 }
 
 
@@ -28,6 +28,8 @@ void Player::modifySocial(int change) {
 
 void Player::modifyEmo(int change) {
     emo += change;
+    if (emo < 0) emo = 0;
+    if (emo >= 100) emo = 100;
 }
 
 void Player::updateStatus() {
