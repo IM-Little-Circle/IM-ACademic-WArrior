@@ -304,6 +304,13 @@ int main () {
     // initialize player (test)
     Player player(10, 10, 10);
 
+    //initial clear screen
+    #ifdef _WIN32
+    system("cls");
+    #elif __linux__
+    system("clear");
+    #endif
+
 
     readMap();
 
