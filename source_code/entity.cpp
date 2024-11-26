@@ -66,7 +66,7 @@ void Entity::printHealth() {
 	cout << hpCurr << "/" << hpMax << endl;
 }
 
-void Battle(Entity& player1, Entity& player2) {
+/*void Battle(Entity& player1, Entity& player2) {
 	int round = 0;
 	bool stop = 0;
 	while (true) {
@@ -90,4 +90,4 @@ void Battle(Entity& player1, Entity& player2) {
 		if (stop)
 			break;
 	}
-}
+}*/

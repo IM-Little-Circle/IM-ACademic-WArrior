@@ -16,4 +16,4 @@ class skill : public Entity{
     public:
         void useSkill(Entity enemy);
         void getSkill(string filename); // 讀檔?
-}
+};
