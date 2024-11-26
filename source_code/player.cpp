@@ -11,6 +11,7 @@ Player::Player(int hp, int Atk, int Def) : Entity(hp, Atk, Def) {
     y = 5;
 	socialBuff = (social + emo) / 100;
 	studyBuff = (academic + emo) / 100;
+    healBuff = emo / 100;
 	mentalRes = emo / 100;
 }
 

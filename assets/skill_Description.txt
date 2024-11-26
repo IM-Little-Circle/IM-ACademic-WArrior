@@ -1,0 +1,5 @@
+firstline: skillName;
+secondline: type (socialAttack / studyAttack / heal)
+thirdline: 冷卻回合數
+fourthline: 倍率
+fifthline: 特殊效果? // 還不知道做不做得到

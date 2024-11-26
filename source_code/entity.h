@@ -7,7 +7,7 @@ class Entity {
 	protected:
 		int hpCurr, atk, def, hpMax;
 		int level = 1;
-		double socialBuff = 0, studyBuff = 0;
+		double socialBuff = 0, studyBuff = 0, healBuff = 0;
 		bool alive = true;
 		double mentalRes = 0, physicalRes = 0;
 
@@ -15,9 +15,9 @@ class Entity {
 
 	public:	
 		Entity(int hp, int Atk, int Def);
-		void socialAttack(Entity& enemy);
-		void studyAttack(Entity& enemy);
-        void heal();
+		void socialAttack(Entity& enemy, int percent);
+		void studyAttack(Entity& enemy, int percent);
+        void heal(int percent);
 		void death();
 		void levelUp();
 		bool living();

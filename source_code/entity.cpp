@@ -8,8 +8,8 @@ Entity::Entity(int hp, int Atk, int Def) {
     cout << "player created!!!!!\n"; // temp, delete later
 }
 
-void Entity::socialAttack(Entity& enemy) {
-	int atkCurr = atk * (1 + socialBuff);
+void Entity::socialAttack(Entity& enemy, int percent) {
+	int atkCurr = atk * (1 + socialBuff) * percent / 100;
 	int defCurr = enemy.def * (1 + mentalRes);
 /*
 	cout << "atkCurr = " << atkCurr << endl;
@@ -24,8 +24,8 @@ void Entity::socialAttack(Entity& enemy) {
 	}
 }
 
-void Entity::studyAttack(Entity& enemy) {
-	int atkCurr = double(atk * (1 + studyBuff));
+void Entity::studyAttack(Entity& enemy, int percent) {
+	int atkCurr = double(atk * (1 + studyBuff)) * percent /100;
 	int defCurr = enemy.def * (1 + physicalRes);
 /*
 	cout << "atkCurr = " << atkCurr << endl;
@@ -38,6 +38,11 @@ void Entity::studyAttack(Entity& enemy) {
 		enemy.death();
 		enemy.hpCurr = 0;
 	}	
+}
+
+void Entity::heal(int percent){
+	int recover = hpMax * healBuff;
+	hpCurr = min(hpCurr + recover, hpMax);
 }
 
 void Entity::death() {
