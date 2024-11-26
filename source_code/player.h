@@ -19,7 +19,7 @@ class Player : public Entity {
         void modifySocial(int change);
         void modifyEmo(int change);
 		void updateStatus();
-
+        void fullRecover();
         // below added for testing
         void printStat();
         void setInitialStat(int aca, int soc, int e);

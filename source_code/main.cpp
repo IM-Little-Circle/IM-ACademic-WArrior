@@ -9,7 +9,8 @@
 
 // below are user-made header files
 #include "myconio.h"
-#include "player.h"
+//#include "player.h"
+#include "battle.h"
 
 using namespace std;
 /* ###bug notes###
@@ -57,7 +58,8 @@ void parseChance(ifstream& inFile, Player& player);
 void parseDestiny(ifstream& inFile, Player& player);
 void triggerChance(Player& player);
 void triggerDestiny(Player& player);
-
+void triggerBattle(Player& player);
+//void battle(Player& player, Entity oppoment);
 // add things here later
 
 
@@ -152,6 +154,7 @@ void detectEvent (Player& player){
         }
         else if (c == 'B') {
             cout << string(50, ' ') << "Battle!";
+            triggerBattle(player);
         }
     }
     cout << endl;
@@ -255,6 +258,7 @@ void triggerChance(Player& player) {
     player.printStat();
 
     inFile.close();
+    player.levelUp();
 }
 
 void triggerDestiny(Player& player) {
@@ -271,8 +275,13 @@ void triggerDestiny(Player& player) {
     player.printStat();
 
     inFile.close();
+    player.levelUp();
 }
 
+void triggerBattle(Player& player){
+    Entity oppoment(60, 60, 50); // 要怎麼找敵人?
+    battle(player, oppoment);
+}
 
 //// main function //// 
 int main () {
