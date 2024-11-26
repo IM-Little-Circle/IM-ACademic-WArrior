@@ -258,6 +258,7 @@ void triggerChance(Player& player) {
     player.printStat();
 
     inFile.close();
+    player.levelUp();
 }
 
 void triggerDestiny(Player& player) {
@@ -274,6 +275,7 @@ void triggerDestiny(Player& player) {
     player.printStat();
 
     inFile.close();
+    player.levelUp();
 }
 
 void triggerBattle(Player& player){

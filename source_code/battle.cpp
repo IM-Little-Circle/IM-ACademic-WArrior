@@ -41,8 +41,11 @@ void battle(Player player, Entity opponent) { // should these be references inst
         input = " ";
         cout << endl;
     }
-    if (player.living())
+    if (player.living()){
         cout << "Congradulation! you win!" << endl;
+        player.levelUp();
+    }
+        
     else
         cout << "oops! you fail :(" << endl;
     player.fullRecover();

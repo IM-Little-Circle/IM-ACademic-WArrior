@@ -57,6 +57,8 @@ void Entity::levelUp() {
 	def += level;
 	hpMax += level * 2;
 	hpCurr = hpMax;
+	cout << "Level up! " << endl;
+	cout << level-1 << "  --->  " << level << endl;
 }
 
 
