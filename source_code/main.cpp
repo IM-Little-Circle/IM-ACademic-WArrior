@@ -57,7 +57,7 @@ void parseChance(ifstream& inFile, Player& player);
 void parseDestiny(ifstream& inFile, Player& player);
 void triggerChance(Player& player);
 void triggerDestiny(Player& player);
-
+void triggerBattle(Player& player);
 // add things here later
 
 
@@ -152,6 +152,7 @@ void detectEvent (Player& player){
         }
         else if (c == 'B') {
             cout << string(50, ' ') << "Battle!";
+            triggerBattle(player);
         }
     }
     cout << endl;
