@@ -49,7 +49,7 @@ const int destinyCnt = 2; //number of destinies, must >= 1
 void readMap();
 void printMaze(bool visited[][MAP_W]);
 void moveCamera(int ch);
-bool detectEvent(Player& player);
+bool detectEvent(Player& player, bool visited[][MAP_W]);
 void displayEvent(ifstream& inFile);
 void displayChoiceChance(ifstream& inFile, string choice);
 void displayChoiceDestiny(ifstream& inFile, string choice);
@@ -91,7 +91,6 @@ void printMaze (bool visited[][MAP_W]) {
 
             else if (i == x && j == y) {
                 cout << "@ "; // player marker
-                visited[j][i] = 1;
             }
 
             else if (visited[j][i]) cout << ". ";
@@ -139,32 +138,35 @@ switch(ch) {
     }
 }
 
-bool detectEvent (Player& player){
-    char c = map[y][x];
-    // replace cout below with functions to call
-    if (c != '.') {
-        //detectedEvent = true;
-        if (c == 'c' || c == 'C') {
-            cout << string(50, ' ') << "Chance!\n";
-            triggerChance(player);
-            cin.ignore();
-        }
-        else if (c == 'd' || c == 'D') {
-            cout << string(50, ' ') << "Destiny!\n";
-            triggerDestiny(player);
-        }
-        else if (c == 'B') {
-            cout << string(50, ' ') << "Battle!\n";
-            triggerBattle(player);
-            cin.ignore();
-        }
+bool detectEvent (Player& player, bool visited[][MAP_W]){
+    if (!visited[y][x]) {
+        visited[y][x] = 1;
+        char c = map[y][x];
+        // replace cout below with functions to call
+        if (c != '.') {
+            //detectedEvent = true;
+            if (c == 'c' || c == 'C') {
+                cout << string(50, ' ') << "Chance!\n";
+                triggerChance(player);
+                cin.ignore();
+            }
+            else if (c == 'd' || c == 'D') {
+                cout << string(50, ' ') << "Destiny!\n";
+                triggerDestiny(player);
+            }
+            else if (c == 'B') {
+                cout << string(50, ' ') << "Battle!\n";
+                triggerBattle(player);
+                cin.ignore();
+            }
 
-        // buffer
-        this_thread::sleep_for(100ms);
-        cout << "Press Enter to Continue\n";
-        cin.ignore();
-        
-        return true;
+            // buffer
+            this_thread::sleep_for(100ms);
+            cout << "Press Enter to Continue\n";
+            cin.ignore();
+            
+            return true;
+        }
     }
     return false;
 }
@@ -325,7 +327,7 @@ int main () {
 
                 printMaze(visited);
                 if (x == 18 && y == 18) end = 1; // temp, for ending game
-                eventDetected = detectEvent(player);
+                eventDetected = detectEvent(player, visited);
                 if (eventDetected) {
                     // clear screen
                     #ifdef _WIN32
