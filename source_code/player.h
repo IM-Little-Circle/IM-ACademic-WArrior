@@ -8,7 +8,7 @@ class Player : public Entity {
     private:
         int x;
         int y;
-        
+        int exp = 0;
         // initialized for testing
         int academic = 0; 
         int social = 0;
