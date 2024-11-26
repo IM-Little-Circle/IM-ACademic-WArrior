@@ -23,10 +23,10 @@ new issue found @2024/11/24: if right arrow key pressed for a while and then ran
 */
 
 //// conio.h keys ////
-#define KEY_UP 72
-#define KEY_DOWN 80
-#define KEY_LEFT 75
-#define KEY_RIGHT 77
+#define KEY_UP 119
+#define KEY_DOWN 115
+#define KEY_LEFT 97
+#define KEY_RIGHT 100
 #define KEY_ENTER 13
 
 //// game settings ////
@@ -299,13 +299,13 @@ int main () {
                 
                 moveCamera(ch);
 
-                system("cls");
+                system("clear");
                 printMaze(visited);
                 detectEvent(player);
                 if (x == 18 && y == 18) end = 1; // temp, for ending game
             }
         }
-        this_thread::sleep_for(25ms);
+        this_thread::sleep_for(50ms);
 
         // input mode || by eric, @liz shall we delete this?
         /*
