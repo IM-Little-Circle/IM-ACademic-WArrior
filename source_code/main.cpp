@@ -172,7 +172,7 @@ void displayEvent(ifstream& inFile) {
 void displayChoiceChance(ifstream& inFile, string choice) {
     string readFile;
 
-    if (choice == "Y" || choice == 'y') {
+    if ((choice == "Y") || (choice == 'y')) {
         // chosen Y
         getline(inFile, readFile, '#');
         cout << readFile;
