@@ -18,19 +18,16 @@ Player::Player(int hp, int Atk, int Def) : Entity(hp, Atk, Def) {
 
 void Player::modifyAcademic(int change) {
     academic += change;
-    updateStatus();
 }
 
 
 void Player::modifySocial(int change) {
     social += change;
-    updateStatus();
 }
 
 
 void Player::modifyEmo(int change) {
     emo += change;
-    updateStatus();
 }
 
 void Player::updateStatus() {
