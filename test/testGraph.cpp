@@ -1,7 +1,13 @@
 #include <iostream>
+#include <cstdlib>
 using namespace std;
 
 int main() {
+    #ifdef _WIN32
+    system("chcp 65001");
+    system("cls");
+    #endif
+
     cout << "░░░░░░░░░░" << endl;
     cout << "▒▒▒▒▒▒▒▒▒▒" << endl;
     cout << "▓▓▓▓▓▓▓▓▓▓" << endl;
