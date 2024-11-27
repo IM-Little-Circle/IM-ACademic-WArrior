@@ -150,7 +150,7 @@ bool detectEvent (Player& player, bool visited[][MAP_W]){
                 triggerChance(player);
                 cin.ignore();
             }
-            else if (c == 'd' || c == 'D') {
+            else if (c == 'd') {        //original: || c == 'D'
                 cout << string(50, ' ') << "Destiny!\n";
                 triggerDestiny(player);
             }
