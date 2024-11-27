@@ -43,7 +43,7 @@ void battle(Player player, Entity opponent) { // should these be references inst
     }
     if (player.living()){
         cout << "Congradulation! you win!" << endl;
-        player.levelUp();
+        player.getExp(10);
     }
         
     else

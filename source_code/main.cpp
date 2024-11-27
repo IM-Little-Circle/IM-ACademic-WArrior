@@ -236,6 +236,7 @@ void parseChance(ifstream& inFile, Player& player) {
     // print result based on choice
     displayChoiceChance(inFile, choice);
     modifyParameters(player, parameters, choice);
+    player.getExp(10);
 }
 
 void parseDestiny(ifstream& inFile, Player& player) {
@@ -252,6 +253,7 @@ void parseDestiny(ifstream& inFile, Player& player) {
     // print result based on choice
     displayChoiceChance(inFile, choice);
     modifyParameters(player, parameters, choice);
+    player.getExp(10);
 }
 
 void triggerChance(Player& player) {
@@ -268,7 +270,6 @@ void triggerChance(Player& player) {
     player.printStat();
 
     inFile.close();
-    player.levelUp();
 }
 
 void triggerDestiny(Player& player) {
@@ -285,7 +286,6 @@ void triggerDestiny(Player& player) {
     player.printStat();
 
     inFile.close();
-    player.levelUp();
 }
 
 void triggerBattle(Player& player){

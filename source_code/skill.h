@@ -1,5 +1,4 @@
 #include <iostream>
-#include "Entity.h"
 using namespace std;
 
 /*
@@ -7,13 +6,17 @@ using namespace std;
 但不知道buff的到期怎麼處理...
 */
 
-class skill : public Entity{
+class Skill {
     private:
         int restRound;
         int coolRound;
-        string attackType; // also can use int 
+        string skillType; // also can use int 
         int percent; // 1 = 100%
+        string skillName;
     public:
-        void useSkill(Entity enemy);
-        void getSkill(string filename); // 讀檔?
+         // 讀檔?
+        Skill (string skillName, string skillType, int restRound, int percent);
+        string getType();
+        int getCoolRound();
+        int getPercent();
 };

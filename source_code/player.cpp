@@ -1,11 +1,11 @@
 #include "player.h"
-using namespace std;
-
-
+//#include "skill.h"
+//#include "entity.h"
+#include <fstream>
 // entity member and related functions
 
 
-Player::Player(int hp, int Atk, int Def) : Entity(hp, Atk, Def) {
+Player::Player(int hp, int atk, int def) : Entity(hp, atk, def) {
     // temp, set random pos upon initialization
     x = 5;
     y = 5;
@@ -57,5 +57,51 @@ void Player::setInitialStat(int aca, int soc, int e) {
     academic = aca;
     social = soc;
     emo = e;
+    skill[0] = getSkill(1);
+    skill[1] = getSkill(2);
+    skill[2] = getSkill(3);
     updateStatus();
+}
+
+void Player::levelUp() {
+	level++;
+	atk += level * 1.2;
+	def += level;
+	hpMax += level * 2;
+	hpCurr = hpMax;
+	cout << "Level up! " << endl;
+	cout << level-1 << "  --->  " << level << endl;
+}
+
+void Player::getExp(int experience){
+    exp += experience;
+}
+
+Skill Player::getSkill(int filename){
+    int i = 1;
+    ifstream inFile("../assets/skill/skill" + to_string(i) + ".txt");
+    if (inFile.fail()) {
+        cout << "File not found\n";
+        return;
+    }
+    /*
+    放skill
+    skillName;
+    skillType;
+    restRound;
+    */
+}
+
+
+void Player::useSkill(Entity enemy, Skill skill){
+    if (skill.getCoolRound() != 0) return; //輸錯要給甚麼回饋?
+    if (skill.getType() == "heal"){
+        heal(skill.getPercent());
+    }
+    else if (skill.getType() == "studyAttack"){
+        studyAttack(enemy, skill.getPercent());
+    }
+    else{
+        socialAttack(enemy, skill.getPercent());
+    }
 }
