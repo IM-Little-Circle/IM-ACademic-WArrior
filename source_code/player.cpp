@@ -82,7 +82,6 @@ Skill Player::getSkill(int filename){
     ifstream inFile("../assets/skill/skill" + to_string(i) + ".txt");
     if (inFile.fail()) {
         cout << "File not found\n";
-        return;
     }
     /*
     放skill
