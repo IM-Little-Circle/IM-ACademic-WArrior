@@ -60,9 +60,6 @@ void Player::setInitialStat(int aca, int soc, int e) {
     academic = aca;
     social = soc;
     emo = e;
-    skill[0] = getSkill(1);
-    skill[1] = getSkill(2);
-    skill[2] = getSkill(3);
     updateStatus();
 }
 
@@ -83,18 +80,17 @@ void Player::getExp(int experience){
 /*
 最難的是getskill這邊理論上要有介面的切換
 */
-Skill Player::getSkill(int filenumber){
-    int i = 1;
+Skill* Player::getSkill(int filenumber){
     string skillName, skillType;
     int restRound, percent;
-    ifstream inFile("../assets/skill/skill" + to_string(i) + ".txt");
+    ifstream inFile("../assets/skill/skill" + to_string(filenumber) + ".txt");
     if (inFile.fail()) {
         cout << "File not found\n";
     }
     else {
         getline(inFile, skillName);
         getline(inFile, skillType);
-        cin >> restRound >> percent;
+        inFile >> restRound >> percent;
     }
     /*
     放skill
@@ -102,8 +98,7 @@ Skill Player::getSkill(int filenumber){
     skillType;
     restRound;
     */
-
-   return Skill(skillName, skillType, restRound, percent);
+   return new Skill(skillName, skillType, restRound, percent);
 }
 
 void Player::replaceSkill(int filenumber){

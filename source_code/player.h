@@ -14,7 +14,7 @@ class Player : public Entity {
         int academic = 0; 
         int social = 0;
         int emo = 0;
-        Skill skill[3];
+        Skill** skill = new Skill*[3];
     public:
         Player(int hp, int atk, int def);
         void modifyAcademic(int change);
@@ -30,7 +30,7 @@ class Player : public Entity {
         void setInitialStat(int aca, int soc, int e);
 
         //skill
-        Skill getSkill(int filenumber);
+        Skill* getSkill(int filenumber);
         void replaceSkill(int filenumber);
         void useSkill(Entity enemy, Skill skill);
 };

@@ -8,11 +8,11 @@ using namespace std;
 */
 Skill::Skill(string skillName, string skillType, int restRound, int percent)
 {
-    skillName = skillName;
-    skillType = skillType;
-    restRound = restRound;
-    percent = percent;
-    coolRound = 0;
+    this->skillName = skillName;
+    this->skillType = skillType;
+    this->restRound = restRound;
+    this->percent = percent;
+    this->coolRound = 0;
 }
 
 Skill::Skill()
@@ -27,9 +27,15 @@ Skill::Skill()
 string Skill::getType(){
     return skillType;
 }
+
+void Skill::printSkill() {
+    cout << skillName << " " << skillType << " " << restRound << "," << percent << endl;
+}
+
 int Skill::getCoolRound(){
     return coolRound;
 }
+
 int Skill::getPercent(){
     return percent;
 }

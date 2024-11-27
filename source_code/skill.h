@@ -15,9 +15,10 @@ class Skill {
         string skillName;
     public:
          // 讀檔?
-        Skill (string skillName, string skillType, int restRound, int percent);
         Skill();
+        Skill (string skillName, string skillType, int restRound, int percent);
         string getType();
+        void printSkill(); // added by liz, for  debugging
         int getCoolRound();
         int getPercent();
 };
