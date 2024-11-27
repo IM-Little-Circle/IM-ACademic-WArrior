@@ -41,23 +41,23 @@ vector<string> map;
 // pos mainly to control camera movement, put in player class
 int x = 7;
 int y = 7; //btw the pos is temp too
-const int chanceCnt = 2; //number of chances, must >= 1
-const int destinyCnt = 2; //number of destinies, must >= 1
+const int CHANCE_CNT = 2; //number of chances, must >= 1
+const int DESTINY_CNT = 2; //number of destinies, must >= 1
 
 
 //// declare functions ////
 void readMap();
 void printMaze(bool visited[][MAP_W]);
 void moveCamera(int ch);
-bool detectEvent(Player& player, bool visited[][MAP_W]);
+bool detectEvent(Player& player, bool visited[][MAP_W], bool triggeredChance[], bool triggeredDestiny[]);
 void displayEvent(ifstream& inFile);
 void displayChoiceChance(ifstream& inFile, string choice);
 void displayChoiceDestiny(ifstream& inFile, string choice);
 void modifyParameters(Player& player, int parameters[], string choice);
 void parseChance(ifstream& inFile, Player& player);
 void parseDestiny(ifstream& inFile, Player& player);
-void triggerChance(Player& player);
-void triggerDestiny(Player& player);
+void triggerChance(Player& player, bool triggeredChance[]);
+void triggerDestiny(Player& player, bool triggeredDestiny[]);
 void triggerBattle(Player& player);
 //void battle(Player& player, Entity oppoment);
 // add things here later
@@ -138,7 +138,7 @@ switch(ch) {
     }
 }
 
-bool detectEvent (Player& player, bool visited[][MAP_W]){
+bool detectEvent (Player& player, bool visited[][MAP_W], bool triggeredChance[], bool triggeredDestiny[]) {
     if (!visited[y][x]) {
         visited[y][x] = 1;
         char c = map[y][x];
@@ -147,12 +147,12 @@ bool detectEvent (Player& player, bool visited[][MAP_W]){
             //detectedEvent = true;
             if (c == 'c' || c == 'C') {
                 cout << string(50, ' ') << "Chance!\n";
-                triggerChance(player);
+                triggerChance(player, triggeredChance);
                 cin.ignore();
             }
             else if (c == 'd') {        //original: || c == 'D'
                 cout << string(50, ' ') << "Destiny!\n";
-                triggerDestiny(player);
+                triggerDestiny(player, triggeredDestiny);
             }
             else if (c == 'B') {
                 cout << string(50, ' ') << "Battle!\n";
@@ -254,8 +254,26 @@ void parseDestiny(ifstream& inFile, Player& player) {
     modifyParameters(player, parameters, choice);
 }
 
-void triggerChance(Player& player) {
-    int i = rand() % (chanceCnt - 1 + 1) + 1; //i = a random number between 1 and chanceCnt
+void triggerChance(Player& player, bool triggeredChance[]) {
+    int i = -1; //note that i will be 1-based for file, but 0-based for array
+    do {
+        i = rand() % (CHANCE_CNT - 1 + 1) + 1; //i = a random number between 1 and CHANCE_CNT
+        bool allTriggered = false;
+        for (int j = 0; j < CHANCE_CNT; j++) {
+            if (!triggeredChance[j]) {
+                allTriggered = false;
+                break;
+            }
+            allTriggered = true;
+        }
+        if(allTriggered) {
+            cout << "ALL triggered" << endl;
+            break;
+        }
+    } while (triggeredChance[i - 1]); //re-roll
+    
+
+    triggeredChance[i - 1] = true;
     ifstream inFile("../assets/chance/chance" + to_string(i) + ".txt");
     cout << "Chance " << i << " triggered\n"; //shall be deleted as game development finishes
 
@@ -271,8 +289,26 @@ void triggerChance(Player& player) {
     player.levelUp();
 }
 
-void triggerDestiny(Player& player) {
-    int i = rand() % (destinyCnt - 1 + 1) + 1; //i = a random number between 1 and chanceCnt
+void triggerDestiny(Player& player, bool triggeredDestiny[]) {
+    int i = -1; //note that i will be 1-based for file, but 0-based for array
+    do {
+        i = rand() % (DESTINY_CNT - 1 + 1) + 1; //i = a random number between 1 and DESTINY_CNT
+        bool allTriggered = false;
+        for (int j = 0; j < DESTINY_CNT; j++) {
+            if (!triggeredDestiny[j]) {
+                allTriggered = false;
+                break;
+            }
+            allTriggered = true;
+        }
+        if(allTriggered) {
+            cout << "ALL triggered" << endl;
+            break;
+        }
+    } while (triggeredDestiny[i - 1]); //re-roll
+    
+
+    triggeredDestiny[i - 1] = true;
     ifstream inFile("../assets/destiny/destiny" + to_string(i) + ".txt");
     cout << "Destiny " << i << " triggered\n"; //shall be deleted as game development finishes
 
@@ -299,6 +335,8 @@ int main () {
     bool end = 0; // for game loop
     bool eventDetected;
     bool visited[MAP_H][MAP_W] = {0};
+    bool triggeredChance[CHANCE_CNT] = {0};
+    bool triggeredDestiny[DESTINY_CNT] = {0};
     string input;
 
     // initialize player (test)
@@ -334,7 +372,7 @@ int main () {
 
                 printMaze(visited);
                 if (x == 18 && y == 18) end = 1; // temp, for ending game
-                eventDetected = detectEvent(player, visited);
+                eventDetected = detectEvent(player, visited, triggeredChance, triggeredDestiny);
                 if (eventDetected) {
                     // clear screen
                     #ifdef _WIN32
