@@ -66,7 +66,7 @@ void triggerBattle(Player& player);
 //// functions (for game loop) ////
 void readMap() {
     string line;
-    ifstream file("../assets/testEventMap.txt"); 
+    ifstream file("../assets/map/testEventMap.txt"); 
     // note to self: the current path setting will not run from VSCode execution
     // you will have to rely on batch compiling and exe for now
 
@@ -256,7 +256,7 @@ void parseDestiny(ifstream& inFile, Player& player) {
 
 void triggerChance(Player& player) {
     int i = rand() % (chanceCnt - 1 + 1) + 1; //i = a random number between 1 and chanceCnt
-    ifstream inFile("../assets/chance" + to_string(i) + ".txt");
+    ifstream inFile("../assets/chance/chance" + to_string(i) + ".txt");
     cout << "Chance " << i << " triggered\n"; //shall be deleted as game development finishes
 
     if (inFile.fail()) {
@@ -273,7 +273,7 @@ void triggerChance(Player& player) {
 
 void triggerDestiny(Player& player) {
     int i = rand() % (destinyCnt - 1 + 1) + 1; //i = a random number between 1 and chanceCnt
-    ifstream inFile("../assets/destiny" + to_string(i) + ".txt");
+    ifstream inFile("../assets/destiny/destiny" + to_string(i) + ".txt");
     cout << "Destiny " << i << " triggered\n"; //shall be deleted as game development finishes
 
     if (inFile.fail()) {
