@@ -16,6 +16,7 @@ class Skill {
     public:
          // 讀檔?
         Skill (string skillName, string skillType, int restRound, int percent);
+        Skill();
         string getType();
         int getCoolRound();
         int getPercent();

@@ -13,6 +13,9 @@ Player::Player(int hp, int atk, int def) : Entity(hp, atk, def) {
 	studyBuff = academic / 100;
     healBuff = (100 - emo) / 100;
 	mentalRes = (100 - emo) / 100;
+    skill[0] = getSkill(1);
+    skill[1] = getSkill(2);
+    skill[2] = getSkill(3);
 }
 
 
@@ -77,7 +80,7 @@ void Player::getExp(int experience){
     exp += experience;
 }
 
-Skill Player::getSkill(int filename){
+Skill Player::getSkill(int filenumber){
     int i = 1;
     ifstream inFile("../assets/skill/skill" + to_string(i) + ".txt");
     if (inFile.fail()) {

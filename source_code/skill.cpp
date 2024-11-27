@@ -14,6 +14,16 @@ Skill::Skill(string skillName, string skillType, int restRound, int percent)
     percent = percent;
     coolRound = 0;
 }
+
+Skill::Skill()
+{
+    skillName = "";
+    skillType = "";
+    percent = 100;
+    restRound = 1;
+    coolRound = 0;
+}
+
 string Skill::getType(){
     return skillType;
 }

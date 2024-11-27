@@ -30,7 +30,7 @@ class Player : public Entity {
         void setInitialStat(int aca, int soc, int e);
 
         //skill
-        Skill getSkill(int filename);
+        Skill getSkill(int filenumber);
         void useSkill(Entity enemy, Skill skill);
 };
 
