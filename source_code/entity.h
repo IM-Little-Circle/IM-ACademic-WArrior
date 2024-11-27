@@ -14,13 +14,13 @@ class Entity {
 		// wanna add name
 
 	public:	
-		Entity(int hp, int Atk, int Def);
+		Entity(int hp, int atk, int def);
 		void socialAttack(Entity& enemy, int percent);
 		void studyAttack(Entity& enemy, int percent);
         void heal(int percent);
 		void death();
-		void levelUp();
+		
 		bool living();
-
+		
 		void printHealth();
 };

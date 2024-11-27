@@ -51,17 +51,6 @@ void Entity::death() {
 	alive = false;
 }
 
-void Entity::levelUp() {
-	level++;
-	atk += level * 1.2;
-	def += level;
-	hpMax += level * 2;
-	hpCurr = hpMax;
-	cout << "Level up! " << endl;
-	cout << level-1 << "  --->  " << level << endl;
-}
-
-
 bool Entity::living() {
 	return alive;
 }

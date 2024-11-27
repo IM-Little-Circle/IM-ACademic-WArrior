@@ -1,11 +1,11 @@
 #include "player.h"
-using namespace std;
-
-
+//#include "skill.h"
+//#include "entity.h"
+#include <fstream>
 // entity member and related functions
 
 
-Player::Player(int hp, int Atk, int Def) : Entity(hp, Atk, Def) {
+Player::Player(int hp, int atk, int def) : Entity(hp, atk, def) {
     // temp, set random pos upon initialization
     x = 5;
     y = 5;
@@ -13,6 +13,9 @@ Player::Player(int hp, int Atk, int Def) : Entity(hp, Atk, Def) {
 	studyBuff = academic / 100;
     healBuff = (100 - emo) / 100;
 	mentalRes = (100 - emo) / 100;
+    skill[0] = getSkill(1);
+    skill[1] = getSkill(2);
+    skill[2] = getSkill(3);
 }
 
 
@@ -58,4 +61,72 @@ void Player::setInitialStat(int aca, int soc, int e) {
     social = soc;
     emo = e;
     updateStatus();
+}
+
+void Player::levelUp() {
+	level++;
+	atk += level * 1.2;
+	def += level;
+	hpMax += level * 2;
+	hpCurr = hpMax;
+	cout << "Level up! " << endl;
+	cout << level-1 << "  --->  " << level << endl;
+}
+
+void Player::getExp(int experience){
+    exp += experience;
+}
+
+/*
+最難的是getskill這邊理論上要有介面的切換
+*/
+Skill* Player::getSkill(int filenumber){
+    string skillName, skillType;
+    int restRound, percent;
+    ifstream inFile("../assets/skill/skill" + to_string(filenumber) + ".txt");
+    if (inFile.fail()) {
+        cout << "File not found\n";
+    }
+    else {
+        getline(inFile, skillName);
+        getline(inFile, skillType);
+        inFile >> restRound >> percent;
+    }
+    /*
+    放skill
+    skillName;
+    skillType;
+    restRound;
+    */
+   return new Skill(skillName, skillType, restRound, percent);
+}
+
+void Player::replaceSkill(int filenumber){
+    
+    /*cout << "you get a new skill!" << endl;
+    輸出得到的skill
+
+    列出現在有的skill，讓他輸入1、2、3決定要換掉哪一個
+    */
+   int changeNumber = 0;
+   cin >> changeNumber;
+   while(changeNumber < 1 && changeNumber >= 4){
+        cout << "Wrong input, please choose your number again" << endl;
+        cin >> changeNumber;
+   }
+
+
+}
+
+void Player::useSkill(Entity enemy, Skill skill){
+    if (skill.getCoolRound() != 0) return; //輸錯要給甚麼回饋?
+    if (skill.getType() == "heal"){
+        heal(skill.getPercent());
+    }
+    else if (skill.getType() == "studyAttack"){
+        studyAttack(enemy, skill.getPercent());
+    }
+    else{
+        socialAttack(enemy, skill.getPercent());
+    }
 }
