@@ -311,7 +311,6 @@ int main () {
     system("clear");
     #endif
 
-
     readMap();
 
     printMaze(visited);

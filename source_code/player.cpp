@@ -82,9 +82,16 @@ void Player::getExp(int experience){
 
 Skill Player::getSkill(int filenumber){
     int i = 1;
+    string skillName, skillType;
+    int restRound, percent;
     ifstream inFile("../assets/skill/skill" + to_string(i) + ".txt");
     if (inFile.fail()) {
         cout << "File not found\n";
+    }
+    else {
+        getline(inFile, skillName);
+        getline(inFile, skillType);
+        cin >> restRound >> percent;
     }
     /*
     放skill
@@ -92,6 +99,8 @@ Skill Player::getSkill(int filenumber){
     skillType;
     restRound;
     */
+
+   return Skill(skillName, skillType, restRound, percent);
 }
 
 
