@@ -80,6 +80,9 @@ void Player::getExp(int experience){
     exp += experience;
 }
 
+/*
+最難的是getskill這邊理論上要有介面的切換
+*/
 Skill Player::getSkill(int filenumber){
     int i = 1;
     ifstream inFile("../assets/skill/skill" + to_string(i) + ".txt");
@@ -94,6 +97,22 @@ Skill Player::getSkill(int filenumber){
     */
 }
 
+void Player::replaceSkill(int filenumber){
+    
+    /*cout << "you get a new skill!" << endl;
+    輸出得到的skill
+
+    列出現在有的skill，讓他輸入1、2、3決定要換掉哪一個
+    */
+   int changeNumber = 0;
+   cin >> changeNumber;
+   while(changeNumber < 1 && changeNumber >= 4){
+        cout << "Wrong input, please choose your number again" << endl;
+        cin >> changeNumber;
+   }
+
+
+}
 
 void Player::useSkill(Entity enemy, Skill skill){
     if (skill.getCoolRound() != 0) return; //輸錯要給甚麼回饋?

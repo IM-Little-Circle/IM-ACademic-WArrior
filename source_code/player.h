@@ -31,6 +31,7 @@ class Player : public Entity {
 
         //skill
         Skill getSkill(int filenumber);
+        void replaceSkill(int filenumber);
         void useSkill(Entity enemy, Skill skill);
 };
 
