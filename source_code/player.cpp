@@ -108,13 +108,18 @@ void Player::replaceSkill(int filenumber){
 
     列出現在有的skill，讓他輸入1、2、3決定要換掉哪一個
     */
-   int changeNumber = 0;
-   cin >> changeNumber;
-   while(changeNumber < 1 && changeNumber >= 4){
-        cout << "Wrong input, please choose your number again" << endl;
-        cin >> changeNumber;
-   }
+    string changeNumber;
+    cin >> changeNumber;
 
+    // 以下的偵測條件有點白癡，看需不需要改？
+    while (!(changeNumber == "1" || changeNumber == "2" || changeNumber == "3")){
+            cout << "Wrong input, please choose your number again" << endl;
+            cin >> changeNumber;
+    }
+    cin.ignore();
+    cout << "Replaced " << skill[stoi(changeNumber)-1]->getName();
+    skill[stoi(changeNumber)-1] = getSkill(filenumber);
+    cout << "with " <<  skill[stoi(changeNumber)-1]->getName() << "!\n";
 
 }
 
@@ -129,4 +134,14 @@ void Player::useSkill(Entity enemy, Skill skill){
     else{
         socialAttack(enemy, skill.getPercent());
     }
+}
+
+
+// added for testing
+
+void Player::printSkill(int skillnumber) {
+    if (skillnumber >= 0 && skillnumber < 3) {
+        skill[skillnumber]->printSkill();
+    }
+    else cout << "error index!\n";
 }

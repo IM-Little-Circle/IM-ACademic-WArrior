@@ -6,6 +6,9 @@ using namespace std;
 再替換現有的skill
 好像不會放在skill.cpp而是應該放在Player.cpp
 */
+
+// added skill 4-6 for testing
+
 Skill::Skill(string skillName, string skillType, int restRound, int percent)
 {
     this->skillName = skillName;
@@ -26,6 +29,10 @@ Skill::Skill()
 
 string Skill::getType(){
     return skillType;
+}
+
+string Skill::getName(){
+    return skillName;
 }
 
 void Skill::printSkill() {

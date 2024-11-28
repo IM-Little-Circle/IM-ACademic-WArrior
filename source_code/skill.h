@@ -18,6 +18,7 @@ class Skill {
         Skill();
         Skill (string skillName, string skillType, int restRound, int percent);
         string getType();
+        string getName();
         void printSkill(); // added by liz, for  debugging
         int getCoolRound();
         int getPercent();

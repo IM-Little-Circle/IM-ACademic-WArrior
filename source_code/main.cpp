@@ -41,11 +41,14 @@ vector<string> map;
 // pos mainly to control camera movement, put in player class
 int x = 7;
 int y = 7; //btw the pos is temp too
+int chanceEncountered = 0;
 const int CHANCE_CNT = 2; //number of chances, must >= 1
 const int DESTINY_CNT = 2; //number of destinies, must >= 1
-
+const int SKILL_CNT = 3; // number of skills, note that skill 1-3 are starters, not included here
 
 //// declare functions ////
+void buffer(); // press enter to continue
+void clearScreen(); // system cls/clear
 void readMap();
 void printMaze(bool visited[][MAP_W]);
 void moveCamera(int ch);
@@ -59,6 +62,7 @@ void parseDestiny(ifstream& inFile, Player& player);
 void triggerChance(Player& player, bool triggeredChance[]);
 void triggerDestiny(Player& player, bool triggeredDestiny[]);
 void triggerBattle(Player& player);
+void replaceSkillScreen(Player& player);
 //void battle(Player& player, Entity oppoment);
 // add things here later
 
@@ -109,9 +113,8 @@ void printMaze (bool visited[][MAP_W]) {
         cout << "\n";
     }
     // for debugging: cout pos
-    cout << string(50, ' ') << x << " " << y << endl;
+    cout << string(50, ' ') << x << " " << y << string (20, ' ') << "Chance encountered: " << chanceEncountered << endl;
 }
-
 
 void moveCamera(int ch) {
 switch(ch) {
@@ -148,6 +151,7 @@ bool detectEvent (Player& player, bool visited[][MAP_W], bool triggeredChance[],
             if (c == 'c' || c == 'C') {
                 cout << string(50, ' ') << "Chance!\n";
                 triggerChance(player, triggeredChance);
+                chanceEncountered++;
                 cin.ignore();
             }
             else if (c == 'd') {        //original: || c == 'D'
@@ -160,10 +164,11 @@ bool detectEvent (Player& player, bool visited[][MAP_W], bool triggeredChance[],
                 cin.ignore();
             }
 
-            // buffer
-            this_thread::sleep_for(100ms);
-            cout << "Press Enter to Continue\n";
-            cin.ignore();
+            buffer();
+
+            // BELOW IS FOR TESTING REPLACESKILL (TEMP)
+            replaceSkillScreen(player);
+            buffer();
             
             return true;
         }
@@ -171,8 +176,22 @@ bool detectEvent (Player& player, bool visited[][MAP_W], bool triggeredChance[],
     return false;
 }
 
+void buffer() {
+    this_thread::sleep_for(100ms);
+    cout << "Press Enter to Continue\n";
+    cin.ignore();
+}
+
+void clearScreen() {
+    #ifdef _WIN32
+    system("cls");
+    #elif __linux__
+    system("clear");
+    #endif
+}
 
 //// functions (for events handling) ////
+
 void displayEvent(ifstream& inFile) {
     string readFile;
     getline(inFile, readFile, '#');
@@ -329,6 +348,34 @@ void triggerBattle(Player& player){
     battle(player, oppoment);
 }
 
+void replaceSkillScreen(Player& player) {
+    // get random skill
+    int skillNumber = rand() % (SKILL_CNT) + 4;
+    string choice = "";
+
+    clearScreen();
+    cout << "Your current skills: \n";
+    cout << "1. ";
+    player.printSkill(0);
+    cout << "2. ";
+    player.printSkill(1);
+    cout << "3. ";
+    player.printSkill(2);
+    cout << endl;
+
+    // print the name of the gotten skill somehow
+    cout << "You have gotten new skill!\nDo you want to switch one of your skills for this? "; 
+    while (!(choice == "Y" || choice == "N"|| choice == "y"|| choice == "n")) {
+        cin >> choice;
+        if (!(choice == "Y" || choice == "N"|| choice == "y"|| choice == "n")) cout << "Wrong input. Please try again.\n";
+    }
+    if (choice == "Y" || choice == "y") {
+        cout << "Which one do you want to change?\n";
+        player.replaceSkill(skillNumber);
+    }
+    else cin.ignore();
+}
+
 //// main function //// 
 int main () {
     int ch; // for reading arrow key
@@ -343,11 +390,7 @@ int main () {
     Player player(10, 10, 10);
 
     //initial clear screen
-    #ifdef _WIN32
-    system("cls");
-    #elif __linux__
-    system("clear");
-    #endif
+    clearScreen();
 
     readMap();
 
@@ -362,23 +405,14 @@ int main () {
             if (ch == KEY_UP||ch == KEY_DOWN ||ch == KEY_LEFT||ch == KEY_RIGHT) {
                 
                 moveCamera(ch);
-
-                #ifdef _WIN32
-                system("cls");
-                #elif __linux__
-                system("clear");
-                #endif
+                clearScreen();
 
                 printMaze(visited);
                 if (x == 18 && y == 18) end = 1; // temp, for ending game
                 eventDetected = detectEvent(player, visited, triggeredChance, triggeredDestiny);
                 if (eventDetected) {
                     // clear screen
-                    #ifdef _WIN32
-                    system("cls");
-                    #elif __linux__
-                    system("clear");
-                    #endif
+                    clearScreen();
 
                     //reprint maze
                     printMaze(visited);

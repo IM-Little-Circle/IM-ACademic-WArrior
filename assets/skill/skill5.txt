@@ -1,0 +1,4 @@
+charisma 
+socialAttack
+0
+150

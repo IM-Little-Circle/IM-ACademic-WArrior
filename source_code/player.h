@@ -22,12 +22,13 @@ class Player : public Entity {
         void modifyEmo(int change);
 		void updateStatus();
         void fullRecover();
+        void setInitialStat(int aca, int soc, int e);
 
         void levelUp();
         void getExp(int experience);
         // below added for testing
         void printStat();
-        void setInitialStat(int aca, int soc, int e);
+        void printSkill(int skillnumber);
 
         //skill
         Skill* getSkill(int filenumber);
