@@ -270,7 +270,7 @@ void parseDestiny(ifstream& inFile, Player& player) {
     displayEvent(inFile);
 
     // print result based on choice
-    displayChoiceChance(inFile, choice);
+    //displayChoiceChance(inFile, choice);
     modifyParameters(player, parameters, choice);
     player.getExp(10);
 }
