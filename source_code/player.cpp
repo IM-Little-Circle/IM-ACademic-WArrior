@@ -14,9 +14,9 @@ Player::Player(int hp, int atk, int def) : Entity(hp, atk, def) {
 	studyBuff = academic / 100;
     healBuff = (100 - emo) / 100;
 	mentalRes = (100 - emo) / 100;
-    skill[0] = getSkill(1);
-    skill[1] = getSkill(2);
-    skill[2] = getSkill(3);
+    skill[0] = fetchSkill(1);
+    skill[1] = fetchSkill(2);
+    skill[2] = fetchSkill(3);
 }
 
 
@@ -106,10 +106,14 @@ void Player::getExp(int experience){
     
 }
 
+Skill* Player::getSkill(int skillIndex) {
+    return this->skill[skillIndex];
+}
+
 /*
 最難的是getskill這邊理論上要有介面的切換
 */
-Skill* Player::getSkill(int filenumber){
+Skill* Player::fetchSkill(int filenumber){
     string skillName, skillType;
     int restRound, percent;
     ifstream inFile("../assets/skill/skill" + to_string(filenumber) + ".txt");
@@ -149,7 +153,7 @@ void Player::replaceSkill(int filenumber){
     }
     cin.ignore();
     cout << "Replaced " << skill[stoi(changeNumber)-1]->getName();
-    skill[stoi(changeNumber)-1] = getSkill(filenumber);
+    skill[stoi(changeNumber)-1] = fetchSkill(filenumber);
     cout << "with " <<  skill[stoi(changeNumber)-1]->getName() << "!\n";
 
 }
@@ -184,9 +188,9 @@ void Player::useSkill(Entity& enemy, int chooseNumber){
 
 // added for testing
 
-void Player::printSkill(int skillnumber) {
-    if (skillnumber >= 0 && skillnumber < 3) {
-        skill[skillnumber]->printSkill();
+void Player::printSkill(int skillIndex) {
+    if (skillIndex >= 0 && skillIndex < 3) {
+        skill[skillIndex]->printSkill();
     }
     else cout << "error index!\n";
 }
