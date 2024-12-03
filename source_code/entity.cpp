@@ -7,9 +7,10 @@ Entity::Entity(int hp, int Atk, int Def) {
 	hpCurr = hp, hpMax = hp, atk = Atk, def = Def;
     cout << "player created!!!!!\n"; // temp, delete later
 }
-Entity::Entity(int hp, int Atk, int Def, double mentalRes, double physicalRes){
+Entity::Entity(int hp, int Atk, int Def, double mentalRes, double physicalRes, string weakness){
 	hpCurr = hp, hpMax = hp, atk = Atk, def = Def;
 	this->mentalRes = mentalRes, this->physicalRes = physicalRes;
+	this->weakness = weakness;
 }
 void Entity::socialAttack(Entity& enemy, int percent) {
 	int atkCurr = double(atk * (1 + socialBuff)) * percent / 100;

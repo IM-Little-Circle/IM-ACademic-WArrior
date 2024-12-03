@@ -35,7 +35,6 @@ new issue found @2024/11/24: if right arrow key pressed for a while and then ran
 #define MAP_H 32
 #define SCRN_HW 4 // half width of 9, for printing camera screen
 
-
 // here are some global variables for now, wrap them up later
 vector<string> map;
 // pos mainly to control camera movement, put in player class
@@ -54,11 +53,14 @@ void clearScreen(); // system cls/clear
 void gameStartScreen();
 void animateString(string str);
 void readMap();
-void printMaze(bool visited[][MAP_W]);
+void printMaze(bool visited[][MAP_W], Player& player);
 void moveCamera(int ch);
 void detectEvent(Player& player, bool visited[][MAP_W], bool triggeredChance[], bool triggeredDestiny[]);
-void detectChanceCnt(Player& player);
+void detectChanceCnt(bool visited[][MAP_W], Player& player);
 void replaceSkillScreen(Player& player);
+void printLine(int length);
+void printSpace(int length);
+void printStat(Player& player, int index);
 //void battle(Player& player, Entity oppoment);
 // add things here later
 
@@ -91,11 +93,15 @@ void gameStartScreen() {
 // for updating camera screen
 // question: how should we print the guide (press i for smtn smtn), at the right or bottom?
 // to do here: figure out/design the guide!
-void printMaze (bool visited[][MAP_W]) {
+void printMaze (bool visited[][MAP_W], Player& player) {
+
+    printSpace(25);
+    printLine(25+14+25);
+    cout<<endl;
+    cout<<endl;
+
     for (int j = y-SCRN_HW; j <= y+SCRN_HW; j++) {
-
-        cout << string(50, ' '); //padding
-
+        printSpace(50);
         for (int i = x-SCRN_HW; i <= x+SCRN_HW; i++) {
 
             if (i < 0 || i >= MAP_W || j < 0 || j >= MAP_H) {
@@ -116,13 +122,17 @@ void printMaze (bool visited[][MAP_W]) {
                 //cout << map[j][i] << " ";
                 //cout << ". ";
             }
-
+            printStat(player, 0);
         }
         
         cout << "\n";
     }
     // for debugging: cout pos
     cout << string(50, ' ') << x << " " << y << string (20, ' ') << "Chance encountered: " << chanceEncounteredCnt << endl;
+    
+    printSpace(25);
+    printLine(25+14+25);
+    cout<<endl;
 }
 
 
@@ -190,12 +200,26 @@ void detectEvent (Player& player, bool visited[][MAP_W], bool triggeredChance[],
             buffer();
             
             clearScreen();
-            printMaze(visited);
+            printMaze(visited, player);
         }
     }
 }
 
-void detectChanceCnt(bool visited[][MAP_W]) {
+void printStat(Player& player, int index) {
+    if(index == 0) cout << "Stat: \n";
+    if(index == 1) cout << "Academic: " << player.getAcademic();
+    if(index == 2) cout << "Social:  " << player.getSocial();
+}
+
+void printSpace(int length) {
+    cout << string(length, ' ');
+}
+
+void printLine(int length) {
+    for(int i=0;i<length;i++) cout << "═";
+}
+
+void detectChanceCnt(bool visited[][MAP_W], Player& player) {
         if (chanceEncounteredCnt == 2 && !midterms) {
             // midterms
             cout << string(20, ' ');
@@ -204,7 +228,7 @@ void detectChanceCnt(bool visited[][MAP_W]) {
             clearScreen();
             buffer();
             clearScreen();
-            printMaze(visited);
+            printMaze(visited, player);
             midterms = true;
 
         }
@@ -306,7 +330,7 @@ int main () {
 
     readMap();
 
-    printMaze(visited);
+    printMaze(visited, player);
 
     while (!end) {
         ch = 0;
@@ -319,12 +343,12 @@ int main () {
                 moveCamera(ch);
                 clearScreen();
 
-                printMaze(visited);
+                printMaze(visited, player);
 
                 if (x == 18 && y == 18) end = 1; // temp, for ending game
 
                 detectEvent(player, visited, triggeredChance, triggeredDestiny);
-                detectChanceCnt(visited); // for special events (like midterms)
+                detectChanceCnt(visited, player); // for special events (like midterms)
                 end = detectEnding(player);
             }
         }
