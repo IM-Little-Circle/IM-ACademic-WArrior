@@ -16,6 +16,7 @@ class Skill {
     public:
          // 讀檔?
         Skill();
+        Skill(int fileNumber);
         Skill (string skillName, string skillType, int restRound, int percent);
         string getType();
         string getName();

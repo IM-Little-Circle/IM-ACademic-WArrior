@@ -1,11 +1,10 @@
 #include "battle.h"
 void battle(Player player, Entity opponent) { // should these be references instead?
-    string input;
+    int input;
     int round = 0;
     while (opponent.living() && player.living()) {
-        input = " ";
+        input = 0;
         round ++;
-        // show round?
         
         if (round % 2) // player's round
         {
@@ -13,32 +12,20 @@ void battle(Player player, Entity opponent) { // should these be references inst
             player.skillCool();
 
             //select a skill!
-
-            while (!(input == "A" || input == "B" || input == "a" || input == "b")) {
+            while (!(input == 1 || input == 2 || input == 3)) {
                 // choice of attack
-                cout << "[A: Study Attack | B: Social Attack]\n";
+                cout << "Select a skill\n";
+                player.printSkill(0);
+                player.printSkill(1);
+                player.printSkill(2);
                 cin >> input;
             }
                 // error input
-                if (!(input == "A" || input == "B" || input == "a" || input == "b")) {
+                if (!(input == 1 || input == 2 || input == 3)) {
                     cout << "Wrong input, try again.\n";
             }
-            /*
-            skill version battle
-            useskill(player, stoi(input));
-            */
 
-
-            // study attack
-            if (input == "A" || input == "a") {
-                player.studyAttack(opponent, 100);
-                cout << "Oppoenent got studyattack!\n"; // maybe can show how demage the player caused or show at the studyAttack function
-            }
-                
-            // social attack
-            else  {
-                player.socialAttack(opponent, 100);
-            }
+            player.useSkill(opponent, input - 1);
         }
         else{
             opponent.studyAttack(player, 100);
@@ -48,7 +35,7 @@ void battle(Player player, Entity opponent) { // should these be references inst
         player.printHealth();
         cout << "Opponent: ";
         opponent.printHealth();
-        input = " ";
+        input = 0;
         cout << endl;
     }
     if (player.living()){

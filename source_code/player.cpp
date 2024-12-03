@@ -4,6 +4,7 @@
 #include <fstream>
 // entity member and related functions
 
+int threshold[6] = {5, 8, 10, 15, 20, 30};
 
 Player::Player(int hp, int atk, int def) : Entity(hp, atk, def) {
     // temp, set random pos upon initialization
@@ -36,9 +37,9 @@ void Player::modifyEmo(int change) {
 }
 
 void Player::updateStatus() {
-	socialBuff = static_cast<double>(social + emo) / 100;
-    studyBuff = static_cast<double>(academic + emo) / 100;
-    mentalRes = static_cast<double>(emo) / 100;
+	socialBuff = static_cast<double>(social) / 100;
+    studyBuff = static_cast<double>(academic) / 100;
+    mentalRes = static_cast<double>(100 - emo) / 100;
     cout << "now socialBuff = " << socialBuff << endl;
     cout << "studyBuff = " << studyBuff << endl;
     cout << "mentalRes = " << mentalRes << endl;
@@ -75,6 +76,20 @@ void Player::levelUp() {
 
 void Player::getExp(int experience){
     exp += experience;
+
+    if (level >= 6){
+        while(exp >= threshold[5]){
+            exp -= threshold[level-1];
+            levelUp();
+        }
+    }
+    else{
+        while(exp >= threshold[level-1]){
+        exp -= threshold[level-1];
+        levelUp();
+    }
+    }
+    
 }
 
 /*
@@ -101,6 +116,8 @@ Skill* Player::getSkill(int filenumber){
    return new Skill(skillName, skillType, restRound, percent);
 }
 
+
+
 void Player::replaceSkill(int filenumber){
     
     /*cout << "you get a new skill!" << endl;
@@ -123,7 +140,7 @@ void Player::replaceSkill(int filenumber){
 
 }
 
-void Player::useSkill(Entity enemy, Skill skill){
+void Player::useSkill(Entity& enemy, Skill skill){
     if (skill.getCoolRound() != 0) return; //輸錯要給甚麼回饋?
     if (skill.getType() == "heal"){
         heal(skill.getPercent());
@@ -136,11 +153,11 @@ void Player::useSkill(Entity enemy, Skill skill){
     }
 }
 
-/*
-void Player::useSkill(Entity enemy, int chooseNumber){
-    Skill usedSkill = player.skill[chooseNumber];
+
+void Player::useSkill(Entity& enemy, int chooseNumber){
+    Skill usedSkill = *skill[chooseNumber];
     if (usedSkill.getCoolRound() != 0) return; //輸錯要給甚麼回饋?
-    if (usedSskill.getType() == "heal"){
+    if (usedSkill.getType() == "heal"){
         heal(usedSkill.getPercent());
     }
     else if (usedSkill.getType() == "studyAttack"){
@@ -149,7 +166,7 @@ void Player::useSkill(Entity enemy, int chooseNumber){
     else{
         socialAttack(enemy, usedSkill.getPercent());
     }
-}*/
+}
 
 // added for testing
 
