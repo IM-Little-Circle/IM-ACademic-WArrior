@@ -1,7 +1,6 @@
 #include <iostream>
 #include <fstream>
 #include "event.h"
-#include "skill.h"
 using namespace std;
 
 extern const int CHANCE_CNT; //number of chances, must >= 1
