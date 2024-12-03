@@ -127,7 +127,7 @@ void printMaze (bool visited[][MAP_W]) {
         cout << "\n";
     }
     // for debugging: cout pos
-    cout << string(50, ' ') << x << " " << y << string (20, ' ') << "Chance encountered: " << chanceEncountered << endl;
+    cout << string(50, ' ') << x << " " << y << string (20, ' ') << "Chance encountered: " << chanceEncounteredCnt << endl;
     
     printSpace(25);
     printLine(25+14+25);
@@ -211,6 +211,7 @@ void printSpace(int length) {
 
 void printLine(int length) {
     for(int i=0;i<length;i++) cout << "═";
+}
 
 void detectChanceCnt(bool visited[][MAP_W]) {
         if (chanceEncounteredCnt == 2 && !midterms) {
