@@ -55,7 +55,7 @@ string Skill::getName(){
 }
 
 void Skill::printSkill() {
-    cout << skillName << "\n" << "SkillType: " << skillType << "\nCoolRound: " << coolRound << "\n攻擊倍率: " << percent << endl;
+    cout << skillName << "\n" << "SkillType: " << skillType << "\nRestRound: " << restRound << "\n攻擊倍率: " << percent << endl;
     cout << endl;
 }
 
