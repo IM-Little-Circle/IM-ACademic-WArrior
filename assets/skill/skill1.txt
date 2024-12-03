@@ -1,4 +1,4 @@
-social attack 
+基礎社交攻擊
 socialAttack
 1
 100

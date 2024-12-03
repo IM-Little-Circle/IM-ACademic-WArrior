@@ -1,4 +1,4 @@
-study attack 
+基礎學習攻擊
 studyAttack
 1
 100
