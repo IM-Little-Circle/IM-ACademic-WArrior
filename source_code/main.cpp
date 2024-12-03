@@ -60,6 +60,7 @@ void detectChanceCnt(bool visited[][MAP_W], Player& player);
 void replaceSkillScreen(Player& player);
 void printLine(int length);
 void printSpace(int length);
+void printStat(Player& player, int index);
 //void battle(Player& player, Entity oppoment);
 // add things here later
 
@@ -97,6 +98,7 @@ void printMaze (bool visited[][MAP_W], Player& player) {
     printSpace(25);
     printLine(25+14+25);
     cout<<endl;
+    cout<<endl;
 
     for (int j = y-SCRN_HW; j <= y+SCRN_HW; j++) {
         printSpace(50);
@@ -120,7 +122,7 @@ void printMaze (bool visited[][MAP_W], Player& player) {
                 //cout << map[j][i] << " ";
                 //cout << ". ";
             }
-
+            printStat(player, 0);
         }
         
         cout << "\n";
@@ -203,6 +205,11 @@ void detectEvent (Player& player, bool visited[][MAP_W], bool triggeredChance[],
     }
 }
 
+void printStat(Player& player, int index) {
+    if(index == 0) cout << "Stat: \n";
+    if(index == 1) cout << "Academic: " << player.getAcademic();
+    if(index == 2) cout << "Social:  " << player.getSocial();
+}
 
 void printSpace(int length) {
     cout << string(length, ' ');
