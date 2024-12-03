@@ -122,9 +122,9 @@ void printMaze (bool visited[][MAP_W], Player& player) {
                 //cout << map[j][i] << " ";
                 //cout << ". ";
             }
-            printStat(player, 0);
+            
         }
-        
+        printStat(player, j-(y-SCRN_HW));
         cout << "\n";
     }
     // for debugging: cout pos
@@ -206,9 +206,10 @@ void detectEvent (Player& player, bool visited[][MAP_W], bool triggeredChance[],
 }
 
 void printStat(Player& player, int index) {
-    if(index == 0) cout << "Stat: \n";
-    if(index == 1) cout << "Academic: " << player.getAcademic();
-    if(index == 2) cout << "Social:  " << player.getSocial();
+    if(index == 1) cout << "  玩家狀態:";
+    if(index == 2) cout << "  Academic: " << player.getAcademic();
+    if(index == 3) cout << "  Social:  " << player.getSocial();
+    if(index == 4) cout << "  Emo:  " << player.getEmo();
 }
 
 void printSpace(int length) {
