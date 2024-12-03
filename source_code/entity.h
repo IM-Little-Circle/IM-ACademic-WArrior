@@ -15,7 +15,7 @@ class Entity {
 
 	public:	
 		Entity(int hp, int atk, int def);
-		Entity(int hp, int atk, int def, double mentalRes, double physicalRes);
+		Entity(int hp, int atk, int def, double mentalRes, double physicalRes, string weakness);
 		void socialAttack(Entity& enemy, int percent);
 		void studyAttack(Entity& enemy, int percent);
         void heal(int percent);
