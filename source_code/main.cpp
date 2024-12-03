@@ -206,7 +206,7 @@ void detectEvent (Player& player, bool visited[][MAP_W], bool triggeredChance[],
 }
 
 void printStat(Player& player, int index) {
-    if(index == 1) cout << "  玩家狀態:";
+    if(index == 1) cout << "  玩家狀態:"; 
     if(index == 2) cout << "  Academic: " << player.getAcademic();
     if(index == 3) cout << "  Social:  " << player.getSocial();
     if(index == 4) cout << "  Emo:  " << player.getEmo();
