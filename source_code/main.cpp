@@ -112,7 +112,7 @@ void printMaze (bool visited[][MAP_W], Player& player) {
             else if (i == x && j == y) {
                 cout << "@ "; // player marker
             }
-
+ 
             else if (visited[j][i]) cout << ". ";
 
             else if (i == 18 && j == 18) cout << "E"; // temp, for ending game
@@ -217,6 +217,10 @@ void printStat(Player& player, int index) {
     if(index == 2) cout << "  Academic: " << player.getAcademic();
     if(index == 3) cout << "  Social:  " << player.getSocial();
     if(index == 4) cout << "  Emo:  " << player.getEmo();
+
+    if(index == 6) cout << "  技能1. "<< player.getSkill(1)->getName();
+    if(index == 7) cout << "  技能2. "<< player.getSkill(2)->getName();
+    if(index == 8) cout << "  技能3. "<< player.getSkill(3)->getName();
 }
 
 void printSpace(int length) {
