@@ -1,5 +1,6 @@
 #include <iostream>
 #include <fstream>
+#include <string>
 #include "event.h"
 using namespace std;
 
@@ -93,6 +94,23 @@ void parseDestiny(ifstream& inFile, Player& player) {
     player.getExp(10);
 }
 
+int getSkillNum(ifstream& inFile, string choice) {
+    string readFile;
+
+    if ((choice == "Y") || (choice == "y")) {
+        // chosen Y
+        getline(inFile, readFile, '#');
+        return stoi(readFile);
+    }
+    else {
+        //chosen N
+        getline(inFile, readFile, '#'); // ignore Y choice section
+        getline(inFile, readFile, '#');
+        return stoi(readFile);
+    }
+}
+
+
 void triggerChance(Player& player, bool triggeredChance[]) {
     int i = -1; //note that i will be 1-based for file, but 0-based for array
     do {
@@ -120,7 +138,7 @@ void triggerChance(Player& player, bool triggeredChance[]) {
         cout << "File not found\n";
         return;
     }
-
+    
     parseChance(inFile, player);
     //player.printStat();
 

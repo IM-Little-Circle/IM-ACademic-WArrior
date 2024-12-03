@@ -254,7 +254,7 @@ void clearScreen() {
 }
 
 
-//// functions (for events handling) ////
+
 
 void replaceSkillScreen(Player& player) {
     // get random skill
