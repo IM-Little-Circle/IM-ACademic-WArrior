@@ -51,7 +51,7 @@ void buffer(); // press enter to continue
 void setCodePage();
 void clearScreen(); // system cls/clear
 void gameStartScreen();
-void animateString(string str);
+void animateString(string str); 
 void readMap();
 void printMaze(bool visited[][MAP_W], Player& player);
 void moveCamera(int ch);
