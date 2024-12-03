@@ -111,7 +111,7 @@ void printMaze (bool visited[][MAP_W], Player& player) {
             else if (i == x && j == y) {
                 cout << "@ "; // player marker
             }
-
+ 
             else if (visited[j][i]) cout << ". ";
 
             else if (i == 18 && j == 18) cout << "E"; // temp, for ending game
