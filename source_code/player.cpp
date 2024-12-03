@@ -35,6 +35,18 @@ void Player::modifyEmo(int change) {
     if (emo >= 100) emo = 100;
 }
 
+int Player::getAcademic() {
+    return this->academic;
+}
+
+int Player::getSocial() {
+    return this->social;
+}
+
+int Player::getEmo(){
+    return this->emo;
+}
+
 void Player::updateStatus() {
 	socialBuff = static_cast<double>(social + emo) / 100;
     studyBuff = static_cast<double>(academic + emo) / 100;

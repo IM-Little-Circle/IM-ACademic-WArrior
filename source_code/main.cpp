@@ -41,20 +41,23 @@ vector<string> map;
 // pos mainly to control camera movement, put in player class
 int x = 7;
 int y = 7; //btw the pos is temp too
-int chanceEncountered = 0;
+int chanceEncounteredCnt = 0;
+bool midterms = false, finals = false;
 extern const int CHANCE_CNT; //number of chances, must >= 1
 extern const int DESTINY_CNT; //number of destinies, must >= 1
-extern const int SKILL_CNT; // number of skills, note that skill 1-3 are starters, not included here
+const int SKILL_CNT = 3; // number of skills, note that skill 1-3 are starters, not included here
 
 //// declare functions ////
 void buffer(); // press enter to continue
 void setCodePage();
 void clearScreen(); // system cls/clear
 void gameStartScreen();
+void animateString(string str);
 void readMap();
 void printMaze(bool visited[][MAP_W]);
 void moveCamera(int ch);
 void detectEvent(Player& player, bool visited[][MAP_W], bool triggeredChance[], bool triggeredDestiny[]);
+void detectChanceCnt(Player& player);
 void replaceSkillScreen(Player& player);
 //void battle(Player& player, Entity oppoment);
 // add things here later
@@ -119,8 +122,18 @@ void printMaze (bool visited[][MAP_W]) {
         cout << "\n";
     }
     // for debugging: cout pos
-    cout << string(50, ' ') << x << " " << y << string (20, ' ') << "Chance encountered: " << chanceEncountered << endl;
+    cout << string(50, ' ') << x << " " << y << string (20, ' ') << "Chance encountered: " << chanceEncounteredCnt << endl;
 }
+
+
+void animateString(string str) {
+    for(int i=0; i<str.length(); i++) {
+        cout << str[i];
+        cout.flush();
+        this_thread::sleep_for(chrono::milliseconds(100));
+    }
+}
+
 
 void moveCamera(int ch) {
 switch(ch) {
@@ -157,7 +170,7 @@ void detectEvent (Player& player, bool visited[][MAP_W], bool triggeredChance[],
             if (c == 'c' || c == 'C') {
                 cout << string(50, ' ') << "Chance!\n";
                 triggerChance(player, triggeredChance);
-                chanceEncountered++;
+                chanceEncounteredCnt++;
                 cin.ignore();
             }
             else if (c == 'd') {        //original: || c == 'D'
@@ -180,6 +193,50 @@ void detectEvent (Player& player, bool visited[][MAP_W], bool triggeredChance[],
             printMaze(visited);
         }
     }
+}
+
+void detectChanceCnt(bool visited[][MAP_W]) {
+        if (chanceEncounteredCnt == 2 && !midterms) {
+            // midterms
+            cout << string(20, ' ');
+            animateString("NOTE: Two months have passed. Entering midterms :(");
+            this_thread::sleep_for(500ms);
+            clearScreen();
+            buffer();
+            clearScreen();
+            printMaze(visited);
+            midterms = true;
+
+        }
+
+        else if (chanceEncounteredCnt == 4 && !finals) {
+            // finals
+            cout << string(20, ' ');
+            animateString("NOTE: Two months have passed. Entering finals :(");
+            this_thread::sleep_for(500ms);
+            clearScreen();
+            buffer();
+            clearScreen();
+            finals = true;
+        }
+}
+
+bool detectEnding(Player& player) {
+    if (finals) {
+        player.printStat();
+        // FIX CONDITIONS
+        if (player.getAcademic() > 25) {
+            cout << "ACADEMIC ENDING\n";
+        }
+        else if (player.getSocial() > 20) {
+            cout << "SOCIAL ENDING\n";
+        }
+        else {
+            cout << "MCDONALDS ENDING\n";
+        }
+        return 1;
+    }
+    return 0;
 }
 
 void buffer() {
@@ -241,7 +298,7 @@ int main () {
 
     setCodePage(); // for WIN32
 
-    gameStartScreen();
+    //gameStartScreen();
 
     readMap();
 
@@ -259,8 +316,12 @@ int main () {
                 clearScreen();
 
                 printMaze(visited);
+
                 if (x == 18 && y == 18) end = 1; // temp, for ending game
+
                 detectEvent(player, visited, triggeredChance, triggeredDestiny);
+                detectChanceCnt(visited); // for special events (like midterms)
+                end = detectEnding(player);
             }
         }
         this_thread::sleep_for(25ms);
