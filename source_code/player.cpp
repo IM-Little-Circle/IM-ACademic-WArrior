@@ -106,8 +106,8 @@ void Player::getExp(int experience){
     
 }
 
-Skill Player::getSkill(int skillNumber) {
-    return this->skill[skillNumber];
+Skill* Player::getSkill(int skillIndex) {
+    return this->skill[skillIndex];
 }
 
 /*
@@ -188,9 +188,9 @@ void Player::useSkill(Entity& enemy, int chooseNumber){
 
 // added for testing
 
-void Player::printSkill(int skillnumber) {
-    if (skillnumber >= 0 && skillnumber < 3) {
-        skill[skillnumber]->printSkill();
+void Player::printSkill(int skillIndex) {
+    if (skillIndex >= 0 && skillIndex < 3) {
+        skill[skillIndex]->printSkill();
     }
     else cout << "error index!\n";
 }

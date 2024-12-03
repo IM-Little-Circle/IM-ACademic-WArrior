@@ -147,7 +147,7 @@ void animateString(string str) {
 
 void timeBar() {
     for (int i = 0; i < chanceEncounteredCnt; i++) {
-        
+      // continue here  
     }
 }
 
@@ -218,9 +218,9 @@ void printStat(Player& player, int index) {
     if(index == 3) cout << "  Social:  " << player.getSocial();
     if(index == 4) cout << "  Emo:  " << player.getEmo();
 
-    if(index == 6) cout << "  技能1. "<< player.getSkill(1)->getName();
-    if(index == 7) cout << "  技能2. "<< player.getSkill(2)->getName();
-    if(index == 8) cout << "  技能3. "<< player.getSkill(3)->getName();
+    if(index == 6) cout << "  技能1. "<< player.getSkill(0)->getName();
+    if(index == 7) cout << "  技能2. "<< player.getSkill(1)->getName();
+    if(index == 8) cout << "  技能3. "<< player.getSkill(2)->getName();
 }
 
 void printSpace(int length) {
