@@ -52,6 +52,7 @@ void setCodePage();
 void clearScreen(); // system cls/clear
 void gameStartScreen();
 void animateString(string str); 
+void timeBar();
 void readMap();
 void printMaze(bool visited[][MAP_W], Player& player);
 void moveCamera(int ch);
@@ -141,6 +142,12 @@ void animateString(string str) {
         cout << str[i];
         cout.flush();
         this_thread::sleep_for(chrono::milliseconds(100));
+    }
+}
+
+void timeBar() {
+    for (int i = 0; i < chanceEncounteredCnt; i++) {
+        
     }
 }
 

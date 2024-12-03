@@ -24,6 +24,7 @@ class Player : public Entity {
         int getAcademic();
         int getSocial();
         int getEmo();
+        Skill* getSkill(int skillNumber);
 
 		void updateStatus();
         void fullRecover();
@@ -37,7 +38,7 @@ class Player : public Entity {
         void printSkill(int skillnumber);
 
         //skill
-        Skill* getSkill(int filenumber);
+        Skill* fetchSkill(int filenumber); // read file for skill
         void replaceSkill(int filenumber);
         void useSkill(Entity& enemy, Skill skill);
         void useSkill(Entity& enemy, int chooseNumber);
