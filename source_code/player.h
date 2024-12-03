@@ -20,6 +20,11 @@ class Player : public Entity {
         void modifyAcademic(int change);
         void modifySocial(int change);
         void modifyEmo(int change);
+
+        int getAcademic();
+        int getSocial();
+        int getEmo();
+
 		void updateStatus();
         void fullRecover();
         void setInitialStat(int aca, int soc, int e);

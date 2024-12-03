@@ -5,7 +5,6 @@ using namespace std;
 
 extern const int CHANCE_CNT; //number of chances, must >= 1
 extern const int DESTINY_CNT; //number of destinies, must >= 1
-extern const int SKILL_CNT; // number of skills, note that skill 1-3 are starters, not included here
 
 void displayEvent(ifstream& inFile) {
     string readFile;
