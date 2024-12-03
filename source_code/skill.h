@@ -1,6 +1,8 @@
 #include <iostream>
 using namespace std;
 
+const int SKILL_CNT = 3; // number of skills, note that skill 1-3 are starters, not included here
+
 /*
 要添加buff嗎?
 但不知道buff的到期怎麼處理...
