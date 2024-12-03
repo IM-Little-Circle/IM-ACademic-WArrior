@@ -20,6 +20,11 @@ class Player : public Entity {
         void modifyAcademic(int change);
         void modifySocial(int change);
         void modifyEmo(int change);
+
+        int getAcademic();
+        int getSocial();
+        int getEmo();
+
 		void updateStatus();
         void fullRecover();
         void setInitialStat(int aca, int soc, int e);
@@ -33,8 +38,8 @@ class Player : public Entity {
         //skill
         Skill* getSkill(int filenumber);
         void replaceSkill(int filenumber);
-        void useSkill(Entity enemy, Skill skill);
-        //void useSkill(Entity enemy, int chooseNumber);
+        void useSkill(Entity& enemy, Skill skill);
+        void useSkill(Entity& enemy, int chooseNumber);
         void skillCool();
 };
 

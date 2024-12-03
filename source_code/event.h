@@ -6,7 +6,6 @@ using namespace std;
 
 const int CHANCE_CNT = 2; //number of chances, must >= 1
 const int DESTINY_CNT = 17; //number of destinies, must >= 1
-const int SKILL_CNT = 3; // number of skills, note that skill 1-3 are starters, not included here
 
 void displayEvent(ifstream& inFile);
 void displayChoiceChance(ifstream& inFile, string choice);
