@@ -69,7 +69,7 @@ void printStat(Player& player, int index);
 //// functions (for game loop) ////
 void readMap() {
     string line;
-    ifstream file("../assets/map/testEventMap.txt"); 
+    ifstream file("../assets/map/testEventMap2.txt"); 
     // note to self: the current path setting will not run from VSCode execution
     // you will have to rely on batch compiling and exe for now
 
