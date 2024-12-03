@@ -1,4 +1,5 @@
 #include "entity.h"
+#include <fstream>
 using namespace std;
 
 // entity member and related functions
@@ -7,11 +8,13 @@ Entity::Entity(int hp, int Atk, int Def) {
 	hpCurr = hp, hpMax = hp, atk = Atk, def = Def;
     cout << "player created!!!!!\n"; // temp, delete later
 }
+
 Entity::Entity(int hp, int Atk, int Def, double mentalRes, double physicalRes, string weakness){
 	hpCurr = hp, hpMax = hp, atk = Atk, def = Def;
 	this->mentalRes = mentalRes, this->physicalRes = physicalRes;
 	this->weakness = weakness;
 }
+
 void Entity::socialAttack(Entity& enemy, int percent) {
 	int atkCurr = double(atk * (1 + socialBuff)) * percent / 100;
 	int defCurr = enemy.def * (1 + mentalRes);
@@ -67,4 +70,28 @@ bool Entity::living() {
 
 void Entity::printHealth() {
 	cout << hpCurr << "/" << hpMax << endl;
+}
+
+Entity::Entity(int filenumber) {
+    string enemyName, enemyWeakness;
+    int attack, defence, health;
+	double menR, phyR;
+    ifstream inFile("../assets/enemy/enemy" + to_string(filenumber) + ".txt");
+    if (inFile.fail()) {
+        cout << "File not found\n";
+    }
+    else {
+        getline(inFile, enemyName);
+        getline(inFile, enemyWeakness);
+        inFile >> attack >> defence >> health >> menR >> phyR;
+    }
+
+    this->name = enemyName;
+    this->weakness = enemyWeakness;
+    this->atk = attack;
+    this->def = defence;
+    this->hpMax = health;
+    this->hpCurr = health;
+    this->mentalRes = menR;
+    this->physicalRes = phyR;
 }

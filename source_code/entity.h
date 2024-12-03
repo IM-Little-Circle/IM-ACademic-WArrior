@@ -11,9 +11,10 @@ class Entity {
 		bool alive = true;
 		double mentalRes = 0, physicalRes = 0;
 		string weakness = "";
-		// wanna add name
+		string name = "";
 
 	public:	
+		Entity(int filenumber);
 		Entity(int hp, int atk, int def);
 		Entity(int hp, int atk, int def, double mentalRes, double physicalRes, string weakness);
 		void socialAttack(Entity& enemy, int percent);
