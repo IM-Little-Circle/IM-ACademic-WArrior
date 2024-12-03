@@ -101,7 +101,19 @@ void printMaze (bool visited[][MAP_W], Player& player) {
     cout<<endl<<endl;
 
     for (int j = y-SCRN_HW; j <= y+SCRN_HW; j++) {
-        printSpace(50);
+        
+        if(j==y-SCRN_HW) {
+            printSpace(33);
+            cout << "【玩家座標】";
+            printSpace(5);
+        }
+        else if(j==y-SCRN_HW+1) {
+            printSpace(34);
+            cout << "X: " << x << " Y: " << y;
+            printSpace(5+(x<10)+(y<10));
+        }  
+        else printSpace(50);
+
         for (int i = x-SCRN_HW; i <= x+SCRN_HW; i++) {
 
             if (i < 0 || i >= MAP_W || j < 0 || j >= MAP_H) {
@@ -128,8 +140,7 @@ void printMaze (bool visited[][MAP_W], Player& player) {
         cout << "\n";
     }
     // for debugging: cout pos
-    cout<<endl;
-    cout << string(50, ' ') << x << " " << y << string (20, ' ') << "Chance encountered: " << chanceEncounteredCnt << endl;
+    cout << "Chance encountered: " << chanceEncounteredCnt << endl;
     
     printSpace(25);
     printLine(25+14+25);
@@ -186,17 +197,17 @@ void detectEvent (Player& player, bool visited[][MAP_W], bool triggeredChance[],
             //detectedEvent = true;
             int skillNumber = -1;
             if (c == 'c' || c == 'C') {
-                cout << string(50, ' ') << "Chance!\n";
+                cout << string(25, ' ') << "Chance!\n";
                 triggerChance(player, triggeredChance, skillNumber); //pass skillNumber by reference
                 chanceEncounteredCnt++;
                 cin.ignore();
             }
             else if (c == 'd') {        //original: || c == 'D'
-                cout << string(50, ' ') << "Destiny!\n";
+                cout << string(25, ' ') << "Destiny!\n";
                 triggerDestiny(player, triggeredDestiny, skillNumber); //pass skillNumber by reference
             }
             else if (c == 'B') {
-                cout << string(50, ' ') << "Battle!\n";
+                cout << string(25, ' ') << "Battle!\n";
                 triggerBattle(player);
                 cin.ignore();
             }
