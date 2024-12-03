@@ -35,7 +35,6 @@ new issue found @2024/11/24: if right arrow key pressed for a while and then ran
 #define MAP_H 32
 #define SCRN_HW 4 // half width of 9, for printing camera screen
 
-
 // here are some global variables for now, wrap them up later
 vector<string> map;
 // pos mainly to control camera movement, put in player class
@@ -45,7 +44,7 @@ int chanceEncounteredCnt = 0;
 bool midterms = false, finals = false;
 extern const int CHANCE_CNT; //number of chances, must >= 1
 extern const int DESTINY_CNT; //number of destinies, must >= 1
-//const int SKILL_CNT = 3; // number of skills, note that skill 1-3 are starters, not included here
+extern const int SKILL_CNT; // number of skills, note that skill 1-3 are starters, not included here
 
 //// declare functions ////
 void buffer(); // press enter to continue
@@ -59,6 +58,8 @@ void moveCamera(int ch);
 void detectEvent(Player& player, bool visited[][MAP_W], bool triggeredChance[], bool triggeredDestiny[]);
 void detectChanceCnt(Player& player);
 void replaceSkillScreen(Player& player);
+void printLine(int length);
+void printSpace(int length);
 //void battle(Player& player, Entity oppoment);
 // add things here later
 
@@ -92,10 +93,14 @@ void gameStartScreen() {
 // question: how should we print the guide (press i for smtn smtn), at the right or bottom?
 // to do here: figure out/design the guide!
 void printMaze (bool visited[][MAP_W]) {
+
+    printSpace(25);
+    printLine(25+14+25);
+    cout<<endl;
+
     for (int j = y-SCRN_HW; j <= y+SCRN_HW; j++) {
-
-        cout << string(50, ' '); //padding
-
+    
+        printSpace(50);
         for (int i = x-SCRN_HW; i <= x+SCRN_HW; i++) {
 
             if (i < 0 || i >= MAP_W || j < 0 || j >= MAP_H) {
@@ -123,6 +128,10 @@ void printMaze (bool visited[][MAP_W]) {
     }
     // for debugging: cout pos
     cout << string(50, ' ') << x << " " << y << string (20, ' ') << "Chance encountered: " << chanceEncounteredCnt << endl;
+    
+    printSpace(25);
+    printLine(25+14+25);
+    cout<<endl;
 }
 
 
@@ -193,6 +202,15 @@ void detectEvent (Player& player, bool visited[][MAP_W], bool triggeredChance[],
             printMaze(visited);
         }
     }
+}
+
+
+void printSpace(int length) {
+    cout << string(length, ' ');
+}
+
+void printLine(int length) {
+    for(int i=0;i<length;i++) cout << "═";
 }
 
 void detectChanceCnt(bool visited[][MAP_W]) {
