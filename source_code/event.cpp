@@ -54,7 +54,7 @@ void modifyParameters(Player& player, int parameters[], string choice) {
     player.printStat(oriAca, oriSoc, oriEmo);
 }
 
-void parseChance(ifstream& inFile, Player& player) {
+void parseChance(ifstream& inFile, Player& player, int& skillNumber) {
     string choice = "";
 
     int parameters[6] = {0}; // acaTrue, socTrue, emoTrue, acaFalse, socFalse, emoFalse
@@ -75,9 +75,10 @@ void parseChance(ifstream& inFile, Player& player) {
     displayChoiceChance(inFile, choice);
     modifyParameters(player, parameters, choice);
     player.getExp(10);
+    skillNumber = getSkillNum(inFile, choice);
 }
 
-void parseDestiny(ifstream& inFile, Player& player) {
+void parseDestiny(ifstream& inFile, Player& player, int& skillNumber) {
     const string choice = "Y"; //forced to choose Y
 
     int parameters[3] = {0}; // acaTrue, socTrue, emoTrue
@@ -92,6 +93,7 @@ void parseDestiny(ifstream& inFile, Player& player) {
     //displayChoiceChance(inFile, choice);
     modifyParameters(player, parameters, choice);
     player.getExp(10);
+    skillNumber = getSkillNum(inFile, choice);
 }
 
 int getSkillNum(ifstream& inFile, string choice) {
@@ -99,6 +101,7 @@ int getSkillNum(ifstream& inFile, string choice) {
 
     if ((choice == "Y") || (choice == "y")) {
         // chosen Y
+        getline(inFile, readFile, '#'); //ignore consequences of chossing N
         getline(inFile, readFile, '#');
         return stoi(readFile);
     }
@@ -111,7 +114,7 @@ int getSkillNum(ifstream& inFile, string choice) {
 }
 
 
-void triggerChance(Player& player, bool triggeredChance[]) {
+void triggerChance(Player& player, bool triggeredChance[], int& skillNumber) {
     int i = -1; //note that i will be 1-based for file, but 0-based for array
     do {
         i = rand() % (CHANCE_CNT - 1 + 1) + 1; //i = a random number between 1 and CHANCE_CNT
@@ -139,13 +142,13 @@ void triggerChance(Player& player, bool triggeredChance[]) {
         return;
     }
     
-    parseChance(inFile, player);
+    parseChance(inFile, player, skillNumber);
     //player.printStat();
 
     inFile.close();
 }
 
-void triggerDestiny(Player& player, bool triggeredDestiny[]) {
+void triggerDestiny(Player& player, bool triggeredDestiny[], int& skillNumber) {
     int i = -1; //note that i will be 1-based for file, but 0-based for array
     do {
         i = rand() % (DESTINY_CNT - 1 + 1) + 1; //i = a random number between 1 and DESTINY_CNT
@@ -173,7 +176,7 @@ void triggerDestiny(Player& player, bool triggeredDestiny[]) {
         return;
     }
 
-    parseDestiny(inFile, player);
+    parseDestiny(inFile, player, skillNumber);
     //player.printStat();
 
     inFile.close();

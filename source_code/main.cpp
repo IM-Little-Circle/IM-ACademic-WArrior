@@ -57,7 +57,7 @@ void printMaze(bool visited[][MAP_W], Player& player);
 void moveCamera(int ch);
 void detectEvent(Player& player, bool visited[][MAP_W], bool triggeredChance[], bool triggeredDestiny[]);
 void detectChanceCnt(bool visited[][MAP_W], Player& player);
-void replaceSkillScreen(Player& player);
+void replaceSkillScreen(Player& player, int skillNumber);
 void printLine(int length);
 void printSpace(int length);
 void printStat(Player& player, int index);
@@ -177,15 +177,16 @@ void detectEvent (Player& player, bool visited[][MAP_W], bool triggeredChance[],
         // replace cout below with functions to call
         if (c != '.') {
             //detectedEvent = true;
+            int skillNumber = -1;
             if (c == 'c' || c == 'C') {
                 cout << string(50, ' ') << "Chance!\n";
-                triggerChance(player, triggeredChance);
+                triggerChance(player, triggeredChance, skillNumber); //pass skillNumber by reference
                 chanceEncounteredCnt++;
                 cin.ignore();
             }
             else if (c == 'd') {        //original: || c == 'D'
                 cout << string(50, ' ') << "Destiny!\n";
-                triggerDestiny(player, triggeredDestiny);
+                triggerDestiny(player, triggeredDestiny, skillNumber); //pass skillNumber by reference
             }
             else if (c == 'B') {
                 cout << string(50, ' ') << "Battle!\n";
@@ -196,8 +197,12 @@ void detectEvent (Player& player, bool visited[][MAP_W], bool triggeredChance[],
             buffer();
 
             // BELOW IS FOR TESTING REPLACESKILL (TEMP)
-            replaceSkillScreen(player);
-            buffer();
+            cout << endl << skillNumber << endl;
+            replaceSkillScreen(player, skillNumber);
+            if(skillNumber != -1) {
+               buffer();
+            }
+            
             
             clearScreen();
             printMaze(visited, player);
@@ -281,9 +286,11 @@ void clearScreen() {
 
 
 
-void replaceSkillScreen(Player& player) {
+void replaceSkillScreen(Player& player, int skillNumber) {
     // get random skill
-    int skillNumber = rand() % (SKILL_CNT) + 4;
+    //int skillNumber = rand() % (SKILL_CNT) + 4;
+    if(skillNumber == -1) 
+        return;
     string choice = "";
     Skill newSkill = Skill(skillNumber);
     clearScreen();
