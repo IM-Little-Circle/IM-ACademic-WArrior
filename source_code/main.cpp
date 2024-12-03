@@ -98,8 +98,7 @@ void printMaze (bool visited[][MAP_W], Player& player) {
 
     printSpace(25);
     printLine(25+14+25);
-    cout<<endl;
-    cout<<endl;
+    cout<<endl<<endl;
 
     for (int j = y-SCRN_HW; j <= y+SCRN_HW; j++) {
         printSpace(50);
@@ -129,6 +128,7 @@ void printMaze (bool visited[][MAP_W], Player& player) {
         cout << "\n";
     }
     // for debugging: cout pos
+    cout<<endl;
     cout << string(50, ' ') << x << " " << y << string (20, ' ') << "Chance encountered: " << chanceEncounteredCnt << endl;
     
     printSpace(25);
@@ -218,14 +218,14 @@ void detectEvent (Player& player, bool visited[][MAP_W], bool triggeredChance[],
 }
 
 void printStat(Player& player, int index) {
-    if(index == 1) cout << "  玩家狀態:"; 
-    if(index == 2) cout << "  Academic: " << player.getAcademic();
-    if(index == 3) cout << "  Social:  " << player.getSocial();
-    if(index == 4) cout << "  Emo:  " << player.getEmo();
-
-    if(index == 6) cout << "  技能1. "<< player.getSkill(0)->getName();
-    if(index == 7) cout << "  技能2. "<< player.getSkill(1)->getName();
-    if(index == 8) cout << "  技能3. "<< player.getSkill(2)->getName();
+    if(index == 0) cout << "  【玩家狀態】"; 
+    if(index == 1) cout << "   ◆ Academic: " << player.getAcademic();
+    if(index == 2) cout << "   ◆ Social: " << player.getSocial();
+    if(index == 3) cout << "   ◆ Emo: " << player.getEmo();
+    if(index == 5) cout << "  【技能欄位】";
+    if(index == 6) cout << "   ◆ "<< player.getSkill(0)->getName();
+    if(index == 7) cout << "   ◆ "<< player.getSkill(1)->getName();
+    if(index == 8) cout << "   ◆ "<< player.getSkill(2)->getName();
 }
 
 void printSpace(int length) {
