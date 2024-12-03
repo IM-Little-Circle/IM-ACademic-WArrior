@@ -178,8 +178,3 @@ void triggerDestiny(Player& player, bool triggeredDestiny[]) {
 
     inFile.close();
 }
-
-void triggerBattle(Player& player){
-    Entity oppoment(30, 30, 30, 0, 0, " "); // 要怎麼找敵人?
-    battle(player, oppoment);
-}
