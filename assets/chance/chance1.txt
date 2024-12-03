@@ -1,11 +1,11 @@
 10 4 6 
 2 5 1
-There's one day left until the Calculus exam.
-[Y:Study | N:Procrastinate]
+                         There's one day left until the Calculus exam.
+                         [Y:Study | N:Procrastinate]
 #
-You get A+ for Calc 1!!!
-:D
+                         You get A+ for Calc 1!!!
+                         :D
 #
-You get B- for Calc 1...
-D:
+                         You get B- for Calc 1...
+                         D:
 #
