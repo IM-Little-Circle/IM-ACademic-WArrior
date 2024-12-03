@@ -53,10 +53,10 @@ void clearScreen(); // system cls/clear
 void gameStartScreen();
 void animateString(string str);
 void readMap();
-void printMaze(bool visited[][MAP_W]);
+void printMaze(bool visited[][MAP_W], Player& player);
 void moveCamera(int ch);
 void detectEvent(Player& player, bool visited[][MAP_W], bool triggeredChance[], bool triggeredDestiny[]);
-void detectChanceCnt(Player& player);
+void detectChanceCnt(bool visited[][MAP_W], Player& player);
 void replaceSkillScreen(Player& player);
 void printLine(int length);
 void printSpace(int length);
@@ -92,14 +92,13 @@ void gameStartScreen() {
 // for updating camera screen
 // question: how should we print the guide (press i for smtn smtn), at the right or bottom?
 // to do here: figure out/design the guide!
-void printMaze (bool visited[][MAP_W]) {
+void printMaze (bool visited[][MAP_W], Player& player) {
 
     printSpace(25);
     printLine(25+14+25);
     cout<<endl;
 
     for (int j = y-SCRN_HW; j <= y+SCRN_HW; j++) {
-    
         printSpace(50);
         for (int i = x-SCRN_HW; i <= x+SCRN_HW; i++) {
 
@@ -199,7 +198,7 @@ void detectEvent (Player& player, bool visited[][MAP_W], bool triggeredChance[],
             buffer();
             
             clearScreen();
-            printMaze(visited);
+            printMaze(visited, player);
         }
     }
 }
@@ -213,7 +212,7 @@ void printLine(int length) {
     for(int i=0;i<length;i++) cout << "═";
 }
 
-void detectChanceCnt(bool visited[][MAP_W]) {
+void detectChanceCnt(bool visited[][MAP_W], Player& player) {
         if (chanceEncounteredCnt == 2 && !midterms) {
             // midterms
             cout << string(20, ' ');
@@ -222,7 +221,7 @@ void detectChanceCnt(bool visited[][MAP_W]) {
             clearScreen();
             buffer();
             clearScreen();
-            printMaze(visited);
+            printMaze(visited, player);
             midterms = true;
 
         }
@@ -324,7 +323,7 @@ int main () {
 
     readMap();
 
-    printMaze(visited);
+    printMaze(visited, player);
 
     while (!end) {
         ch = 0;
@@ -337,12 +336,12 @@ int main () {
                 moveCamera(ch);
                 clearScreen();
 
-                printMaze(visited);
+                printMaze(visited, player);
 
                 if (x == 18 && y == 18) end = 1; // temp, for ending game
 
                 detectEvent(player, visited, triggeredChance, triggeredDestiny);
-                detectChanceCnt(visited); // for special events (like midterms)
+                detectChanceCnt(visited, player); // for special events (like midterms)
                 end = detectEnding(player);
             }
         }
