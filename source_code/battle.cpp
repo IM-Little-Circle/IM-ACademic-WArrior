@@ -1,10 +1,10 @@
 #include "battle.h"
 
 void battle(Player player, Entity opponent) { // should these be references instead?
-    int input;
+    string input;
     int round = 0;
     while (opponent.living() && player.living()) {
-        input = 0;
+        input = "0";
         round ++;
         
         if (round % 2) // player's round
@@ -13,7 +13,7 @@ void battle(Player player, Entity opponent) { // should these be references inst
             player.skillCool();
 
             //select a skill!
-            while (!(input == 1 || input == 2 || input == 3)) {
+            while (!(input == "1" || input == "2" || input == "3")) {
                 // choice of attack
                 cout << "Select a skill\n";
                 player.printSkill(0);
@@ -22,11 +22,11 @@ void battle(Player player, Entity opponent) { // should these be references inst
                 cin >> input;
             }
                 // error input
-                if (!(input == 1 || input == 2 || input == 3)) {
+                if (!(input == "1" || input == "2" || input == "3")) {
                     cout << "Wrong input, try again.\n";
             }
 
-            player.useSkill(opponent, input - 1);
+            player.useSkill(opponent, stoi(input) - 1);
         }
         else{
             opponent.studyAttack(player, 100);
@@ -36,7 +36,7 @@ void battle(Player player, Entity opponent) { // should these be references inst
         player.printHealth();
         cout << "Opponent: ";
         opponent.printHealth();
-        input = 0;
+        input = "0";
         cout << endl;
     }
     if (player.living()){
