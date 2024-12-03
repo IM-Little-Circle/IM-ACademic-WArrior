@@ -64,7 +64,9 @@ void Player::fullRecover(){
 void Player::printStat() {
     cout << "ACA " << academic << "\nSOC " << social << "\nEMO " << emo << endl;
 }
-
+void Player::printStat(int oriAca, int oriSoc, int oriEmo){
+    cout << "ACA " << oriAca << " ---> " << academic << "\nSOC " << oriSoc << " ---> " << social << "\nEMO " << oriEmo << " ---> " << emo << endl;
+}
 
 // to set initial stat
 // (so we don't have to come back to player.h to change every time)

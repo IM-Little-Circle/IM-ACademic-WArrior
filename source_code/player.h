@@ -33,6 +33,7 @@ class Player : public Entity {
         void getExp(int experience);
         // below added for testing
         void printStat();
+        void printStat(int oriAca, int oriSoc, int oriEmo);
         void printSkill(int skillnumber);
 
         //skill

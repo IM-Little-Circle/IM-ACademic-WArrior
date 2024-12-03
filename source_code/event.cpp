@@ -37,6 +37,9 @@ void displayChoiceDestiny(ifstream& inFile, string choice) {
 }
 
 void modifyParameters(Player& player, int parameters[], string choice) {
+    int oriAca = player.getAcademic();
+    int oriSoc = player.getSocial();
+    int oriEmo = player.getEmo();
     if (choice == "Y") {
         player.modifyAcademic(parameters[0]);
         player.modifySocial(parameters[1]);
@@ -47,6 +50,7 @@ void modifyParameters(Player& player, int parameters[], string choice) {
         player.modifySocial(parameters[4]);
         player.modifyEmo(parameters[5]);
     }
+    player.printStat(oriAca, oriSoc, oriEmo);
 }
 
 void parseChance(ifstream& inFile, Player& player) {
@@ -118,7 +122,7 @@ void triggerChance(Player& player, bool triggeredChance[]) {
     }
 
     parseChance(inFile, player);
-    player.printStat();
+    //player.printStat();
 
     inFile.close();
 }
@@ -152,7 +156,7 @@ void triggerDestiny(Player& player, bool triggeredDestiny[]) {
     }
 
     parseDestiny(inFile, player);
-    player.printStat();
+    //player.printStat();
 
     inFile.close();
 }
