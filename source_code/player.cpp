@@ -136,6 +136,20 @@ void Player::useSkill(Entity enemy, Skill skill){
     }
 }
 
+/*
+void Player::useSkill(Entity enemy, int chooseNumber){
+    Skill usedSkill = player.skill[chooseNumber];
+    if (usedSkill.getCoolRound() != 0) return; //輸錯要給甚麼回饋?
+    if (usedSskill.getType() == "heal"){
+        heal(usedSkill.getPercent());
+    }
+    else if (usedSkill.getType() == "studyAttack"){
+        studyAttack(enemy, usedSkill.getPercent());
+    }
+    else{
+        socialAttack(enemy, usedSkill.getPercent());
+    }
+}*/
 
 // added for testing
 
@@ -144,4 +158,10 @@ void Player::printSkill(int skillnumber) {
         skill[skillnumber]->printSkill();
     }
     else cout << "error index!\n";
+}
+
+void Player::skillCool(){
+    for (int i = 0; i < 3; i++){
+        skill[i]->skillCool();
+    }
 }

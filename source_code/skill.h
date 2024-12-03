@@ -22,4 +22,5 @@ class Skill {
         void printSkill(); // added by liz, for  debugging
         int getCoolRound();
         int getPercent();
+        void skillCool();
 };

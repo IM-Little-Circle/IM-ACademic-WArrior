@@ -46,3 +46,7 @@ int Skill::getCoolRound(){
 int Skill::getPercent(){
     return percent;
 }
+
+void Skill::skillCool(){
+    restRound = max(restRound - 1, 0);
+}

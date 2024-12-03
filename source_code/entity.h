@@ -10,7 +10,7 @@ class Entity {
 		double socialBuff = 0, studyBuff = 0, healBuff = 0;
 		bool alive = true;
 		double mentalRes = 0, physicalRes = 0;
-
+		string weakness = "";
 		// wanna add name
 
 	public:	
