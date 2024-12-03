@@ -48,11 +48,14 @@ const int SKILL_CNT = 3; // number of skills, note that skill 1-3 are starters, 
 
 //// declare functions ////
 void buffer(); // press enter to continue
+void setCodePage();
 void clearScreen(); // system cls/clear
+
+void gameStartScreen();
 void readMap();
 void printMaze(bool visited[][MAP_W]);
 void moveCamera(int ch);
-bool detectEvent(Player& player, bool visited[][MAP_W], bool triggeredChance[], bool triggeredDestiny[]);
+void detectEvent(Player& player, bool visited[][MAP_W], bool triggeredChance[], bool triggeredDestiny[]);
 void displayEvent(ifstream& inFile);
 void displayChoiceChance(ifstream& inFile, string choice);
 void displayChoiceDestiny(ifstream& inFile, string choice);
@@ -77,6 +80,19 @@ void readMap() {
     while (getline(file, line)) {
         map.push_back(line);
     }
+}
+
+void setCodePage() {
+    #ifdef _WIN32
+    system("chcp 65001");
+    system("cls");
+    #endif
+}
+
+void gameStartScreen() {
+    cout << "GAME START\n";
+    buffer();
+    clearScreen();
 }
 
 // for updating camera screen
@@ -141,7 +157,7 @@ switch(ch) {
     }
 }
 
-bool detectEvent (Player& player, bool visited[][MAP_W], bool triggeredChance[], bool triggeredDestiny[]) {
+void detectEvent (Player& player, bool visited[][MAP_W], bool triggeredChance[], bool triggeredDestiny[]) {
     if (!visited[y][x]) {
         visited[y][x] = 1;
         char c = map[y][x];
@@ -170,10 +186,10 @@ bool detectEvent (Player& player, bool visited[][MAP_W], bool triggeredChance[],
             replaceSkillScreen(player);
             buffer();
             
-            return true;
+            clearScreen();
+            printMaze(visited);
         }
     }
-    return false;
 }
 
 void buffer() {
@@ -189,6 +205,7 @@ void clearScreen() {
     system("clear");
     #endif
 }
+
 
 //// functions (for events handling) ////
 
@@ -380,7 +397,6 @@ void replaceSkillScreen(Player& player) {
 int main () {
     int ch; // for reading arrow key
     bool end = 0; // for game loop
-    bool eventDetected;
     bool visited[MAP_H][MAP_W] = {0};
     bool triggeredChance[CHANCE_CNT] = {0};
     bool triggeredDestiny[DESTINY_CNT] = {0};
@@ -389,8 +405,9 @@ int main () {
     // initialize player (test)
     Player player(10, 10, 10);
 
-    //initial clear screen
-    clearScreen();
+    setCodePage(); // for WIN32
+
+    gameStartScreen();
 
     readMap();
 
@@ -409,14 +426,7 @@ int main () {
 
                 printMaze(visited);
                 if (x == 18 && y == 18) end = 1; // temp, for ending game
-                eventDetected = detectEvent(player, visited, triggeredChance, triggeredDestiny);
-                if (eventDetected) {
-                    // clear screen
-                    clearScreen();
-
-                    //reprint maze
-                    printMaze(visited);
-                }
+                detectEvent(player, visited, triggeredChance, triggeredDestiny);
             }
         }
         this_thread::sleep_for(25ms);
