@@ -38,12 +38,14 @@ void Entity::studyAttack(Entity& enemy, int percent) {
 */
 	int damage = atkCurr - defCurr;
 	damage = max(damage, 0);
+	cout << atkCurr << "-" << defCurr << endl; // for debugging
 	cout << "Cause damage: " << damage << endl;
 	enemy.hpCurr -= damage;
 	if (enemy.hpCurr <= 0) {
 		enemy.death();
 		enemy.hpCurr = 0;
 	}	
+	//cout << "enemy's hp" << enemy.hpCurr << endl;
 }
 
 void Entity::heal(int percent){

@@ -260,8 +260,12 @@ void replaceSkillScreen(Player& player) {
     // get random skill
     int skillNumber = rand() % (SKILL_CNT) + 4;
     string choice = "";
-
+    Skill newSkill = Skill(skillNumber);
     clearScreen();
+    cout << "You get new skill! \n";
+    newSkill.printSkill();
+
+    
     cout << "Your current skills: \n";
     cout << "1. ";
     player.printSkill(0);

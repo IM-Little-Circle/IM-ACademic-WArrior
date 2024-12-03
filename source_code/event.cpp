@@ -22,8 +22,8 @@ void displayChoiceChance(ifstream& inFile, string choice) {
     }
     else {
         //chosen N
-        std::getline(inFile, readFile, '#'); // ignore Y choice section
-        std::getline(inFile, readFile, '#');
+        getline(inFile, readFile, '#'); // ignore Y choice section
+        getline(inFile, readFile, '#');
         cout << readFile;
     }
 }

@@ -18,6 +18,25 @@ Skill::Skill(string skillName, string skillType, int restRound, int percent)
     this->coolRound = 0;
 }
 
+Skill::Skill(int filenumber){
+    string skillName, skillType;
+    int restRound, percent;
+    ifstream inFile("../assets/skill/skill" + to_string(filenumber) + ".txt");
+    if (inFile.fail()) {
+        cout << "File not found\n";
+    }
+    else {
+        getline(inFile, skillName);
+        getline(inFile, skillType);
+        inFile >> restRound >> percent;
+    }
+    this->skillName = skillName;
+    this->skillType = skillType;
+    this->restRound = restRound;
+    this->percent = percent;
+    this->coolRound = 0;
+}
+
 Skill::Skill()
 {
     skillName = "";
@@ -36,7 +55,8 @@ string Skill::getName(){
 }
 
 void Skill::printSkill() {
-    cout << skillName << " " << skillType << " " << restRound << "," << percent << endl;
+    cout << skillName << "\n" << "SkillType: " << skillType << "\nCoolRound: " << coolRound << "\n攻擊倍率: " << percent << endl;
+    cout << endl;
 }
 
 int Skill::getCoolRound(){

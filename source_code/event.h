@@ -5,7 +5,7 @@
 using namespace std;
 
 const int CHANCE_CNT = 2; //number of chances, must >= 1
-const int DESTINY_CNT = 2; //number of destinies, must >= 1
+const int DESTINY_CNT = 17; //number of destinies, must >= 1
 
 void displayEvent(ifstream& inFile);
 void displayChoiceChance(ifstream& inFile, string choice);
