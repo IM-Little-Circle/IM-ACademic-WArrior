@@ -1,0 +1,4 @@
+aca 20#
+soc 30#
+emo 40#
+This is first
