@@ -1,4 +1,5 @@
 #include "battle.h"
+
 void battle(Player player, Entity opponent) { // should these be references instead?
     int input;
     int round = 0;
@@ -46,4 +47,9 @@ void battle(Player player, Entity opponent) { // should these be references inst
     else
         cout << "oops! you fail :(" << endl;
     player.fullRecover();
+}
+
+void triggerBattle(Player& player){
+    Entity oppoment(1); // 要怎麼找敵人?
+    battle(player, oppoment);
 }

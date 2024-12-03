@@ -16,4 +16,3 @@ void parseDestiny(ifstream& inFile, Player& player);
 int getSkillNum(ifstream& inFile, string choice);
 void triggerChance(Player& player, bool triggeredChance[]);
 void triggerDestiny(Player& player, bool triggeredDestiny[]);
-void triggerBattle(Player& player);
