@@ -190,7 +190,7 @@ switch(ch) {
 
 void detectEvent (Player& player, bool visited[][MAP_W], bool triggeredChance[], bool triggeredDestiny[]) {
     if (!visited[y][x]) {
-        visited[y][x] = 1;
+        visited[y][x] = true;
         char c = map[y][x];
         // replace cout below with functions to call
         if (c != '.') {
