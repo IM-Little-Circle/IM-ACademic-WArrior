@@ -45,6 +45,7 @@ bool midterms = false, finals = false;
 extern const int CHANCE_CNT; //number of chances, must >= 1
 extern const int DESTINY_CNT; //number of destinies, must >= 1
 extern const int SKILL_CNT; // number of skills, note that skill 1-3 are starters, not included here
+string mapFilePath = "../assets/map/testEventMap3.txt";
 
 //// declare functions ////
 void buffer(); // press enter to continue
@@ -69,7 +70,7 @@ void printStat(Player& player, int index);
 //// functions (for game loop) ////
 void readMap() {
     string line;
-    ifstream file("../assets/map/testEventMap2.txt"); 
+    ifstream file(mapFilePath); 
     // note to self: the current path setting will not run from VSCode execution
     // you will have to rely on batch compiling and exe for now
 
