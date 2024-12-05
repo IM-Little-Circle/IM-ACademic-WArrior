@@ -58,6 +58,7 @@ void Player::updateStatus() {
 }
 
 void Player::fullRecover(){
+    skillReset();
     hpCurr = hpMax;
 }
 
@@ -174,7 +175,7 @@ void Player::useSkill(Entity& enemy, Skill skill){
 
 void Player::useSkill(Entity& enemy, int chooseNumber){
     Skill usedSkill = *skill[chooseNumber];
-    if (usedSkill.getCoolRound() != 0) return; //輸錯要給甚麼回饋?
+    //if (usedSkill.getCoolRound() != 0) return; //輸錯要給甚麼回饋?
     if (usedSkill.getType() == "heal"){
         heal(usedSkill.getPercent());
     }
@@ -184,6 +185,7 @@ void Player::useSkill(Entity& enemy, int chooseNumber){
     else{
         socialAttack(enemy, usedSkill.getPercent());
     }
+    skill[chooseNumber]->cool();
 }
 
 // added for testing
@@ -195,8 +197,29 @@ void Player::printSkill(int skillIndex) {
     else cout << "error index!\n";
 }
 
+void Player::printnewSkill(int skillIndex) {
+    if (skillIndex >= 0 && skillIndex < 3) {
+        skill[skillIndex]->printnewSkill();
+    }
+    else cout << "error index!\n";
+}
+
 void Player::skillCool(){
     for (int i = 0; i < 3; i++){
         skill[i]->skillCool();
+    }
+}
+
+bool Player::isCool(int skillNumber){
+    if (skill[skillNumber-1]->getRestRound() > 0) 
+        return true;
+    else 
+        return false;
+    
+}
+
+void Player::skillReset(){
+    for (int i = 0; i < 3; i++){
+        skill[i]->coolReset();
     }
 }

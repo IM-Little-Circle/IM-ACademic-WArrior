@@ -1,15 +1,17 @@
-10 4 6 
-2 5 1
-                         There's one day left until the Calculus exam.
-                         [Y:Study | N:Procrastinate]
+0 0 0
+0 0 0
+                         你不知道今天是什麼節日，但總之路上有好多情侶！ 
+                         要不要繞遠路來避開...
+                         [Y：繞路 | N：不繞路]
 #
-                         You get A+ for Calc 1!!!
-                         :D
+                         你遇見了身分不明但好像很厲害的阿伯
+                         他給你了各種在這個校園生存下去的建議
+                         然後就瀟灑地走掉了
 #
-                         You get B- for Calc 1...
-                         D:
+                         你在一對對情侶之間穿梭著
+                         越看越覺得自己根本是哥布林…
 #
--1
+0
 #
-3
+0
 #

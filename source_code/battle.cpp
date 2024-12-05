@@ -20,11 +20,18 @@ void battle(Player player, Entity opponent) { // should these be references inst
                 player.printSkill(1);
                 player.printSkill(2);
                 cin >> input;
-            }
                 // error input
-                if (!(input == "1" || input == "2" || input == "3")) {
+                if (!(input == "1" || input == "2" || input == "3") ) {
                     cout << "Wrong input, try again.\n";
+                }
+                if (player.isCool( stoi(input))){
+                    cout << "the skill is cooling, please try again.\n";
+                    input = -1;
+                }
             }
+                
+                
+
 
             player.useSkill(opponent, stoi(input) - 1);
         }
@@ -51,5 +58,6 @@ void battle(Player player, Entity opponent) { // should these be references inst
 
 void triggerBattle(Player& player){
     Entity oppoment(1); // 要怎麼找敵人?
+    player.fullRecover();
     battle(player, oppoment);
 }
