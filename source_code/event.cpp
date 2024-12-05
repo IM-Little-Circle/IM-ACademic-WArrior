@@ -51,7 +51,7 @@ void modifyParameters(Player& player, int parameters[], string choice) {
         player.modifySocial(parameters[4]);
         player.modifyEmo(parameters[5]);
     }
-    player.printStat(oriAca, oriSoc, oriEmo);
+    player.printStatRight(oriAca, oriSoc, oriEmo);
 }
 
 void parseChance(ifstream& inFile, Player& player, int& skillNumber) {

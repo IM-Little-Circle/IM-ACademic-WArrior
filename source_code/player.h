@@ -34,8 +34,8 @@ class Player : public Entity {
         void levelUp();
         void getExp(int experience);
         // below added for testing
-        void printStat();
-        void printStat(int oriAca, int oriSoc, int oriEmo);
+        void printStatRight();
+        void printStatRight(int oriAca, int oriSoc, int oriEmo);
         void printSkill(int skillnumber);
         void printnewSkill(int skillnumber);
 
@@ -47,6 +47,7 @@ class Player : public Entity {
         void skillCool();
         bool isCool(int skillNumber);
         void skillReset();
+        
 
         
 };

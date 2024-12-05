@@ -64,7 +64,8 @@ void detectChanceCnt(bool visited[][MAP_W], Player& player);
 void replaceSkillScreen(Player& player, int skillNumber);
 void printLine(int length);
 void printSpace(int length);
-void printStat(Player& player, int index);
+void printStatRight(Player& player, int index);
+void printStatLeft(Player& player, int index);
 //void battle(Player& player, Entity oppoment);
 // add things here later
 
@@ -104,17 +105,10 @@ void printMaze (bool visited[][MAP_W], Player& player) {
     cout<<endl<<endl;
 
     for (int j = y-SCRN_HW; j <= y+SCRN_HW; j++) {
-        
-        if(j==y-SCRN_HW) {
-            printSpace(33);
-            cout << "【玩家座標】";
-            printSpace(5);
+        /*改到printLeft*/
+        if(j==y-SCRN_HW || j==y-SCRN_HW+1) {
+            printStatLeft(player, j-(y-SCRN_HW));
         }
-        else if(j==y-SCRN_HW+1) {
-            printSpace(34);
-            cout << "X: " << x << " Y: " << y;
-            printSpace(5+(x<10)+(y<10));
-        }  
         else printSpace(50);
 
         for (int i = x-SCRN_HW; i <= x+SCRN_HW; i++) {
@@ -139,7 +133,7 @@ void printMaze (bool visited[][MAP_W], Player& player) {
             }
             
         }
-        printStat(player, j-(y-SCRN_HW));
+        printStatRight(player, j-(y-SCRN_HW));
         cout << "\n";
     }
     //cout << "Chance encountered: " << chanceEncounteredCnt << endl;
@@ -174,7 +168,7 @@ void animateStringForEnding(ifstream& inFile) {
 
 void timeBar() {
     printSpace(26);
-    cout << "Time passed  ";
+    cout << "經過時間  ";
     for (int i = 0; i < chanceEncounteredCnt; i++) {
       cout << "█";
     }
@@ -250,7 +244,19 @@ void detectEvent (Player& player, bool visited[][MAP_W], bool triggeredChance[],
     }
 }
 
-void printStat(Player& player, int index) {
+void printStatLeft(Player& player, int index) {
+    if(index == 0){
+        printSpace(35);
+        cout << "【玩家座標】";
+        printSpace(3);
+    }
+    if(index == 1) {
+        printSpace(36);
+        cout << "X: " << x << " Y: " << y;
+        printSpace(3+(x<10)+(y<10));
+    }  
+}
+void printStatRight(Player& player, int index) {
     if(index == 0) cout << "  【玩家 LV." << player.getLevel() << "】"; 
     if(index == 1) cout << "   ◆ Academic: " << player.getAcademic();
     if(index == 2) cout << "   ◆ Social: " << player.getSocial();
@@ -297,7 +303,7 @@ void detectChanceCnt(bool visited[][MAP_W], Player& player) {
 
 bool detectEnding(Player& player) {
     if (finals) {
-        player.printStat();
+        player.printStatRight();
         cout << endl;
         // FIX CONDITIONS
         if (player.getAcademic() > 25) {
@@ -399,7 +405,8 @@ int main () {
         if (c_kbhit()) {
             ch = c_getch(); // for modifications, see testMaze.cpp for ref
             if (ch == KEY_UP||ch == KEY_DOWN ||ch == KEY_LEFT||ch == KEY_RIGHT) {
-                
+                //cerr << "";
+
                 moveCamera(ch);
                 clearScreen();
 

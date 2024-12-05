@@ -66,10 +66,10 @@ void Player::fullRecover(){
     hpCurr = hpMax;
 }
 
-void Player::printStat() {
+void Player::printStatRight() {
     cout << "ACA " << academic << "\nSOC " << social << "\nEMO " << emo << endl;
 }
-void Player::printStat(int oriAca, int oriSoc, int oriEmo){
+void Player::printStatRight(int oriAca, int oriSoc, int oriEmo){
     cout << "ACA " << oriAca << " ---> " << academic << "\nSOC " << oriSoc << " ---> " << social << "\nEMO " << oriEmo << " ---> " << emo << endl;
 }
 
