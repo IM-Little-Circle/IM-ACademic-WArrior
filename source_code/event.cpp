@@ -116,15 +116,14 @@ int getSkillNum(ifstream& inFile, string choice) {
 
 void triggerChance(Player& player, bool triggeredChance[], int& skillNumber) {
     int i = -1; //note that i will be 1-based for file, but 0-based for array
+    bool allTriggered = true;
     do {
         i = rand() % (CHANCE_CNT - 1 + 1) + 1; //i = a random number between 1 and CHANCE_CNT
-        bool allTriggered = false;
         for (int j = 0; j < CHANCE_CNT; j++) {
             if (!triggeredChance[j]) {
                 allTriggered = false;
                 break;
             }
-            allTriggered = true;
         }
         if(allTriggered) {
             cout << "ALL triggered" << endl;
@@ -132,33 +131,36 @@ void triggerChance(Player& player, bool triggeredChance[], int& skillNumber) {
         }
     } while (triggeredChance[i - 1]); //re-roll
     
+    if (!allTriggered) {
+        triggeredChance[i - 1] = true;
+        ifstream inFile("../assets/chance/chance" + to_string(i) + ".txt");
+        cout << "Chance " << i << " triggered\n"; //shall be deleted as game development finishes
 
-    triggeredChance[i - 1] = true;
-    ifstream inFile("../assets/chance/chance" + to_string(i) + ".txt");
-    cout << "Chance " << i << " triggered\n"; //shall be deleted as game development finishes
+        if (inFile.fail()) {
+            cout << "File not found\n";
+            return;
+        }
+        
+        parseChance(inFile, player, skillNumber);
+        //player.printStat();
 
-    if (inFile.fail()) {
-        cout << "File not found\n";
-        return;
+        inFile.close();
     }
-    
-    parseChance(inFile, player, skillNumber);
-    //player.printStat();
-
-    inFile.close();
+    else {
+        cout << "你的大學生活夠精彩啦，休息一下，好好去面對考試吧~";
+    }
 }
 
 void triggerDestiny(Player& player, bool triggeredDestiny[], int& skillNumber) {
     int i = -1; //note that i will be 1-based for file, but 0-based for array
+    bool allTriggered = true;
     do {
         i = rand() % (DESTINY_CNT - 1 + 1) + 1; //i = a random number between 1 and DESTINY_CNT
-        bool allTriggered = false;
         for (int j = 0; j < DESTINY_CNT; j++) {
             if (!triggeredDestiny[j]) {
                 allTriggered = false;
                 break;
             }
-            allTriggered = true;
         }
         if(allTriggered) {
             cout << "ALL triggered" << endl;
@@ -166,18 +168,22 @@ void triggerDestiny(Player& player, bool triggeredDestiny[], int& skillNumber) {
         }
     } while (triggeredDestiny[i - 1]); //re-roll
     
+    if (!allTriggered) {
+        triggeredDestiny[i - 1] = true;
+        ifstream inFile("../assets/destiny/destiny" + to_string(i) + ".txt");
+        cout << "Destiny " << i << " triggered\n"; //shall be deleted as game development finishes
 
-    triggeredDestiny[i - 1] = true;
-    ifstream inFile("../assets/destiny/destiny" + to_string(i) + ".txt");
-    cout << "Destiny " << i << " triggered\n"; //shall be deleted as game development finishes
+        if (inFile.fail()) {
+            cout << "File not found\n";
+            return;
+        }
 
-    if (inFile.fail()) {
-        cout << "File not found\n";
-        return;
+        parseDestiny(inFile, player, skillNumber);
+        //player.printStat();
+
+        inFile.close();
     }
-
-    parseDestiny(inFile, player, skillNumber);
-    //player.printStat();
-
-    inFile.close();
+    else {
+        cout << "陽光透過樹梢灑落下來，今天難得放晴。走在涼爽校園裡，深吸一口氣，連空氣都覺得是甜的。";
+    }
 }
