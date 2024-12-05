@@ -98,11 +98,22 @@ void printMaze (bool visited[][MAP_W], Player& player) {
 
     printSpace(25);
     printLine(25+14+25);
-    cout<<endl;
-    cout<<endl;
+    cout<<endl<<endl;
 
     for (int j = y-SCRN_HW; j <= y+SCRN_HW; j++) {
-        printSpace(50);
+        
+        if(j==y-SCRN_HW) {
+            printSpace(33);
+            cout << "【玩家座標】";
+            printSpace(5);
+        }
+        else if(j==y-SCRN_HW+1) {
+            printSpace(34);
+            cout << "X: " << x << " Y: " << y;
+            printSpace(5+(x<10)+(y<10));
+        }  
+        else printSpace(50);
+
         for (int i = x-SCRN_HW; i <= x+SCRN_HW; i++) {
 
             if (i < 0 || i >= MAP_W || j < 0 || j >= MAP_H) {
@@ -129,7 +140,7 @@ void printMaze (bool visited[][MAP_W], Player& player) {
         cout << "\n";
     }
     // for debugging: cout pos
-    cout << string(50, ' ') << x << " " << y << string (20, ' ') << "Chance encountered: " << chanceEncounteredCnt << endl;
+    cout << "Chance encountered: " << chanceEncounteredCnt << endl;
     
     printSpace(25);
     printLine(25+14+25);
@@ -179,24 +190,24 @@ switch(ch) {
 
 void detectEvent (Player& player, bool visited[][MAP_W], bool triggeredChance[], bool triggeredDestiny[]) {
     if (!visited[y][x]) {
-        visited[y][x] = 1;
+        visited[y][x] = true;
         char c = map[y][x];
         // replace cout below with functions to call
         if (c != '.') {
             //detectedEvent = true;
             int skillNumber = -1;
             if (c == 'c' || c == 'C') {
-                cout << string(50, ' ') << "Chance!\n";
+                cout << string(25, ' ') << "Chance!\n";
                 triggerChance(player, triggeredChance, skillNumber); //pass skillNumber by reference
                 chanceEncounteredCnt++;
                 cin.ignore();
             }
             else if (c == 'd') {        //original: || c == 'D'
-                cout << string(50, ' ') << "Destiny!\n";
+                cout << string(25, ' ') << "Destiny!\n";
                 triggerDestiny(player, triggeredDestiny, skillNumber); //pass skillNumber by reference
             }
             else if (c == 'B') {
-                cout << string(50, ' ') << "Battle!\n";
+                cout << string(25, ' ') << "Battle!\n";
                 triggerBattle(player);
                 cin.ignore();
             }
@@ -218,14 +229,14 @@ void detectEvent (Player& player, bool visited[][MAP_W], bool triggeredChance[],
 }
 
 void printStat(Player& player, int index) {
-    if(index == 1) cout << "  玩家狀態:"; 
-    if(index == 2) cout << "  Academic: " << player.getAcademic();
-    if(index == 3) cout << "  Social:  " << player.getSocial();
-    if(index == 4) cout << "  Emo:  " << player.getEmo();
-
-    if(index == 6) cout << "  技能1. "<< player.getSkill(0)->getName();
-    if(index == 7) cout << "  技能2. "<< player.getSkill(1)->getName();
-    if(index == 8) cout << "  技能3. "<< player.getSkill(2)->getName();
+    if(index == 0) cout << "  【玩家狀態】"; 
+    if(index == 1) cout << "   ◆ Academic: " << player.getAcademic();
+    if(index == 2) cout << "   ◆ Social: " << player.getSocial();
+    if(index == 3) cout << "   ◆ Emo: " << player.getEmo();
+    if(index == 5) cout << "  【技能欄位】";
+    if(index == 6) cout << "   ◆ "<< player.getSkill(0)->getName();
+    if(index == 7) cout << "   ◆ "<< player.getSkill(1)->getName();
+    if(index == 8) cout << "   ◆ "<< player.getSkill(2)->getName();
 }
 
 void printSpace(int length) {

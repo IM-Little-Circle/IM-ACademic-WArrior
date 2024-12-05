@@ -54,6 +54,14 @@ int main() {
     cout << "█▀  ▀ ▀▀ ██" << endl;
     cout << "█  ▒   ▒  ▐█" << endl;
     cout << "▌         ▐█" << endl;
-
+    cout << "　　　∧_∧__" << endl;
+    cout << "　　( ･ω･｡)つ━☆・*。" << endl;
+    cout << "⠀⠀⠀⠀⣀⡀" << endl;
+    cout << "⢠⣤⡀⣾⣿⣿⠀⣤⣤⡄" << endl;
+    cout << "⢿⣿⡇⠘⠛⠁⢸⣿⣿⠃" << endl;
+    cout << "⠈⣉⣤⣾⣿⣿⡆⠉⣴⣶⣶" << endl;
+    cout << "⣾⣿⣿⣿⣿⣿⣿⡀⠻⠟⠃" << endl;
+    cout << "⠙⠛⠻⢿⣿⣿⣿⡇" << endl;
+    cout << "⠀⠀⠀⠀⠈⠙⠋⠁" << endl;
     return 0;
 }
