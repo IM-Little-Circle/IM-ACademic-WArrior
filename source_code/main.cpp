@@ -284,6 +284,7 @@ void detectChanceCnt(bool visited[][MAP_W], Player& player) {
 bool detectEnding(Player& player) {
     if (finals) {
         player.printStat();
+        cout << endl;
         // FIX CONDITIONS
         if (player.getAcademic() > 25) {
             ifstream inFile("../assets/ending/ending1.txt");
@@ -291,17 +292,16 @@ bool detectEnding(Player& player) {
             inFile.close();
         }
         else if (player.getSocial() > 20) {
-            cout << "SOCIAL ENDING\n";
             ifstream inFile("../assets/ending/ending2.txt");
             cout << inFile.rdbuf();
             inFile.close();
         }
         else {
-            cout << "MCDONALDS ENDING\n";
             ifstream inFile("../assets/ending/ending3.txt");
             cout << inFile.rdbuf();
             inFile.close();
         }
+        cout << endl;
         return 1;
     }
     return 0;
