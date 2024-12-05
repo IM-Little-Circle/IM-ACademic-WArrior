@@ -44,8 +44,12 @@ int Player::getSocial() {
     return this->social;
 }
 
-int Player::getEmo(){
+int Player::getEmo() {
     return this->emo;
+}
+
+int Player::getLevel() {
+    return this->level;
 }
 
 void Player::updateStatus() {
