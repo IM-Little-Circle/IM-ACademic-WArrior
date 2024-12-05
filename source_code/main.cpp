@@ -286,13 +286,21 @@ bool detectEnding(Player& player) {
         player.printStat();
         // FIX CONDITIONS
         if (player.getAcademic() > 25) {
-            cout << "ACADEMIC ENDING\n";
+            ifstream inFile("../assets/ending/ending1.txt");
+            cout << inFile.rdbuf();
+            inFile.close();
         }
         else if (player.getSocial() > 20) {
             cout << "SOCIAL ENDING\n";
+            ifstream inFile("../assets/ending/ending2.txt");
+            cout << inFile.rdbuf();
+            inFile.close();
         }
         else {
             cout << "MCDONALDS ENDING\n";
+            ifstream inFile("../assets/ending/ending3.txt");
+            cout << inFile.rdbuf();
+            inFile.close();
         }
         return 1;
     }
