@@ -34,7 +34,7 @@ new issue found @2024/11/24: if right arrow key pressed for a while and then ran
 #define MAP_W 32
 #define MAP_H 32
 #define SCRN_HW 4 // half width of 9, for printing camera screen
-#define TERM_CHANCE_CNT 4
+#define TERM_CHANCE_CNT 8
 
 // here are some global variables for now, wrap them up later
 vector<string> map;
@@ -251,7 +251,7 @@ void detectEvent (Player& player, bool visited[][MAP_W], bool triggeredChance[],
 }
 
 void printStat(Player& player, int index) {
-    if(index == 0) cout << "  【玩家狀態】"; 
+    if(index == 0) cout << "  【玩家 LV." << player.getLevel() << "】"; 
     if(index == 1) cout << "   ◆ Academic: " << player.getAcademic();
     if(index == 2) cout << "   ◆ Social: " << player.getSocial();
     if(index == 3) cout << "   ◆ Emo: " << player.getEmo();
