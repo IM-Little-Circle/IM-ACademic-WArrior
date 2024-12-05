@@ -67,8 +67,11 @@ void parseChance(ifstream& inFile, Player& player, int& skillNumber) {
 
     // choose [Y | N]
     while (!(choice == "Y" || choice == "N"|| choice == "y"|| choice == "n")) {
+        cout << string(25, ' ');
         cin >> choice;
-        if (!(choice == "Y" || choice == "N"|| choice == "y"|| choice == "n")) cout << "Wrong input. Please try again.\n";
+        if (!(choice == "Y" || choice == "N"|| choice == "y"|| choice == "n")) {
+            cout << string(25, ' ') << "Wrong input. Please try again.\n";
+        }
     }
 
     // print result based on choice
