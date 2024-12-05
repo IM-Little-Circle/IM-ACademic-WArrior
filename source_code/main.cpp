@@ -34,6 +34,7 @@ new issue found @2024/11/24: if right arrow key pressed for a while and then ran
 #define MAP_W 32
 #define MAP_H 32
 #define SCRN_HW 4 // half width of 9, for printing camera screen
+#define TERM_CHANCE_CNT 4
 
 // here are some global variables for now, wrap them up later
 vector<string> map;
@@ -140,9 +141,9 @@ void printMaze (bool visited[][MAP_W], Player& player) {
         printStat(player, j-(y-SCRN_HW));
         cout << "\n";
     }
-    // for debugging: cout pos
-    cout << "Chance encountered: " << chanceEncounteredCnt << endl;
-    
+    //cout << "Chance encountered: " << chanceEncounteredCnt << endl;
+    timeBar();
+
     printSpace(25);
     printLine(25+14+25);
     cout<<endl;
@@ -158,9 +159,15 @@ void animateString(string str) {
 }
 
 void timeBar() {
+    printSpace(26);
+    cout << "Time passed  ";
     for (int i = 0; i < chanceEncounteredCnt; i++) {
-      // continue here  
+      cout << "█";
     }
+    for (int i = 0; i < TERM_CHANCE_CNT - chanceEncounteredCnt; i++) {
+        cout << "░";
+    }
+    cout << endl;
 }
 
 
@@ -249,7 +256,7 @@ void printLine(int length) {
 }
 
 void detectChanceCnt(bool visited[][MAP_W], Player& player) {
-        if (chanceEncounteredCnt == 2 && !midterms) {
+        if (chanceEncounteredCnt == TERM_CHANCE_CNT / 2 && !midterms) {
             // midterms
             cout << string(20, ' ');
             animateString("NOTE: Two months have passed. Entering midterms :(");
@@ -262,7 +269,7 @@ void detectChanceCnt(bool visited[][MAP_W], Player& player) {
 
         }
 
-        else if (chanceEncounteredCnt == 4 && !finals) {
+        else if (chanceEncounteredCnt == TERM_CHANCE_CNT && !finals) {
             // finals
             cout << string(20, ' ');
             animateString("NOTE: Two months have passed. Entering finals :(");
@@ -357,7 +364,7 @@ int main () {
 
     setCodePage(); // for WIN32
 
-    //gameStartScreen();
+    //rtScreen();
 
     readMap();
 
