@@ -1,15 +1,18 @@
-2 7 -2 
-4 5 2     
-                         You classmate invite you to join the department volleyball team.
-                         [Y:Join | N:Refuse]
+0 0 0
+0 0 0
+現在是個炎熱的中午，你好想消暑
+要不要吃小福的冰淇淋！
+[Y：吃 | N：不吃]
 #
-                         Enjoy your life in volleyball! (But you need to beware of you academic
-                         :D
+冰淇淋的甜蜜融化了你的味蕾
+你感受到無比的幸福
+對於此時此刻的你而言，變胖什麼的全都不重要了呢
 #
-                         Nothing changed...
-                         D:
+你遠離了零食聚集地小福，並跑去吃自助餐
+你省下了一小筆的錢錢，並拿去投資在了你的午餐上
+今天的你可以很豪邁地在夾自助餐時多夾肉肉！！
 #
-
+0
 #
-
+0
 #
