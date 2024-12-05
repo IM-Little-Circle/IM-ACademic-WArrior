@@ -54,6 +54,7 @@ void setCodePage();
 void clearScreen(); // system cls/clear
 void gameStartScreen();
 void animateString(string str); 
+void animateStringForEnding(ifstream& inFile);
 void timeBar();
 void readMap();
 void printMaze(bool visited[][MAP_W], Player& player);
@@ -156,6 +157,18 @@ void animateString(string str) {
         cout.flush();
         this_thread::sleep_for(chrono::milliseconds(100));
     }
+}
+
+void animateStringForEnding(ifstream& inFile) {
+    string str;
+    while(getline(inFile, str)) {
+        for(int i=0; i<str.length(); i++) {
+            cout << str[i];
+            cout.flush();
+            this_thread::sleep_for(chrono::milliseconds(10));
+        }
+        this_thread::sleep_for(chrono::milliseconds(100));
+    }   
 }
 
 void timeBar() {
@@ -288,17 +301,17 @@ bool detectEnding(Player& player) {
         // FIX CONDITIONS
         if (player.getAcademic() > 25) {
             ifstream inFile("../assets/ending/ending1.txt");
-            cout << inFile.rdbuf();
+            animateStringForEnding(inFile);
             inFile.close();
         }
         else if (player.getSocial() > 20) {
             ifstream inFile("../assets/ending/ending2.txt");
-            cout << inFile.rdbuf();
+            animateStringForEnding(inFile);
             inFile.close();
         }
         else {
             ifstream inFile("../assets/ending/ending3.txt");
-            cout << inFile.rdbuf();
+            animateStringForEnding(inFile);
             inFile.close();
         }
         cout << endl;
