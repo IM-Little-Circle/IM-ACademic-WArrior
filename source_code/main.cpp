@@ -218,7 +218,7 @@ void detectEvent (Player& player, bool visited[][MAP_W], bool triggeredChance[],
             // BELOW IS FOR TESTING REPLACESKILL (TEMP)
             cout << endl << skillNumber << endl;
             replaceSkillScreen(player, skillNumber);
-            if(skillNumber != -1) {
+            if(skillNumber >= 1 && skillNumber <= SKILL_CNT) {
                buffer();
             }
             
