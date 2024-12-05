@@ -36,6 +36,7 @@ class Player : public Entity {
         void printStat();
         void printStat(int oriAca, int oriSoc, int oriEmo);
         void printSkill(int skillnumber);
+        void printnewSkill(int skillnumber);
 
         //skill
         Skill* fetchSkill(int filenumber); // read file for skill
@@ -43,5 +44,9 @@ class Player : public Entity {
         void useSkill(Entity& enemy, Skill skill);
         void useSkill(Entity& enemy, int chooseNumber);
         void skillCool();
+        bool isCool(int skillNumber);
+        void skillReset();
+
+        
 };
 

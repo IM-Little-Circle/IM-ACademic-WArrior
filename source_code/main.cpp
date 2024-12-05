@@ -202,7 +202,7 @@ void detectEvent (Player& player, bool visited[][MAP_W], bool triggeredChance[],
                 chanceEncounteredCnt++;
                 cin.ignore();
             }
-            else if (c == 'd') {        //original: || c == 'D'
+            else if (c == 'd' || c== 'D') {        //original: || c == 'D'
                 cout << string(25, ' ') << "Destiny!\n";
                 triggerDestiny(player, triggeredDestiny, skillNumber); //pass skillNumber by reference
             }
@@ -317,16 +317,16 @@ void replaceSkillScreen(Player& player, int skillNumber) {
     Skill newSkill = Skill(skillNumber);
     clearScreen();
     cout << "You get new skill! \n";
-    newSkill.printSkill();
+    newSkill.printnewSkill();
 
     
     cout << "Your current skills: \n";
     cout << "1. ";
-    player.printSkill(0);
+    player.printnewSkill(0);
     cout << "2. ";
-    player.printSkill(1);
+    player.printnewSkill(1);
     cout << "3. ";
-    player.printSkill(2);
+    player.printnewSkill(2);
     cout << endl;
 
     // print the name of the gotten skill somehow
