@@ -165,9 +165,10 @@ void animateStringForEnding(ifstream& inFile) {
         for(int i=0; i<str.length(); i++) {
             cout << str[i];
             cout.flush();
-            this_thread::sleep_for(chrono::milliseconds(10));
+            this_thread::sleep_for(chrono::milliseconds(15));
         }
-        this_thread::sleep_for(chrono::milliseconds(100));
+        cout << endl;
+        this_thread::sleep_for(chrono::milliseconds(300));
     }   
 }
 
