@@ -1,6 +1,6 @@
 #include "battle.h"
 
-void battle(Player player, Entity opponent) { // should these be references instead?
+void battle(Player& player, Entity opponent) { // should these be references instead?
     string input;
     int round = 0;
     while (opponent.living() && player.living()) {
