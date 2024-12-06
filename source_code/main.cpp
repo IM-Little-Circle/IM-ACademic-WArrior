@@ -287,6 +287,10 @@ void detectChanceCnt(bool visited[][MAP_W], Player& player) {
             animateString("警告: 兩個月不知不覺地過去了，期中考來臨 :(");
             this_thread::sleep_for(500ms);
             clearScreen();
+
+            //midterms boss battle
+            triggerMidterms(player);
+
             buffer();
             clearScreen();
             printMaze(visited, player);
@@ -300,6 +304,10 @@ void detectChanceCnt(bool visited[][MAP_W], Player& player) {
             animateString("警告: 兩個月不知不覺地過去了，期末考來臨 :(");
             this_thread::sleep_for(500ms);
             clearScreen();
+
+            //final boss battle
+            triggerMidterms(player);
+
             buffer();
             clearScreen();
             finals = true;

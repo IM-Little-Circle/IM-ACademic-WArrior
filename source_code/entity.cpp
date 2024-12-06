@@ -4,6 +4,7 @@ using namespace std;
 
 // entity member and related functions
 
+// constructors
 Entity::Entity(int hp, int Atk, int Def) {
 	hpCurr = hp, hpMax = hp, atk = Atk, def = Def;
     cout << "player created!!!!!\n"; // temp, delete later
@@ -14,6 +15,55 @@ Entity::Entity(int hp, int Atk, int Def, double mentalRes, double physicalRes, s
 	this->mentalRes = mentalRes, this->physicalRes = physicalRes;
 	this->weakness = weakness;
 }
+
+Entity::Entity(int fileNumber) {
+    string enemyName, enemyWeakness;
+    int attack, defence, health;
+	double menR, phyR;
+    ifstream inFile("../assets/enemy/enemy" + to_string(fileNumber) + ".txt");
+    if (inFile.fail()) {
+        cout << "File not found\n";
+    }
+    else {
+        getline(inFile, enemyName);
+        getline(inFile, enemyWeakness);
+        inFile >> attack >> defence >> health >> menR >> phyR;
+    }
+
+    this->name = enemyName;
+    this->weakness = enemyWeakness;
+    this->atk = attack;
+    this->def = defence;
+    this->hpMax = health;
+    this->hpCurr = health;
+    this->mentalRes = menR;
+    this->physicalRes = phyR;
+}
+
+Entity::Entity(string fileName) {
+    string enemyName, enemyWeakness;
+    int attack, defence, health;
+	double menR, phyR;
+    ifstream inFile("../assets/enemy/" + fileName + ".txt");
+    if (inFile.fail()) {
+        cout << "File not found\n";
+    }
+    else {
+        getline(inFile, enemyName);
+        getline(inFile, enemyWeakness);
+        inFile >> attack >> defence >> health >> menR >> phyR;
+    }
+
+    this->name = enemyName;
+    this->weakness = enemyWeakness;
+    this->atk = attack;
+    this->def = defence;
+    this->hpMax = health;
+    this->hpCurr = health;
+    this->mentalRes = menR;
+    this->physicalRes = phyR;
+}
+
 
 void Entity::socialAttack(Entity& enemy, int percent) {
 	int atkCurr = double(atk * (1 + socialBuff)) * percent / 100;
@@ -72,30 +122,6 @@ bool Entity::living() {
 
 void Entity::printHealth() {
 	cout << hpCurr << "/" << hpMax << endl;
-}
-
-Entity::Entity(int filenumber) {
-    string enemyName, enemyWeakness;
-    int attack, defence, health;
-	double menR, phyR;
-    ifstream inFile("../assets/enemy/enemy" + to_string(filenumber) + ".txt");
-    if (inFile.fail()) {
-        cout << "File not found\n";
-    }
-    else {
-        getline(inFile, enemyName);
-        getline(inFile, enemyWeakness);
-        inFile >> attack >> defence >> health >> menR >> phyR;
-    }
-
-    this->name = enemyName;
-    this->weakness = enemyWeakness;
-    this->atk = attack;
-    this->def = defence;
-    this->hpMax = health;
-    this->hpCurr = health;
-    this->mentalRes = menR;
-    this->physicalRes = phyR;
 }
 
 void Entity::adjust(int level){

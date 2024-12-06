@@ -57,4 +57,13 @@ void triggerBattle(Player& player){
     enemy.adjust(player.getLevel());
     player.fullRecover();
     battle(player, enemy);
+    cin.ignore();
+}
+
+void triggerMidterms(Player& player) {
+    Entity enemy("midtermBoss");
+    enemy.adjust(player.getLevel());
+    player.fullRecover();
+    battle(player, enemy);
+    cin.ignore();
 }

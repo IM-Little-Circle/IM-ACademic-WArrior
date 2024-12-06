@@ -65,6 +65,7 @@ void Player::updateStatus() {
 void Player::fullRecover(){
     skillReset();
     hpCurr = hpMax;
+    alive = true;
 }
 
 void Player::printStatRight() {
