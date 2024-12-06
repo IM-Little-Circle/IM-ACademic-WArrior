@@ -39,6 +39,12 @@ class Player : public Entity {
         void printSkill(int skillnumber);
         void printnewSkill(int skillnumber);
 
+        //skill print
+        void printSkillName(int skillIndex);
+        void printSkillType(int skillIndex);
+        void printSkillCoolRound(int skillIndex);
+        void printSkillPercent(int skillIndex);
+
         //skill
         Skill* fetchSkill(int filenumber); // read file for skill
         void replaceSkill(int filenumber);

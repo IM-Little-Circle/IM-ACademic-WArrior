@@ -336,7 +336,7 @@ bool detectEnding(Player& player) {
 
 void buffer() {
     this_thread::sleep_for(100ms);
-    cout << "Press Enter to Continue\n";
+    cout << "Press Enter to Continue ";
     cin.ignore();
 }
 
@@ -359,11 +359,18 @@ void replaceSkillScreen(Player& player, int skillNumber) {
     string choice = "";
     Skill newSkill = Skill(skillNumber);
     clearScreen();
-    cout << "You get new skill! \n";
+    
+    /*
+    printSpace(30);
+    printLine(20+14+25);
+    cout<<endl<<endl;
+    */
+
+    cout << "你獲得了新技能! \n";
     newSkill.printnewSkill();
 
-    
-    cout << "Your current skills: \n";
+    /*
+    cout << "現在有的技能: \n";
     cout << "1. ";
     player.printnewSkill(0);
     cout << "2. ";
@@ -371,15 +378,37 @@ void replaceSkillScreen(Player& player, int skillNumber) {
     cout << "3. ";
     player.printnewSkill(2);
     cout << endl;
+    */
+
+    int strLength = 0;
+    string str;
+    for(int i=0; i<3; i++) {
+        player.printSkillName(i);
+    }
+    cout << str;
+    
+    for(int i=0; i<3; i++) {
+        player.printSkillType(i);
+    }
+    cout << endl;
+    for(int i=0; i<3; i++) {
+        cout << player.getSkill(i)->getCoolRound() << " ";
+    }
+    cout << endl;
+    for(int i=0; i<3; i++) {
+        cout << player.getSkill(i)->getPercent() << " ";
+    }
+    cout << endl;
+    
 
     // print the name of the gotten skill somehow
-    cout << "You have gotten new skill!\nDo you want to switch one of your skills for this?(Press Y/N) "; 
+    cout << "你想用它取代現有技能嗎? [Press Y/N] "; 
     while (!(choice == "Y" || choice == "N"|| choice == "y"|| choice == "n")) {
         cin >> choice;
         if (!(choice == "Y" || choice == "N"|| choice == "y"|| choice == "n")) cout << "Wrong input. Please try again.\n";
     }
     if (choice == "Y" || choice == "y") {
-        cout << "Which one do you want to change?(Press 1~3)\n";
+        cout << "你想取代哪個現有技能? [Press 1~3] ";
         player.replaceSkill(skillNumber);
     }
     else cin.ignore();
