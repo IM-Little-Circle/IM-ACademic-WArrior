@@ -12,7 +12,7 @@ Player::Player(int hp, int atk, int def) : Entity(hp, atk, def) {
     y = 5;
 	socialBuff = social / 100;
 	studyBuff = academic / 100;
-    healBuff = (100 - emo) / 100;
+    healBuff = (100 - emo) / 500;
 	mentalRes = (100 - emo) / 100;
     skill[0] = fetchSkill(1);
     skill[1] = fetchSkill(2);
