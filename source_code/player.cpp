@@ -10,9 +10,9 @@ Player::Player(int hp, int atk, int def) : Entity(hp, atk, def) {
     // temp, set random pos upon initialization
     x = 5;
     y = 5;
-	socialBuff = social / 100;
-	studyBuff = academic / 100;
-    healBuff = (100 - emo) / 500;
+	socialBuff = double(social / 100);
+	studyBuff = double(academic / 100);
+    healBuff = double((100 - emo) / 500);
 	mentalRes = (100 - emo) / 100;
     skill[0] = fetchSkill(1);
     skill[1] = fetchSkill(2);
@@ -56,9 +56,10 @@ void Player::updateStatus() {
 	socialBuff = static_cast<double>(social) / 100;
     studyBuff = static_cast<double>(academic) / 100;
     mentalRes = static_cast<double>(100 - emo) / 100;
-    cout << "now socialBuff = " << socialBuff << endl;
+    healBuff = static_cast<double>((100 - emo) / 500);
+    /*cout << "now socialBuff = " << socialBuff << endl;
     cout << "studyBuff = " << studyBuff << endl;
-    cout << "mentalRes = " << mentalRes << endl;
+    cout << "mentalRes = " << mentalRes << endl;*/
 }
 
 void Player::fullRecover(){
@@ -67,9 +68,11 @@ void Player::fullRecover(){
 }
 
 void Player::printStatRight() {
+    updateStatus();
     cout << "ACA " << academic << "\nSOC " << social << "\nEMO " << emo << endl;
 }
 void Player::printStatRight(int oriAca, int oriSoc, int oriEmo){
+    updateStatus();
     cout << "ACA " << oriAca << " ---> " << academic << "\nSOC " << oriSoc << " ---> " << social << "\nEMO " << oriEmo << " ---> " << emo << endl;
 }
 
