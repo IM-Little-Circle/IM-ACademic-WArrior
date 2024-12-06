@@ -123,8 +123,6 @@ void printMaze (bool visited[][MAP_W], Player& player) {
  
             else if (visited[j][i]) cout << ". ";
 
-            else if (i == 18 && j == 18) cout << "E"; // temp, for ending game
-
             else { // events and battles (and nothing)
                 if (map[j][i] == 'c' || map[j][i] == 'd') cout << ". "; // accidents
                 else cout << map[j][i] << " "; // others
@@ -381,22 +379,29 @@ void replaceSkillScreen(Player& player, int skillNumber) {
     */
 
     int strLength = 0;
-    string str;
+    //string str;
     for(int i=0; i<3; i++) {
         player.printSkillName(i);
+        printSpace(25 - (player.getSkill(i)->getName().length())/3*2);
     }
-    cout << str;
+    //cout << str;
+    cout << endl;
     
-    for(int i=0; i<3; i++) {
+    for(int i = 0; i < 3; i++) {
         player.printSkillType(i);
+        printSpace(25 - player.getSkill(i)->getType().length());
     }
     cout << endl;
-    for(int i=0; i<3; i++) {
-        cout << player.getSkill(i)->getCoolRound() << " ";
+
+    for(int i = 0; i < 3; i++) {
+        cout << player.getSkill(i)->getCoolRound();
+        printSpace(25 - to_string(player.getSkill(i)->getCoolRound()).length());
     }
     cout << endl;
-    for(int i=0; i<3; i++) {
-        cout << player.getSkill(i)->getPercent() << " ";
+    
+    for(int i = 0; i < 3; i++) {
+        cout << player.getSkill(i)->getPercent() << "%";
+        printSpace(25 - to_string(player.getSkill(i)->getPercent()).length() - 1);
     }
     cout << endl;
     
@@ -447,8 +452,6 @@ int main () {
                 clearScreen();
 
                 printMaze(visited, player);
-
-                if (x == 18 && y == 18) end = 1; // temp, for ending game
 
                 detectEvent(player, visited, triggeredChance, triggeredDestiny);
                 detectChanceCnt(visited, player); // for special events (like midterms)
