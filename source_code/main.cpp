@@ -46,7 +46,7 @@ bool midterms = false, finals = false;
 extern const int CHANCE_CNT; //number of chances, must >= 1
 extern const int DESTINY_CNT; //number of destinies, must >= 1
 extern const int SKILL_CNT; // number of skills, note that skill 1-3 are starters, not included here
-string mapFilePath = "../assets/map/testEventMap3.txt";
+string mapFilePath = "../assets/map/testEventMap5.txt";
 
 //// declare functions ////
 void buffer(); // press enter to continue
@@ -100,13 +100,13 @@ void gameStartScreen() {
 // to do here: figure out/design the guide!
 void printMaze (bool visited[][MAP_W], Player& player) {
 
-    printSpace(25);
-    printLine(25+14+25);
+    printSpace(30);
+    printLine(20+14+25);
     cout<<endl<<endl;
 
     for (int j = y-SCRN_HW; j <= y+SCRN_HW; j++) {
-        /*改到printLeft*/
-        if(j==y-SCRN_HW || j==y-SCRN_HW+1) {
+       
+        if(j==y-SCRN_HW || j==y-SCRN_HW+1 || j==y-SCRN_HW+5 || j==y-SCRN_HW+7) {
             printStatLeft(player, j-(y-SCRN_HW));
         }
         else printSpace(50);
@@ -137,10 +137,10 @@ void printMaze (bool visited[][MAP_W], Player& player) {
         cout << "\n";
     }
     //cout << "Chance encountered: " << chanceEncounteredCnt << endl;
-    timeBar();
-
-    printSpace(25);
-    printLine(25+14+25);
+    
+    cout << endl;
+    printSpace(30);
+    printLine(20+14+25);
     cout<<endl;
 }
 
@@ -167,15 +167,12 @@ void animateStringForEnding(ifstream& inFile) {
 }
 
 void timeBar() {
-    printSpace(26);
-    cout << "經過時間  ";
     for (int i = 0; i < chanceEncounteredCnt; i++) {
       cout << "█";
     }
     for (int i = 0; i < TERM_CHANCE_CNT - chanceEncounteredCnt; i++) {
         cout << "░";
     }
-    cout << endl;
 }
 
 
@@ -213,17 +210,17 @@ void detectEvent (Player& player, bool visited[][MAP_W], bool triggeredChance[],
             //detectedEvent = true;
             int skillNumber = -1;
             if (c == 'c' || c == 'C') {
-                cout << string(25, ' ') << "Chance!\n";
+                cout << string(30, ' ') << "Chance!\n";
                 triggerChance(player, triggeredChance, skillNumber); //pass skillNumber by reference
                 chanceEncounteredCnt++;
                 cin.ignore();
             }
             else if (c == 'd' || c== 'D') {        //original: || c == 'D'
-                cout << string(25, ' ') << "Destiny!\n";
+                cout << string(30, ' ') << "Destiny!\n";
                 triggerDestiny(player, triggeredDestiny, skillNumber); //pass skillNumber by reference
             }
             else if (c == 'B') {
-                cout << string(25, ' ') << "Battle!\n";
+                cout << string(30, ' ') << "Battle!\n";
                 triggerBattle(player);
                 cin.ignore();
             }
@@ -254,6 +251,16 @@ void printStatLeft(Player& player, int index) {
         printSpace(36);
         cout << "X: " << x << " Y: " << y;
         printSpace(3+(x<10)+(y<10));
+    }
+    if(index == 5){
+        printSpace(35);
+        cout << "【經過時間】";
+        printSpace(3);
+    }
+    if(index == 7){
+        printSpace(36);
+        timeBar();
+        printSpace(6);
     }  
 }
 void printStatRight(Player& player, int index) {
@@ -279,7 +286,7 @@ void detectChanceCnt(bool visited[][MAP_W], Player& player) {
         if (chanceEncounteredCnt == TERM_CHANCE_CNT / 2 && !midterms) {
             // midterms
             cout << string(20, ' ');
-            animateString("NOTE: Two months have passed. Entering midterms :(");
+            animateString("警告: 兩個月不知不覺地過去了，期中考來臨 :(");
             this_thread::sleep_for(500ms);
             clearScreen();
             buffer();
@@ -292,7 +299,7 @@ void detectChanceCnt(bool visited[][MAP_W], Player& player) {
         else if (chanceEncounteredCnt == TERM_CHANCE_CNT && !finals) {
             // finals
             cout << string(20, ' ');
-            animateString("NOTE: Two months have passed. Entering finals :(");
+            animateString("警告: 兩個月不知不覺地過去了，期末考來臨 :(");
             this_thread::sleep_for(500ms);
             clearScreen();
             buffer();
@@ -329,7 +336,7 @@ bool detectEnding(Player& player) {
 
 void buffer() {
     this_thread::sleep_for(100ms);
-    cout << "Press Enter to Continue\n";
+    cout << "Press Enter to Continue ";
     cin.ignore();
 }
 
@@ -352,11 +359,18 @@ void replaceSkillScreen(Player& player, int skillNumber) {
     string choice = "";
     Skill newSkill = Skill(skillNumber);
     clearScreen();
-    cout << "You get new skill! \n";
+    
+    /*
+    printSpace(30);
+    printLine(20+14+25);
+    cout<<endl<<endl;
+    */
+
+    cout << "你獲得了新技能! \n";
     newSkill.printnewSkill();
 
-    
-    cout << "Your current skills: \n";
+    /*
+    cout << "現在有的技能: \n";
     cout << "1. ";
     player.printnewSkill(0);
     cout << "2. ";
@@ -364,15 +378,37 @@ void replaceSkillScreen(Player& player, int skillNumber) {
     cout << "3. ";
     player.printnewSkill(2);
     cout << endl;
+    */
+
+    int strLength = 0;
+    string str;
+    for(int i=0; i<3; i++) {
+        player.printSkillName(i);
+    }
+    cout << str;
+    
+    for(int i=0; i<3; i++) {
+        player.printSkillType(i);
+    }
+    cout << endl;
+    for(int i=0; i<3; i++) {
+        cout << player.getSkill(i)->getCoolRound() << " ";
+    }
+    cout << endl;
+    for(int i=0; i<3; i++) {
+        cout << player.getSkill(i)->getPercent() << " ";
+    }
+    cout << endl;
+    
 
     // print the name of the gotten skill somehow
-    cout << "You have gotten new skill!\nDo you want to switch one of your skills for this? "; 
+    cout << "你想用它取代現有技能嗎? [Press Y/N] "; 
     while (!(choice == "Y" || choice == "N"|| choice == "y"|| choice == "n")) {
         cin >> choice;
         if (!(choice == "Y" || choice == "N"|| choice == "y"|| choice == "n")) cout << "Wrong input. Please try again.\n";
     }
     if (choice == "Y" || choice == "y") {
-        cout << "Which one do you want to change?\n";
+        cout << "你想取代哪個現有技能? [Press 1~3] ";
         player.replaceSkill(skillNumber);
     }
     else cin.ignore();

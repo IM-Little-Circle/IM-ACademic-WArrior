@@ -89,7 +89,7 @@ void Player::levelUp() {
 	def += level;
 	hpMax += level * 2;
 	hpCurr = hpMax;
-	cout << "Level up! " << endl;
+	cout << "Level up!!!  ";
 	cout << level-1 << "  --->  " << level << endl;
 }
 
@@ -208,6 +208,34 @@ void Player::printnewSkill(int skillIndex) {
     else cout << "error index!\n";
 }
 
+void Player::printSkillName(int skillIndex){
+    if (skillIndex >= 0 && skillIndex < 3) {
+        skill[skillIndex]->printName();
+    }
+    else cout << "error index!\n";
+}
+
+void Player::printSkillType(int skillIndex){
+    if (skillIndex >= 0 && skillIndex < 3) {
+        skill[skillIndex]->printType();
+    }
+    else cout << "error index!\n";
+}
+
+void Player::printSkillCoolRound(int skillIndex){
+    if (skillIndex >= 0 && skillIndex < 3) {
+        skill[skillIndex]->printCoolRound();
+    }
+    else cout << "error index!\n";
+}
+
+void Player::printSkillPercent(int skillIndex){
+    if (skillIndex >= 0 && skillIndex < 3) {
+        skill[skillIndex]->printPercent();
+    }
+    else cout << "error index!\n";
+}
+
 void Player::skillCool(){
     for (int i = 0; i < 3; i++){
         skill[i]->skillCool();
@@ -227,3 +255,4 @@ void Player::skillReset(){
         skill[i]->coolReset();
     }
 }
+

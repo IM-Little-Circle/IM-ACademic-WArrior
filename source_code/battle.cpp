@@ -15,7 +15,7 @@ void battle(Player player, Entity opponent) { // should these be references inst
             //select a skill!
             while (!(input == "1" || input == "2" || input == "3")) {
                 // choice of attack
-                cout << "Select a skill\n";
+                cout << "選擇技能\n";
                 player.printSkill(0);
                 player.printSkill(1);
                 player.printSkill(2);
@@ -25,7 +25,7 @@ void battle(Player player, Entity opponent) { // should these be references inst
                     cout << "Wrong input, try again.\n";
                 }
                 if (player.isCool( stoi(input))){
-                    cout << "the skill is cooling, please try again.\n";
+                    cout << "技能正在冷卻，請重新選擇\n";
                     input = -1;
                 }
             }
