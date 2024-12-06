@@ -21,7 +21,7 @@ class Entity {
 		void studyAttack(Entity& enemy, int percent);
         void heal(int percent);
 		void death();
-		
+		void adjust(int level);
 		bool living();
 		
 		void printHealth();

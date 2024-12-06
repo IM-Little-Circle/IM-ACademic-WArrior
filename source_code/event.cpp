@@ -69,10 +69,10 @@ void parseChance(ifstream& inFile, Player& player, int& skillNumber) {
 
     // choose [Y | N]
     while (!(choice == "Y" || choice == "N"|| choice == "y"|| choice == "n")) {
-        cout << string(25, ' ');
+        cout << string(30, ' ');
         cin >> choice;
         if (!(choice == "Y" || choice == "N"|| choice == "y"|| choice == "n")) {
-            cout << string(25, ' ') << "Wrong input. Please try again.\n";
+            cout << string(30, ' ') << "Wrong input. Please try again.\n";
         }
     }
 
@@ -140,7 +140,7 @@ void triggerChance(Player& player, bool triggeredChance[], int& skillNumber) {
     if (!allTriggered) {
         triggeredChance[i - 1] = true;
         ifstream inFile("../assets/chance/chance" + to_string(i) + ".txt");
-        cout << "Chance " << i << " triggered\n"; //shall be deleted as game development finishes
+        //cout << "Chance " << i << " triggered\n"; //shall be deleted as game development finishes
 
         if (inFile.fail()) {
             cout << "File not found\n";
@@ -148,7 +148,6 @@ void triggerChance(Player& player, bool triggeredChance[], int& skillNumber) {
         }
         
         parseChance(inFile, player, skillNumber);
-        //player.printStat();
 
         inFile.close();
     }
@@ -178,7 +177,7 @@ void triggerDestiny(Player& player, bool triggeredDestiny[], int& skillNumber) {
     if (!allTriggered) {
         triggeredDestiny[i - 1] = true;
         ifstream inFile("../assets/destiny/destiny" + to_string(i) + ".txt");
-        cout << "Destiny " << i << " triggered\n"; //shall be deleted as game development finishes
+        //cout << "Destiny " << i << " triggered\n"; //shall be deleted as game development finishes
 
         if (inFile.fail()) {
             cout << "File not found\n";
@@ -186,7 +185,6 @@ void triggerDestiny(Player& player, bool triggeredDestiny[], int& skillNumber) {
         }
 
         parseDestiny(inFile, player, skillNumber);
-        //player.printStat();
 
         inFile.close();
     }
