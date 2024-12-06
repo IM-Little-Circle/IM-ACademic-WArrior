@@ -88,7 +88,7 @@ void Skill::coolReset(){
 }
 
 void Skill::cool(){
-    restRound = coolRound;
+    restRound = coolRound + 1;
 }
 
 void Skill::printName(){

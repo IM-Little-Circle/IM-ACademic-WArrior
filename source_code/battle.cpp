@@ -29,10 +29,6 @@ void battle(Player player, Entity opponent) { // should these be references inst
                     input = -1;
                 }
             }
-                
-                
-
-
             player.useSkill(opponent, stoi(input) - 1);
         }
         else{

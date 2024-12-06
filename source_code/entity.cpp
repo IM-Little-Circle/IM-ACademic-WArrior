@@ -25,7 +25,7 @@ void Entity::socialAttack(Entity& enemy, int percent) {
 	cout << "Enemy's def = " << defCurr << endl;
 
 	int damage = atkCurr - defCurr;
-	damage = max(damage, 0);
+	damage = max(damage, 1);
 	cout << "Cause damage: " << damage << endl;
 	enemy.hpCurr -= damage;
 	if (enemy.hpCurr <= 0) {
@@ -44,7 +44,7 @@ void Entity::studyAttack(Entity& enemy, int percent) {
 	cout << "defCurr = " << defCurr << endl;
 */
 	int damage = atkCurr - defCurr;
-	damage = max(damage, 0);
+	damage = max(damage, 1);
 	cout << atkCurr << "-" << defCurr << endl; // for debugging
 	cout << "Cause damage: " << damage << endl;
 	enemy.hpCurr -= damage;
@@ -56,7 +56,7 @@ void Entity::studyAttack(Entity& enemy, int percent) {
 }
 
 void Entity::heal(int percent){
-	int recover = hpMax * healBuff;
+	int recover = atk * healBuff;
 	hpCurr = min(hpCurr + recover, hpMax);
 }
 
