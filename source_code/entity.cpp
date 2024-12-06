@@ -95,3 +95,10 @@ Entity::Entity(int filenumber) {
     this->mentalRes = menR;
     this->physicalRes = phyR;
 }
+
+void Entity::adjust(int level){
+	hpMax += 5 * level;
+	hpCurr = hpMax;
+	atk += 3 * level;
+	def += 2 * level;
+}

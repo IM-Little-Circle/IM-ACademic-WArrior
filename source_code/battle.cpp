@@ -57,7 +57,8 @@ void battle(Player player, Entity opponent) { // should these be references inst
 }
 
 void triggerBattle(Player& player){
-    Entity oppoment(1); // 要怎麼找敵人?
+    Entity enemy(1); // 要怎麼找敵人?
+    enemy.adjust(player.getLevel());
     player.fullRecover();
-    battle(player, oppoment);
+    battle(player, enemy);
 }
