@@ -100,13 +100,13 @@ void gameStartScreen() {
 // to do here: figure out/design the guide!
 void printMaze (bool visited[][MAP_W], Player& player) {
 
-    printSpace(25);
-    printLine(25+14+25);
+    printSpace(30);
+    printLine(20+14+25);
     cout<<endl<<endl;
 
     for (int j = y-SCRN_HW; j <= y+SCRN_HW; j++) {
-        /*改到printLeft*/
-        if(j==y-SCRN_HW || j==y-SCRN_HW+1) {
+       
+        if(j==y-SCRN_HW || j==y-SCRN_HW+1 || j==y-SCRN_HW+5 || j==y-SCRN_HW+7) {
             printStatLeft(player, j-(y-SCRN_HW));
         }
         else printSpace(50);
@@ -137,10 +137,10 @@ void printMaze (bool visited[][MAP_W], Player& player) {
         cout << "\n";
     }
     //cout << "Chance encountered: " << chanceEncounteredCnt << endl;
-    timeBar();
-
-    printSpace(25);
-    printLine(25+14+25);
+    
+    cout << endl;
+    printSpace(30);
+    printLine(20+14+25);
     cout<<endl;
 }
 
@@ -167,15 +167,12 @@ void animateStringForEnding(ifstream& inFile) {
 }
 
 void timeBar() {
-    printSpace(26);
-    cout << "經過時間  ";
     for (int i = 0; i < chanceEncounteredCnt; i++) {
       cout << "█";
     }
     for (int i = 0; i < TERM_CHANCE_CNT - chanceEncounteredCnt; i++) {
         cout << "░";
     }
-    cout << endl;
 }
 
 
@@ -213,17 +210,17 @@ void detectEvent (Player& player, bool visited[][MAP_W], bool triggeredChance[],
             //detectedEvent = true;
             int skillNumber = -1;
             if (c == 'c' || c == 'C') {
-                cout << string(25, ' ') << "Chance!\n";
+                cout << string(30, ' ') << "Chance!\n";
                 triggerChance(player, triggeredChance, skillNumber); //pass skillNumber by reference
                 chanceEncounteredCnt++;
                 cin.ignore();
             }
             else if (c == 'd' || c== 'D') {        //original: || c == 'D'
-                cout << string(25, ' ') << "Destiny!\n";
+                cout << string(30, ' ') << "Destiny!\n";
                 triggerDestiny(player, triggeredDestiny, skillNumber); //pass skillNumber by reference
             }
             else if (c == 'B') {
-                cout << string(25, ' ') << "Battle!\n";
+                cout << string(30, ' ') << "Battle!\n";
                 triggerBattle(player);
                 cin.ignore();
             }
@@ -254,6 +251,16 @@ void printStatLeft(Player& player, int index) {
         printSpace(36);
         cout << "X: " << x << " Y: " << y;
         printSpace(3+(x<10)+(y<10));
+    }
+    if(index == 5){
+        printSpace(35);
+        cout << "【經過時間】";
+        printSpace(3);
+    }
+    if(index == 7){
+        printSpace(36);
+        timeBar();
+        printSpace(6);
     }  
 }
 void printStatRight(Player& player, int index) {
@@ -279,7 +286,7 @@ void detectChanceCnt(bool visited[][MAP_W], Player& player) {
         if (chanceEncounteredCnt == TERM_CHANCE_CNT / 2 && !midterms) {
             // midterms
             cout << string(20, ' ');
-            animateString("NOTE: Two months have passed. Entering midterms :(");
+            animateString("警告: 兩個月不知不覺地過去了，期中考來臨 :(");
             this_thread::sleep_for(500ms);
             clearScreen();
             buffer();
@@ -292,7 +299,7 @@ void detectChanceCnt(bool visited[][MAP_W], Player& player) {
         else if (chanceEncounteredCnt == TERM_CHANCE_CNT && !finals) {
             // finals
             cout << string(20, ' ');
-            animateString("NOTE: Two months have passed. Entering finals :(");
+            animateString("警告: 兩個月不知不覺地過去了，期末考來臨 :(");
             this_thread::sleep_for(500ms);
             clearScreen();
             buffer();
@@ -366,13 +373,13 @@ void replaceSkillScreen(Player& player, int skillNumber) {
     cout << endl;
 
     // print the name of the gotten skill somehow
-    cout << "You have gotten new skill!\nDo you want to switch one of your skills for this? "; 
+    cout << "You have gotten new skill!\nDo you want to switch one of your skills for this?(Press Y/N) "; 
     while (!(choice == "Y" || choice == "N"|| choice == "y"|| choice == "n")) {
         cin >> choice;
         if (!(choice == "Y" || choice == "N"|| choice == "y"|| choice == "n")) cout << "Wrong input. Please try again.\n";
     }
     if (choice == "Y" || choice == "y") {
-        cout << "Which one do you want to change?\n";
+        cout << "Which one do you want to change?(Press 1~3)\n";
         player.replaceSkill(skillNumber);
     }
     else cin.ignore();
