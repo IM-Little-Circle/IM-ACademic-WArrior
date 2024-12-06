@@ -55,7 +55,7 @@ string Skill::getName(){
 }
 
 void Skill::printnewSkill() {
-    cout << skillName << endl;
+    cout << "⋆｡° " << skillName << " °｡⋆" << endl;
     cout << "◆  技能類型: " << skillType << endl;
     cout << "◆  技能冷卻回合: " << coolRound << endl;
     cout << "◆  倍率: " << percent << endl;

@@ -366,6 +366,7 @@ void replaceSkillScreen(Player& player, int skillNumber) {
 
     cout << "你獲得了新技能! \n";
     newSkill.printnewSkill();
+    cout << endl;
 
     /*
     cout << "現在有的技能: \n";
@@ -377,9 +378,18 @@ void replaceSkillScreen(Player& player, int skillNumber) {
     player.printnewSkill(2);
     cout << endl;
     */
-
+    cout << "【現有技能】" << endl << endl;
     int strLength = 0;
     //string str;
+
+    // numbering
+    for (int i = 0; i < 3; i++) {
+        cout << ">" << i+1;
+        printSpace(23);
+    }
+    cout << endl;
+
+    // print current skills
     for(int i=0; i<3; i++) {
         player.printSkillName(i);
         printSpace(25 - (player.getSkill(i)->getName().length())/3*2);

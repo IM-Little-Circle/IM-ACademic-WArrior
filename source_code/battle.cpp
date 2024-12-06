@@ -24,7 +24,7 @@ void battle(Player player, Entity opponent) { // should these be references inst
                 if (!(input == "1" || input == "2" || input == "3") ) {
                     cout << "Wrong input, try again.\n";
                 }
-                if (player.isCool( stoi(input))){
+                else if (player.isCool(stoi(input))){
                     cout << "技能正在冷卻，請重新選擇\n";
                     input = -1;
                 }
