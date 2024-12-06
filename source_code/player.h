@@ -3,6 +3,8 @@
 #include <iostream>
 #include "entity.h"
 #include "skill.h"
+#include <fstream>
+#include <string>
 using namespace std;
 
 class Player : public Entity {
@@ -45,6 +47,7 @@ class Player : public Entity {
         void printSkillType(int skillIndex);
         void printSkillCoolRound(int skillIndex);
         void printSkillPercent(int skillIndex);
+        void printSkillNeatly();
 
         //skill
         Skill* fetchSkill(int filenumber); // read file for skill
@@ -54,8 +57,5 @@ class Player : public Entity {
         void skillCool();
         bool isCool(int skillNumber);
         void skillReset();
-        
-
-        
 };
 

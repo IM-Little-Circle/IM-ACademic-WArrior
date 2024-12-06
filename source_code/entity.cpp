@@ -7,7 +7,6 @@ using namespace std;
 // constructors
 Entity::Entity(int hp, int Atk, int Def) {
 	hpCurr = hp, hpMax = hp, atk = Atk, def = Def;
-    cout << "player created!!!!!\n"; // temp, delete later
 }
 
 Entity::Entity(int hp, int Atk, int Def, double mentalRes, double physicalRes, string weakness){
@@ -129,4 +128,8 @@ void Entity::adjust(int level){
 	hpCurr = hpMax;
 	atk += 3 * level;
 	def += 2 * level;
+}
+
+string Entity::getName() {
+	return name;
 }

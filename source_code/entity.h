@@ -10,8 +10,8 @@ class Entity {
 		double socialBuff = 0, studyBuff = 0, healBuff = 0;
 		bool alive = true;
 		double mentalRes = 0, physicalRes = 0;
-		string weakness = "";
-		string name = "";
+		string weakness;
+		string name;
 
 	public:	
 		Entity(int fileNumber);
@@ -24,6 +24,6 @@ class Entity {
 		void death();
 		void adjust(int level);
 		bool living();
-		
 		void printHealth();
+		string getName();
 };

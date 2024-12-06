@@ -218,9 +218,9 @@ void detectEvent (Player& player, bool visited[][MAP_W], bool triggeredChance[],
                 triggerDestiny(player, triggeredDestiny, skillNumber); //pass skillNumber by reference
             }
             else if (c == 'B') {
+                clearScreen();
                 cout << string(30, ' ') << "Battle!\n";
                 triggerBattle(player);
-                cin.ignore();
             }
 
             buffer();
@@ -387,7 +387,9 @@ void replaceSkillScreen(Player& player, int skillNumber) {
     cout << endl;
     */
     cout << "【現有技能】" << endl << endl;
-    int strLength = 0;
+    player.printSkillNeatly();
+    cout << endl;
+    /*int strLength = 0;
     //string str;
 
     // numbering
@@ -421,7 +423,7 @@ void replaceSkillScreen(Player& player, int skillNumber) {
         cout << player.getSkill(i)->getPercent() << "%";
         printSpace(25 - to_string(player.getSkill(i)->getPercent()).length() - 1);
     }
-    cout << endl;
+    cout << endl;*/
     
 
     // print the name of the gotten skill somehow
