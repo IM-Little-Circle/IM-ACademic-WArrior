@@ -30,4 +30,10 @@ class Skill {
         void skillCool();
         void coolReset();
         void cool();
+
+        void printName(); // added by Mia
+        void printType();
+        void printCoolRound();
+        void printPercent();
+        
 };
