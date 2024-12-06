@@ -1,6 +1,8 @@
 #include <iostream>
 #include <fstream>
 #include <string>
+#include <cstdlib>
+#include <ctime>
 #include "event.h"
 using namespace std;
 
@@ -118,6 +120,7 @@ int getSkillNum(ifstream& inFile, string choice) {
 
 
 void triggerChance(Player& player, bool triggeredChance[], int& skillNumber) {
+    srand(time(NULL));
     int i = -1; //note that i will be 1-based for file, but 0-based for array
     bool allTriggered = true;
     do {
@@ -155,6 +158,7 @@ void triggerChance(Player& player, bool triggeredChance[], int& skillNumber) {
 }
 
 void triggerDestiny(Player& player, bool triggeredDestiny[], int& skillNumber) {
+    srand(time(NULL));
     int i = -1; //note that i will be 1-based for file, but 0-based for array
     bool allTriggered = true;
     do {
