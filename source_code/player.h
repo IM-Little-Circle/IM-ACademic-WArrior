@@ -25,6 +25,7 @@ class Player : public Entity {
         int getSocial();
         int getEmo();
         int getLevel();
+
         Skill* getSkill(int skillNumber);
 
 		void updateStatus();
