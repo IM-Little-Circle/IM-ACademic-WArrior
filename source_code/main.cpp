@@ -52,6 +52,13 @@ string mapFilePath = "../assets/map/testEventMap5.txt";
 void buffer(); // press enter to continue
 void setCodePage();
 void clearScreen(); // system cls/clear
+
+void printTitle();
+void printPreface();
+void printSummary();
+void printInstruction();
+void printGameStart();
+
 void gameStartScreen();
 void gameInfoScreen();
 void gameMechanicScreen();
@@ -146,7 +153,7 @@ void gameStartScreen() {
     this_thread::sleep_for(300ms);
 
     printSpace(52);
-    cout << "Press “ENTER” to start" << endl;
+    cout << "按 “ENTER” 進入下一頁" << endl;
     this_thread::sleep_for(300ms);
 
     cout << endl;
