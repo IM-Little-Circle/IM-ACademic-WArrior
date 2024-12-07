@@ -93,13 +93,12 @@ void Player::levelUp() {
 	def *= 1.1;
 	hpMax += level * 2 + 1;
 	hpCurr = hpMax;
-	cout << "Level up!!!  ";
-	cout << level-1 << "  --->  " << level << endl;
+	
 }
 
 void Player::getExp(int experience){
     exp += experience;
-
+    int originalLevel = level;
     if (level >= 6){
         while(exp >= threshold[5]){
             exp -= threshold[5];
@@ -112,7 +111,10 @@ void Player::getExp(int experience){
         levelUp();
     }
     }
-    
+    if (level != originalLevel){
+        cout << "Level up!!!  ";
+	    cout << originalLevel << "  --->  " << level << endl;
+    }
 }
 
 Skill* Player::getSkill(int skillIndex) {

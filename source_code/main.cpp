@@ -475,18 +475,18 @@ void detectEvent (Player& player, bool visited[][MAP_W], bool triggeredChance[],
             //detectedEvent = true;
             int skillNumber = -1;
             if (c == 'c' || c == 'C') {
-                cout << string(30, ' ') << "Chance!\n";
+                cout << string(30, ' ') << "機會！\n";
                 triggerChance(player, triggeredChance, skillNumber); //pass skillNumber by reference
                 chanceEncounteredCnt++;
                 cin.ignore();
             }
             else if (c == 'd' || c== 'D') {        //original: || c == 'D'
-                cout << string(30, ' ') << "Destiny!\n";
+                cout << string(30, ' ') << "命運！\n";
                 triggerDestiny(player, triggeredDestiny, skillNumber); //pass skillNumber by reference
             }
             else if (c == 'B') {
                 clearScreen();
-                cout << string(30, ' ') << "Battle!\n";
+                cout << string(30, ' ') << "戰鬥！\n";
                 triggerBattle(player);
             }
 
@@ -530,9 +530,9 @@ void printStatLeft(Player& player, int index) {
 }
 void printStatRight(Player& player, int index) {
     if(index == 0) cout << "  【玩家 LV." << player.getLevel() << "】"; 
-    if(index == 1) cout << "   ◆ Academic: " << player.getAcademic();
-    if(index == 2) cout << "   ◆ Social: " << player.getSocial();
-    if(index == 3) cout << "   ◆ Emo: " << player.getEmo();
+    if(index == 1) cout << "   ◆ ACA: " << player.getAcademic();
+    if(index == 2) cout << "   ◆ SOC: " << player.getSocial();
+    if(index == 3) cout << "   ◆ EMO: " << player.getEmo();
     if(index == 5) cout << "  【技能欄位】";
     if(index == 6) cout << "   ◆ "<< player.getSkill(0)->getName();
     if(index == 7) cout << "   ◆ "<< player.getSkill(1)->getName();
@@ -568,7 +568,7 @@ void detectChanceCnt(bool visited[][MAP_W], Player& player) {
         else if (chanceEncounteredCnt == TERM_CHANCE_CNT && !finals) {
             // finals
             cout << string(30, ' ');
-            animateString("\033[31m警告: 兩個月不知不覺地過去了，期末考來臨 :(\033[0m", 50);
+            animateString("\033[31m警告: 兩個月不知不覺地過去了，期末專案來臨 :(\033[0m", 50);
             this_thread::sleep_for(500ms);
             clearScreen();
 
