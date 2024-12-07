@@ -573,7 +573,7 @@ void detectChanceCnt(bool visited[][MAP_W], Player& player) {
             clearScreen();
 
             //final boss battle
-            triggerMidterms(player);
+            triggerFinal(player);
 
             buffer();
             clearScreen();
@@ -609,7 +609,7 @@ bool detectEnding(Player& player) {
 
 void buffer() {
     this_thread::sleep_for(100ms);
-    cout << "\033[4mPress Enter to Continue\033[0m ";
+    cout << string(30, ' ') << "\033[4m按 “ENTER” 進入下一頁\033[0m ";
     cin.ignore();
 }
 

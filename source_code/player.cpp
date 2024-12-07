@@ -74,7 +74,7 @@ void Player::printStatRight() {
 }
 void Player::printStatRight(int oriAca, int oriSoc, int oriEmo){
     updateStatus();
-    cout << "ACA " << oriAca << " ---> " << academic << "\nSOC " << oriSoc << " ---> " << social << "\nEMO " << oriEmo << " ---> " << emo << endl;
+    cout << string(30, ' ') << "ACA " << oriAca << " ---> " << academic << "\n" << string(30, ' ')  << "SOC " << oriSoc << " ---> " << social << "\n"  << string(30, ' ')  << "EMO " << oriEmo << " ---> " << emo << endl;
 }
 
 // to set initial stat
