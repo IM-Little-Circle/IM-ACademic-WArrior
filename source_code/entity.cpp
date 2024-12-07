@@ -77,7 +77,7 @@ void Entity::socialAttack(Entity& enemy, int percent) {
 */
 	int damage = atkCurr - defCurr;
 	damage = max(damage, 1);
-	cout << this->getName() << "對"  << enemy.getName() << "造成了" << damage <<  "點的傷害！" << endl;
+	cout << "「" << this->getName() << "」對「"  << enemy.getName() << "」造成了" << damage <<  "點的傷害！" << endl;
 	enemy.hpCurr -= damage;
 	if (enemy.hpCurr <= 0) {
 		enemy.death();
@@ -96,7 +96,7 @@ void Entity::studyAttack(Entity& enemy, int percent) {
 */
 	int damage = atkCurr - defCurr;
 	damage = max(damage, 1);
-	cout << this->getName() << "對"  << enemy.getName() << "造成了" << damage <<  "點的傷害！" << endl;
+	cout << "「" << this->getName() << "」對「"  << enemy.getName() << "」造成了" << damage <<  "點的傷害！" << endl;
 	enemy.hpCurr -= damage;
 	if (enemy.hpCurr <= 0) {
 		enemy.death();

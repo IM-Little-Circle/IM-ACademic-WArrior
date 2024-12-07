@@ -317,25 +317,40 @@ void printInstruction() {
     printLine(20+14+25);
     cout<<endl<<endl;
     
-    printSpace(50);
-    cout << "----- 操作說明 -----"<<endl;
+    printSpace(46);
+    cout << "----- 操作與事件說明 -----"<<endl;
     this_thread::sleep_for(chrono::milliseconds(300));
     cout << endl;
 
     printSpace(30);
     cout << "◆ 在迷宮裡，請以【WASD】控制角色移動以探索地圖" << endl;
     this_thread::sleep_for(chrono::milliseconds(300));
-    cout<<endl;
 
     printSpace(30);
     cout << "◆ 遇上選擇時，請按【Y/N】以進行互動" << endl;
     this_thread::sleep_for(chrono::milliseconds(300));
-    cout<<endl;
 
     printSpace(30);
     cout << "◆ 攻擊時，請按【1、2、3】以選擇技能" << endl;
     this_thread::sleep_for(chrono::milliseconds(300));
-    cout<<endl<<endl;
+    cout<<endl;
+
+    printSpace(30);
+    cout << "事件有以下三種類型:" << endl;
+    this_thread::sleep_for(chrono::milliseconds(300));
+
+    printSpace(30);
+    cout << "1. 機會(Chance):在地圖上顯示C，遇上時須以Y/N做出選擇" << endl;
+    this_thread::sleep_for(chrono::milliseconds(300));
+
+    printSpace(30);
+    cout << "2. 命運(Destiny):在地圖中不會顯示，移動時會隨機遇到" << endl;
+    this_thread::sleep_for(chrono::milliseconds(300));
+
+    printSpace(30);
+    cout << "3. 戰鬥(Battle):在地圖上顯示B，碰上時將觸發戰鬥" << endl;
+    this_thread::sleep_for(chrono::milliseconds(300));
+    cout<<endl;
 
     printSpace(30);
     printLine(20+14+25);
@@ -680,7 +695,7 @@ int main () {
     //gameStartScreen();
     //printPreface();
     //printSummary();
-    //printInstruction();
+    printInstruction();
     //printGameStart();
 
     printMaze(visited, player);
