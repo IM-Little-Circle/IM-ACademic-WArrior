@@ -50,8 +50,22 @@ const int SKILL_CNT = 3; // number of skills, note that skill 1-3 are starters, 
 void buffer(); // press enter to continue
 void setCodePage();
 void clearScreen(); // system cls/clear
+<<<<<<< Updated upstream
 void gameStartScreen();
 void animateString(string str);
+=======
+
+void printTitle();
+void printPreface();
+void printSummary();
+void printInstruction();
+void printGameStart();
+
+void gameMechanicScreen();
+void animateString(string str, int ms); 
+void animateStringForEnding(ifstream& inFile);
+void timeBar();
+>>>>>>> Stashed changes
 void readMap();
 void printMaze(bool visited[][MAP_W]);
 void moveCamera(int ch);
@@ -84,9 +98,256 @@ void setCodePage() {
     #endif
 }
 
+<<<<<<< Updated upstream
 void gameStartScreen() {
     cout << "GAME START\n";
     buffer();
+=======
+void printTitle() {
+    
+    printSpace(30);
+    printLine(65);
+    this_thread::sleep_for(200ms);
+    cout << endl;
+    this_thread::sleep_for(200ms);
+    cout << endl;
+    this_thread::sleep_for(200ms);
+    
+    printSpace(30);
+    cout << "   ___ __  __      _    ____          _                _      " << endl;
+    printSpace(30);
+    cout << "  |_ _|  \\/  |    / \\  / ___|__ _  __| | ___ _ __ ___ (_) ___" << endl;
+    this_thread::sleep_for(300ms);
+    
+    printSpace(30);
+    cout << "   | || |\\/| |   / _ \\| |   / _` |/ _` |/ _ \\ '_ ` _ \\| |/ __|" << endl;
+    this_thread::sleep_for(300ms);
+    
+    printSpace(30);
+    cout << "   | || |  | |  / ___ \\ |__| (_| | (_| |  __/ | | | | | | (__ " << endl;
+    this_thread::sleep_for(300ms);
+    
+    printSpace(30);
+    cout << "  |___|_|  |_|_/_/   \\_\\____\\__,_|\\__,_|\\___|_| |_| |_|_|\\___|" << endl;
+    this_thread::sleep_for(300ms);
+    
+    printSpace(30);
+    cout << "  \\ \\      / / \\   _ __ _ __(_) ___  _ __                     " << endl;
+    this_thread::sleep_for(300ms);
+    
+    printSpace(30);
+    cout << "   \\ \\ /\\ / / _ \\ | '__| '__| |/ _ \\| '__|                    " << endl;
+    this_thread::sleep_for(300ms);
+    
+    printSpace(30);
+    cout << "    \\ V  V / ___ \\| |  | |  | | (_) | |                       " << endl;
+    this_thread::sleep_for(300ms);
+    
+    printSpace(30);
+    cout << "     \\_/\\_/_/   \\_\\_|  |_|  |_|\\___/|_|                     " << endl;
+    this_thread::sleep_for(300ms);
+    
+    cout << endl;
+    this_thread::sleep_for(300ms);
+
+    cout << endl;
+    this_thread::sleep_for(300ms);
+
+    printSpace(52);
+    cout << "按 “ENTER” 進入下一頁" << endl;
+    this_thread::sleep_for(300ms);
+
+    cout << endl;
+    this_thread::sleep_for(300ms);
+
+    printSpace(30);
+    printLine(65);
+    cout << endl;
+    this_thread::sleep_for(500ms);
+    
+    cin.ignore();
+    clearScreen();
+}
+
+void printPreface() {
+    printSpace(30);
+    printLine(20+14+25);
+    cout<<endl<<endl;
+
+    printSpace(50);
+    cout << "----- 前言 -----"<< endl;
+    cout << endl;
+    printSpace(30);
+    cout << "本遊戲由資管一的喻慈恩、黃靖媛、林妤娟、邱浚祐製作" << endl;
+    printSpace(30);
+    cout << "內容取材自我們的生活經驗" << endl;
+    printSpace(30);
+    cout << "如與你有任何雷同，純屬巧合" << endl;
+    printSpace(30);
+    cout << "希望大家玩得愉快！" << endl;
+    cout << endl;
+    printSpace(30);
+    cout << "2024.12" << endl;
+    cout<<endl<<endl<<endl;
+    
+    printSpace(30);
+    printLine(20+14+25);
+
+    cout<<endl;
+    printSpace(30+20+18);
+    cout << "按 “ENTER” 進入下一頁" <<endl;
+
+    cout<<endl;
+
+    cin.ignore();
+    clearScreen();
+}
+
+void printSummary() {
+    printSpace(30);
+    printLine(20+14+25);
+    cout<<endl<<endl;
+    
+    printSpace(50);
+    animateString("----- 前情提要 -----",20);
+    cout << endl << endl;
+    
+    printSpace(30);
+    animateString("你是臺大資管的大一菜鳥，帶著滿腔熱血與一絲忐忑",20);
+    cout << endl;
+    this_thread::sleep_for(chrono::milliseconds(300));
+
+    printSpace(30);
+    animateString("踏入這座名為「大學」的迷宮",20);
+    this_thread::sleep_for(chrono::milliseconds(300));
+    cout << endl;
+
+    printSpace(30);
+    animateString("這裡充滿了未知的挑戰與無窮的可能性——",20);
+    this_thread::sleep_for(chrono::milliseconds(300));
+    cout << endl;
+
+    printSpace(30);
+    animateString("從初次見面的同學到眼花繚亂的選課系統",20);
+    this_thread::sleep_for(chrono::milliseconds(300));
+    cout << endl;
+
+    printSpace(30);
+    animateString("從期待已久的社團活動到令人頭痛的GPA壓力",20);
+    this_thread::sleep_for(chrono::milliseconds(300));
+    cout << endl;
+
+    cout<<endl;
+    printSpace(30);
+    animateString("然而，大學生活並非如想像般地一帆風順……",20);
+    this_thread::sleep_for(chrono::milliseconds(300));
+    cout<<endl;
+
+    printSpace(30);
+    animateString("「命運」猶如一道無形的力量，冷不防地將你推向天堂或是深淵",20);
+    this_thread::sleep_for(chrono::milliseconds(300));
+    cout<<endl;
+
+    printSpace(30);
+    animateString("而「機會」的天秤兩端總是令人難以取捨",20);
+    this_thread::sleep_for(chrono::milliseconds(300));
+    cout<<endl;
+
+    cout<<endl;
+    printSpace(30);
+    animateString("作為一名新手冒險者，你準備好踏上這段喜淚交織的大學旅程了嗎？",20);
+    this_thread::sleep_for(chrono::milliseconds(300));
+    cout << endl << endl;
+
+    printSpace(30);
+    printLine(20+14+25);
+
+    cout<<endl;
+    printSpace(30+20+18);
+    cout << "按 “ENTER” 進入下一頁" <<endl;
+
+    cin.ignore();
+    clearScreen();
+}
+
+void printInstruction() {
+    printSpace(30);
+    printLine(20+14+25);
+    cout<<endl<<endl;
+    
+    printSpace(50);
+    cout << "----- 操作說明 -----"<<endl;
+    cout << endl;
+
+    printSpace(30);
+    cout << "◆ 在迷宮裡，請以【WASD】控制角色移動以探索地圖" << endl;
+    cout<<endl;
+    printSpace(30);
+    cout << "◆ 遇上選擇時，請按【Y/N】以進行互動" << endl;
+    cout<<endl;
+    printSpace(30);
+    cout << "◆ 攻擊時，請按【1、2、3】以選擇技能" << endl;
+    cout<<endl<<endl;
+    printSpace(30);
+    printLine(20+14+25);
+    
+    cout<<endl;
+    printSpace(30+20+18);
+    cout << "按 “ENTER” 進入下一頁" <<endl;
+        
+    cin.ignore();
+    clearScreen();
+}
+
+void gameMechanicScreen() {
+    printSpace(30);
+    printLine(65);
+
+    cout << endl;
+    this_thread::sleep_for(chrono::milliseconds(300));
+    cout << endl;
+    this_thread::sleep_for(chrono::milliseconds(300));
+
+    printSpace(58);
+    cout << "----- 玩法說明 -----" << endl;
+    this_thread::sleep_for(chrono::milliseconds(300));
+
+    cout << endl;
+    this_thread::sleep_for(chrono::milliseconds(300));
+    cout << endl;
+    this_thread::sleep_for(chrono::milliseconds(300));
+    cout << endl;
+    this_thread::sleep_for(chrono::milliseconds(300));
+
+    printSpace(35);
+    cout << "WASD探索地圖          Y/N決定選項          ENTER進入下一頁" << endl;
+    this_thread::sleep_for(chrono::milliseconds(300));
+
+    cout << endl;
+    this_thread::sleep_for(chrono::milliseconds(300));
+    cout << endl;
+    this_thread::sleep_for(chrono::milliseconds(300));
+
+    printSpace(30);
+    printLine(65);
+
+    cin.ignore();
+>>>>>>> Stashed changes
+    clearScreen();
+}
+
+void printGameStart() {
+    cout<<endl<<endl<<endl<<endl;
+    printSpace(50);
+    string s = "那麼，讓我們開始吧！";
+    cout << "\033[34m"; 
+    for(int i=0; i<s.length(); i++) {
+        cout << s[i];
+        cout.flush();
+        this_thread::sleep_for(chrono::milliseconds(50));
+    }
+    cout << "\033[0m";
+    this_thread::sleep_for(chrono::milliseconds(500));
     clearScreen();
 }
 
@@ -330,7 +591,17 @@ int main () {
 
     readMap();
 
+<<<<<<< Updated upstream
     printMaze(visited);
+=======
+    printTitle();
+    printPreface();
+    printSummary();
+    printInstruction();
+    printGameStart();
+
+    printMaze(visited, player);
+>>>>>>> Stashed changes
 
     while (!end) {
         ch = 0;
