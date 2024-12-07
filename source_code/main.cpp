@@ -475,18 +475,18 @@ void detectEvent (Player& player, bool visited[][MAP_W], bool triggeredChance[],
             //detectedEvent = true;
             int skillNumber = -1;
             if (c == 'c' || c == 'C') {
-                cout << string(30, ' ') << "Chance!\n";
+                cout << string(30, ' ') << "機會！\n";
                 triggerChance(player, triggeredChance, skillNumber); //pass skillNumber by reference
                 chanceEncounteredCnt++;
                 cin.ignore();
             }
             else if (c == 'd' || c== 'D') {        //original: || c == 'D'
-                cout << string(30, ' ') << "Destiny!\n";
+                cout << string(30, ' ') << "命運！\n";
                 triggerDestiny(player, triggeredDestiny, skillNumber); //pass skillNumber by reference
             }
             else if (c == 'B') {
                 clearScreen();
-                cout << string(30, ' ') << "Battle!\n";
+                cout << string(30, ' ') << "戰鬥！\n";
                 triggerBattle(player);
             }
 
@@ -530,9 +530,9 @@ void printStatLeft(Player& player, int index) {
 }
 void printStatRight(Player& player, int index) {
     if(index == 0) cout << "  【玩家 LV." << player.getLevel() << "】"; 
-    if(index == 1) cout << "   ◆ Academic: " << player.getAcademic();
-    if(index == 2) cout << "   ◆ Social: " << player.getSocial();
-    if(index == 3) cout << "   ◆ Emo: " << player.getEmo();
+    if(index == 1) cout << "   ◆ ACA: " << player.getAcademic();
+    if(index == 2) cout << "   ◆ SOC: " << player.getSocial();
+    if(index == 3) cout << "   ◆ EMO: " << player.getEmo();
     if(index == 5) cout << "  【技能欄位】";
     if(index == 6) cout << "   ◆ "<< player.getSkill(0)->getName();
     if(index == 7) cout << "   ◆ "<< player.getSkill(1)->getName();
@@ -586,13 +586,18 @@ bool detectEnding(Player& player) {
         player.printStatRight();
         cout << endl;
         // FIX CONDITIONS
-        if (player.getAcademic() > 25) {
-            ifstream inFile("../assets/ending/ending1.txt");
+        if (player.getEmo() >= 12) {
+            ifstream inFile("../assets/ending/ending3.txt");
             animateStringForEnding(inFile);
             inFile.close();
         }
-        else if (player.getSocial() > 20) {
+        else if (player.getAcademic() + player.getSocial() >= 30) {
             ifstream inFile("../assets/ending/ending2.txt");
+            animateStringForEnding(inFile);
+            inFile.close();
+        }
+        else if (player.getAcademic() >= 10) {
+            ifstream inFile("../assets/ending/ending1.txt");
             animateStringForEnding(inFile);
             inFile.close();
         }
