@@ -1,6 +1,6 @@
 #include "battle.h"
 
-void battle(Player& player, Entity opponent) { // should these be references instead?
+void battle(Player& player, Entity &opponent) { // should these be references instead?
     string input;
     int round = 0;
     while (opponent.living() && player.living()) {
@@ -76,8 +76,6 @@ void triggerBattle(Player& player){
     cout << "觸發戰鬥：【" << enemy.getName() << "】\n";
     battle(player, enemy);
     cin.ignore();
-    
-
 }
 
 void triggerMidterms(Player& player) {

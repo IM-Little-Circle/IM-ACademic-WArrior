@@ -569,7 +569,7 @@ int main () {
     string input;
 
     // initialize player (test)
-    Player player(10, 10, 10);
+    Player player(15, 12, 8);
 
     setCodePage(); // for WIN32
 

@@ -89,8 +89,8 @@ void Player::setInitialStat(int aca, int soc, int e) {
 
 void Player::levelUp() {
 	level++;
-	atk += level * 1.2;
-	def += level * 1.2;
+	atk *= 1.3;
+	def *= 1.1;
 	hpMax += level * 2;
 	hpCurr = hpMax;
 	cout << "Level up!!!  ";

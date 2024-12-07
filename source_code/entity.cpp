@@ -66,13 +66,15 @@ Entity::Entity(string fileName) {
 
 void Entity::socialAttack(Entity& enemy, int percent) {
 	int atkCurr = double(atk * (1 + socialBuff)) * percent / 100;
-	int defCurr = enemy.def * (1 + mentalRes);
+	/*cout << "def = " << enemy.def << endl;
+	cout << "now enemy's mentalRes = " << mentalRes << endl;*/
+	int defCurr = enemy.def;
 	if (enemy.weakness == "social")
 		atkCurr *= 1.1;
-
+/*
 	cout << "atkCurr = " << atkCurr << endl;
 	cout << "Enemy's def = " << defCurr << endl;
-
+*/
 	int damage = atkCurr - defCurr;
 	damage = max(damage, 1);
 	cout << "Cause damage: " << damage << endl;
@@ -85,7 +87,7 @@ void Entity::socialAttack(Entity& enemy, int percent) {
 
 void Entity::studyAttack(Entity& enemy, int percent) {
 	int atkCurr = double(atk * (1 + studyBuff)) * percent /100;
-	int defCurr = enemy.def * (1 + physicalRes);
+	int defCurr = enemy.def;
 	if (enemy.weakness == "study")
 		atkCurr *= 1.1;
 /*
@@ -106,7 +108,7 @@ void Entity::studyAttack(Entity& enemy, int percent) {
 
 void Entity::heal(int percent){
 	//cout << "atk = " << atk << " healBuff = " << healBuff << endl;
-	int recover = double(atk * (1 + healBuff) / 3) * percent / 100;
+	int recover = double(atk * (1 + healBuff) / 1.5) * percent / 100;
 	cout << "回復了" << recover << "的血量！" << endl;
 	hpCurr = min(hpCurr + recover, hpMax);
 }
@@ -124,17 +126,18 @@ void Entity::printHealth() {
 }
 
 void Entity::adjust(int level){
+	//cout << "now enemy's mentalRes = " << mentalRes << endl;
 	/*cout << "before adjust\n";
 	cout << "hp = " << hpMax << "\natk = " << atk << "\ndef = " << def << endl;*/
 	hpMax += 5 * level;
 	hpCurr = hpMax;
-	atk += 2 * level;
+	atk += 2.2 * level;
 	def += 1.2 * level;
 	while(level > 3){
-		level -= 5;
-		atk += 2 * level;
-		def += 1.7 * level;
-		hpMax += 3 * level;
+		level -= 3;
+		atk += 2.3 * level;
+		def += 1.5 * level;
+		hpMax += 4 * level;
 	}
 	/*cout << "after adjust\n";
 	cout << "hp = " << hpMax << "\natk = " << atk << "\ndef = " << def << endl;*/
