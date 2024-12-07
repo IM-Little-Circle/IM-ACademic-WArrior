@@ -355,8 +355,6 @@ void clearScreen() {
 }
 
 
-
-
 void replaceSkillScreen(Player& player, int skillNumber) {
     // get random skill
     //int skillNumber = rand() % (SKILL_CNT) + 4;
@@ -452,8 +450,6 @@ int main () {
     Player player(10, 10, 10);
 
     setCodePage(); // for WIN32
-
-    //rtScreen();
 
     readMap();
 
