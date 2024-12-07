@@ -165,6 +165,8 @@ void printGameStart() {
 }
 
 int main() {
+    system("chcp 65001");
+    system("cls");
     printTitle();
     printPreface();
     printSummary();
