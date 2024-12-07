@@ -43,7 +43,7 @@ void modifyParameters(Player& player, int parameters[], string choice) {
     int oriAca = player.getAcademic();
     int oriSoc = player.getSocial();
     int oriEmo = player.getEmo();
-    if (choice == "Y") {
+    if (choice == "Y" || choice == "y") {
         player.modifyAcademic(parameters[0]);
         player.modifySocial(parameters[1]);
         player.modifyEmo(parameters[2]);

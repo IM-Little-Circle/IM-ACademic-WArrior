@@ -65,7 +65,8 @@ void battle(Player& player, Entity opponent) { // should these be references ins
 }
 
 void triggerBattle(Player& player){
-    Entity enemy(1); // 要怎麼找敵人?
+    srand(time(NULL));
+    Entity enemy(rand() % ENEMY_CNT + 1);
     enemy.adjust(player.getLevel());
     player.fullRecover();
     battle(player, enemy);
