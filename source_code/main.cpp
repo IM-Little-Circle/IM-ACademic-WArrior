@@ -54,6 +54,7 @@ void setCodePage();
 void clearScreen(); // system cls/clear
 void gameStartScreen();
 void gameInfoScreen();
+void gameMechanicScreen();
 void animateString(string str, int ms); 
 void animateStringForEnding(ifstream& inFile);
 void timeBar();
@@ -224,6 +225,43 @@ void gameInfoScreen() {
     cin.ignore();
     clearScreen();
 }
+
+void gameMechanicScreen() {
+    printSpace(30);
+    printLine(65);
+
+    cout << endl;
+    this_thread::sleep_for(chrono::milliseconds(300));
+    cout << endl;
+    this_thread::sleep_for(chrono::milliseconds(300));
+
+    printSpace(58);
+    cout << "----- 玩法說明 -----" << endl;
+    this_thread::sleep_for(chrono::milliseconds(300));
+
+    cout << endl;
+    this_thread::sleep_for(chrono::milliseconds(300));
+    cout << endl;
+    this_thread::sleep_for(chrono::milliseconds(300));
+    cout << endl;
+    this_thread::sleep_for(chrono::milliseconds(300));
+
+    printSpace(35);
+    cout << "WASD探索地圖          Y/N決定選項          ENTER進入下一頁" << endl;
+    this_thread::sleep_for(chrono::milliseconds(300));
+
+    cout << endl;
+    this_thread::sleep_for(chrono::milliseconds(300));
+    cout << endl;
+    this_thread::sleep_for(chrono::milliseconds(300));
+
+    printSpace(30);
+    printLine(65);
+
+    cin.ignore();
+    clearScreen();
+}
+
 // for updating camera screen
 // to do here: figure out/design the guide!
 void printMaze (bool visited[][MAP_W], Player& player) {
@@ -584,6 +622,7 @@ int main () {
 
     gameStartScreen();
     gameInfoScreen();
+    gameMechanicScreen();
 
     printMaze(visited, player);
 
