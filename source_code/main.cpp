@@ -102,37 +102,37 @@ void gameStartScreen() {
     this_thread::sleep_for(200ms);
     
     printSpace(30);
-    cout << "   ___ __  __      _    ____          _                _      " << endl;
+    cout << "   ___ __  __      \033[1;32m_    ____\033[0m          _                _      " << endl;
     printSpace(30);
-    cout << "  |_ _|  \\/  |    / \\  / ___|__ _  __| | ___ _ __ ___ (_) ___" << endl;
+    cout << "  |_ _|  \\/  |    \033[1;32m/ \\  / ___|\033[0m__ _  __| | ___ _ __ ___ (_) ___" << endl;
     this_thread::sleep_for(300ms);
     
     printSpace(30);
-    cout << "   | || |\\/| |   / _ \\| |   / _` |/ _` |/ _ \\ '_ ` _ \\| |/ __|" << endl;
+    cout << "   | || |\\/| |   \033[1;32m/ _ \\| |\033[0m   / _` |/ _` |/ _ \\ '_ ` _ \\| |/ __|" << endl;
     this_thread::sleep_for(300ms);
     
     printSpace(30);
-    cout << "   | || |  | |  / ___ \\ |__| (_| | (_| |  __/ | | | | | | (__ " << endl;
+    cout << "   | || |  | |  \033[1;32m/ ___ \\ |__\033[0m| (_| | (_| |  __/ | | | | | | (__ " << endl;
     this_thread::sleep_for(300ms);
     
     printSpace(30);
-    cout << "  |___|_|  |_|_/_/   \\_\\____\\__,_|\\__,_|\\___|_| |_| |_|_|\\___|" << endl;
+    cout << "  |___|_|  |_|_\033[1;32m/_/   \\_\\____\033[0m\\__,_|\\__,_|\\___|_| |_| |_|_|\\___|" << endl;
     this_thread::sleep_for(300ms);
     
     printSpace(30);
-    cout << "  \\ \\      / / \\   _ __ _ __(_) ___  _ __                     " << endl;
+    cout << "\033[31m  \\ \\      / / \\\033[0m   _ __ _ __(_) ___  _ __                     " << endl;
     this_thread::sleep_for(300ms);
     
     printSpace(30);
-    cout << "   \\ \\ /\\ / / _ \\ | '__| '__| |/ _ \\| '__|                    " << endl;
+    cout << "\033[31m   \\ \\ /\\ / / _ \\\033[0m | '__| '__| |/ _ \\| '__|                    " << endl;
     this_thread::sleep_for(300ms);
     
     printSpace(30);
-    cout << "    \\ V  V / ___ \\| |  | |  | | (_) | |                       " << endl;
+    cout << "\033[31m    \\ V  V / ___ \\\033[0m| |  | |  | | (_) | |                       " << endl;
     this_thread::sleep_for(300ms);
     
     printSpace(30);
-    cout << "     \\_/\\_/_/   \\_\\_|  |_|  |_|\\___/|_|                     " << endl;
+    cout << "\033[31m     \\_/\\_/_/   \\_\\\033[0m_|  |_|  |_|\\___/|_|                     " << endl;
     this_thread::sleep_for(300ms);
     
     cout << endl;
