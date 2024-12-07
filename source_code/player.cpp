@@ -258,29 +258,31 @@ void Player::printSkillNeatly(int coolOrRest) {
         cout << endl;
         
         for(int i = 0; i < 3; i++) {
+            cout << "技能類型：";
             printSkillType(i);
-            cout << string(25 - getSkill(i)->getType().length(), ' ');
+            cout << string(15 - getSkill(i)->getType().length(), ' ');
         }
         cout << endl;
         if (coolOrRest == 1){
             for(int i = 0; i < 3; i++) {
-                cout << getSkill(i)->getRestRound();
-                cout << string(25 - to_string(getSkill(i)->getRestRound()).length(), ' ');
+                cout << "剩餘冷卻回合：" << getSkill(i)->getRestRound();
+                cout << string(11 - to_string(getSkill(i)->getRestRound()).length(), ' ');
             }
             cout << endl;
         }
         else{
             for(int i = 0; i < 3; i++) {
-                cout << getSkill(i)->getCoolRound();
-                cout << string(25 - to_string(getSkill(i)->getCoolRound()).length(), ' ');
+                cout << "技能冷卻回合：" << getSkill(i)->getCoolRound();
+                cout << string(11 - to_string(getSkill(i)->getCoolRound()).length(), ' ');
             }
             cout << endl;
         }
         
         
         for(int i = 0; i < 3; i++) {
+            cout << "倍率：";
             cout << getSkill(i)->getPercent() << "%";
-            cout << string(25 - to_string(getSkill(i)->getPercent()).length() - 1, ' ');
+            cout << string(19 - to_string(getSkill(i)->getPercent()).length() - 1, ' ');
         }
         cout << endl;
 }
