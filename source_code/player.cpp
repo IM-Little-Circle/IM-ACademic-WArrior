@@ -102,7 +102,7 @@ void Player::getExp(int experience){
 
     if (level >= 6){
         while(exp >= threshold[5]){
-            exp -= threshold[level-1];
+            exp -= threshold[5];
             levelUp();
         }
     }
