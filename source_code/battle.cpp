@@ -79,3 +79,11 @@ void triggerMidterms(Player& player) {
     battle(player, enemy);
     cin.ignore();
 }
+
+void triggerFinal(Player& player) {
+    Entity enemy("finalBoss");
+    enemy.adjust(player.getLevel());
+    player.fullRecover();
+    battle(player, enemy);
+    cin.ignore();
+}

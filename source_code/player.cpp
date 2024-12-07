@@ -90,7 +90,7 @@ void Player::setInitialStat(int aca, int soc, int e) {
 void Player::levelUp() {
 	level++;
 	atk += level * 1.2;
-	def += level;
+	def += level * 1.2;
 	hpMax += level * 2;
 	hpCurr = hpMax;
 	cout << "Level up!!!  ";
@@ -262,8 +262,8 @@ void Player::printSkillNeatly() {
         cout << endl;
 
         for(int i = 0; i < 3; i++) {
-            cout << getSkill(i)->getCoolRound();
-            cout << string(25 - to_string(getSkill(i)->getCoolRound()).length(), ' ');
+            cout << getSkill(i)->getRestRound();
+            cout << string(25 - to_string(getSkill(i)->getRestRound()).length(), ' ');
         }
         cout << endl;
         

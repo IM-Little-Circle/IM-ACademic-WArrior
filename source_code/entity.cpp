@@ -127,7 +127,7 @@ void Entity::adjust(int level){
 	hpMax += 5 * level;
 	hpCurr = hpMax;
 	atk += 3 * level;
-	def += 2 * level;
+	def += double(1.3 * level);
 }
 
 string Entity::getName() {

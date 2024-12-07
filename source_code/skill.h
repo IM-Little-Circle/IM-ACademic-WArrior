@@ -1,7 +1,7 @@
 #include <iostream>
 using namespace std;
 
-const int SKILL_CNT = 16; // number of skills, note that skill 1-3 are starters, not included here
+const int SKILL_CNT = 17; // number of skills, note that skill 1-3 are starters, not included here
 
 /*
 要添加buff嗎?
