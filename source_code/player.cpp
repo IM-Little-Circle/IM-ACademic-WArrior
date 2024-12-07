@@ -91,7 +91,7 @@ void Player::levelUp() {
 	level++;
 	atk *= 1.3;
 	def *= 1.1;
-	hpMax += level * 2;
+	hpMax += level * 2 + 1;
 	hpCurr = hpMax;
 	cout << "Level up!!!  ";
 	cout << level-1 << "  --->  " << level << endl;

@@ -665,7 +665,7 @@ int main () {
     string input;
 
     // initialize player (test)
-    Player player(15, 12, 8);
+    Player player(20, 12, 8);
 
     setCodePage(); // for WIN32
 
