@@ -121,10 +121,11 @@ void printMaze (bool visited[][MAP_W], Player& player) {
                 cout << "@ "; // player marker
             }
  
-            else if (visited[j][i]) cout << ". ";
+            else if (visited[j][i]) cout << "\033[37;2m. \033[0m";
 
             else { // events and battles (and nothing)
-                if (map[j][i] == 'c' || map[j][i] == 'd') cout << ". "; // accidents
+                if (map[j][i] == 'c' || map[j][i] == 'd') cout << "\033[37;2m. \033[0m"; // accidents
+                else if (map[j][i] == '.') cout << "\033[37;2m. \033[0m";
                 else cout << map[j][i] << " "; // others
                 //cout << map[j][i] << " ";
                 //cout << ". ";
@@ -283,7 +284,7 @@ void printLine(int length) {
 void detectChanceCnt(bool visited[][MAP_W], Player& player) {
         if (chanceEncounteredCnt == TERM_CHANCE_CNT / 2 && !midterms) {
             // midterms
-            cout << string(20, ' ');
+            cout << string(30, ' ');
             animateString("警告: 兩個月不知不覺地過去了，期中考來臨 :(");
             this_thread::sleep_for(500ms);
             clearScreen();
@@ -300,7 +301,7 @@ void detectChanceCnt(bool visited[][MAP_W], Player& player) {
 
         else if (chanceEncounteredCnt == TERM_CHANCE_CNT && !finals) {
             // finals
-            cout << string(20, ' ');
+            cout << string(30, ' ');
             animateString("警告: 兩個月不知不覺地過去了，期末考來臨 :(");
             this_thread::sleep_for(500ms);
             clearScreen();
