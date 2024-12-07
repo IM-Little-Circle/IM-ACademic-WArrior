@@ -53,7 +53,9 @@ void buffer(); // press enter to continue
 void setCodePage();
 void clearScreen(); // system cls/clear
 void gameStartScreen();
-void animateString(string str); 
+void gameInfoScreen();
+void gameMechanicScreen();
+void animateString(string str, int ms); 
 void animateStringForEnding(ifstream& inFile);
 void timeBar();
 void readMap();
@@ -90,13 +92,183 @@ void setCodePage() {
 }
 
 void gameStartScreen() {
-    cout << "GAME START\n";
-    buffer();
+    
+    printSpace(30);
+    printLine(65);
+    this_thread::sleep_for(200ms);
+    cout << endl;
+    this_thread::sleep_for(200ms);
+    cout << endl;
+    this_thread::sleep_for(200ms);
+    
+    printSpace(30);
+    cout << "   ___ __  __      _    ____          _                _      " << endl;
+    printSpace(30);
+    cout << "  |_ _|  \\/  |    / \\  / ___|__ _  __| | ___ _ __ ___ (_) ___" << endl;
+    this_thread::sleep_for(300ms);
+    
+    printSpace(30);
+    cout << "   | || |\\/| |   / _ \\| |   / _` |/ _` |/ _ \\ '_ ` _ \\| |/ __|" << endl;
+    this_thread::sleep_for(300ms);
+    
+    printSpace(30);
+    cout << "   | || |  | |  / ___ \\ |__| (_| | (_| |  __/ | | | | | | (__ " << endl;
+    this_thread::sleep_for(300ms);
+    
+    printSpace(30);
+    cout << "  |___|_|  |_|_/_/   \\_\\____\\__,_|\\__,_|\\___|_| |_| |_|_|\\___|" << endl;
+    this_thread::sleep_for(300ms);
+    
+    printSpace(30);
+    cout << "  \\ \\      / / \\   _ __ _ __(_) ___  _ __                     " << endl;
+    this_thread::sleep_for(300ms);
+    
+    printSpace(30);
+    cout << "   \\ \\ /\\ / / _ \\ | '__| '__| |/ _ \\| '__|                    " << endl;
+    this_thread::sleep_for(300ms);
+    
+    printSpace(30);
+    cout << "    \\ V  V / ___ \\| |  | |  | | (_) | |                       " << endl;
+    this_thread::sleep_for(300ms);
+    
+    printSpace(30);
+    cout << "     \\_/\\_/_/   \\_\\_|  |_|  |_|\\___/|_|                     " << endl;
+    this_thread::sleep_for(300ms);
+    
+    cout << endl;
+    this_thread::sleep_for(300ms);
+
+    cout << endl;
+    this_thread::sleep_for(300ms);
+    
+    printSpace(43);
+    cout << "製作者: 喻慈恩、黃靖媛、林妤娟、邱浚祐" << endl;
+    this_thread::sleep_for(300ms);
+
+    printSpace(52);
+    cout << "Press “ENTER” to start" << endl;
+    this_thread::sleep_for(300ms);
+
+    cout << endl;
+    this_thread::sleep_for(300ms);
+
+    printSpace(30);
+    printLine(65);
+    cout << endl;
+    this_thread::sleep_for(500ms);
+    
+    cin.ignore();
+
+    clearScreen();
+}
+
+void gameInfoScreen() {
+    printSpace(27);
+    printLine(75);
+
+    cout << endl <<endl;
+    this_thread::sleep_for(chrono::milliseconds(300));
+    printSpace(58);
+    cout << "----- 前情提要 -----" << endl;
+    cout << endl;
+    this_thread::sleep_for(chrono::milliseconds(300));
+
+    printSpace(27);
+    animateString("你是臺大資管的大一菜鳥，帶著滿腔熱血與一絲忐忑，踏入這座名為「大學」的迷宮。", 15);
+    cout << endl;
+    this_thread::sleep_for(chrono::milliseconds(300));
+
+    printSpace(27);
+    animateString("這裡充滿了未知的挑戰與無窮的可能性——", 15);
+    cout << endl;
+    this_thread::sleep_for(chrono::milliseconds(300));
+
+    printSpace(27);
+    animateString("從初次見面的同學到眼花繚亂的選課系統；從期待已久的社團活動到令人頭痛的GPA壓力。", 15);
+    cout << endl;
+    this_thread::sleep_for(chrono::milliseconds(300));
+    
+    cout << endl;
+    printSpace(27);
+    animateString("然而，大學生活並非如想像般地一帆風順……", 15);
+    cout << endl;
+    this_thread::sleep_for(chrono::milliseconds(300));
+    
+    printSpace(27);
+    animateString("「命運」猶如一道無形的力量，冷不防地將你推向天堂或是深淵；", 15);
+    cout << endl;
+    this_thread::sleep_for(chrono::milliseconds(300));
+    
+    printSpace(27);
+    animateString("而「機會」的天秤兩端總是令人難以取捨。", 15);
+    cout << endl;
+    this_thread::sleep_for(chrono::milliseconds(300));
+    
+    printSpace(27);
+    animateString("你能否抓住它們，改變自己的未來？", 15);
+    cout << endl;
+    this_thread::sleep_for(chrono::milliseconds(300));
+    
+    cout << endl;
+    printSpace(27);
+    animateString("作為一名新手冒險者，你準備好踏上這段喜淚交織的大學旅程了嗎？", 15);
+    cout << endl;
+    this_thread::sleep_for(chrono::milliseconds(300));
+
+    cout << endl;
+    this_thread::sleep_for(chrono::milliseconds(300));
+
+    printSpace(52);
+    cout << "Press “ENTER” to continue" << endl;
+    this_thread::sleep_for(500ms);
+
+    cout << endl;
+    this_thread::sleep_for(chrono::milliseconds(300));
+
+    printSpace(27);
+    printLine(75);
+
+    cin.ignore();
+    clearScreen();
+}
+
+void gameMechanicScreen() {
+    printSpace(30);
+    printLine(65);
+
+    cout << endl;
+    this_thread::sleep_for(chrono::milliseconds(300));
+    cout << endl;
+    this_thread::sleep_for(chrono::milliseconds(300));
+
+    printSpace(58);
+    cout << "----- 玩法說明 -----" << endl;
+    this_thread::sleep_for(chrono::milliseconds(300));
+
+    cout << endl;
+    this_thread::sleep_for(chrono::milliseconds(300));
+    cout << endl;
+    this_thread::sleep_for(chrono::milliseconds(300));
+    cout << endl;
+    this_thread::sleep_for(chrono::milliseconds(300));
+
+    printSpace(35);
+    cout << "WASD探索地圖          Y/N決定選項          ENTER進入下一頁" << endl;
+    this_thread::sleep_for(chrono::milliseconds(300));
+
+    cout << endl;
+    this_thread::sleep_for(chrono::milliseconds(300));
+    cout << endl;
+    this_thread::sleep_for(chrono::milliseconds(300));
+
+    printSpace(30);
+    printLine(65);
+
+    cin.ignore();
     clearScreen();
 }
 
 // for updating camera screen
-// question: how should we print the guide (press i for smtn smtn), at the right or bottom?
 // to do here: figure out/design the guide!
 void printMaze (bool visited[][MAP_W], Player& player) {
 
@@ -120,14 +292,13 @@ void printMaze (bool visited[][MAP_W], Player& player) {
             else if (i == x && j == y) {
                 cout << "@ "; // player marker
             }
- 
-            else if (visited[j][i]) cout << ". ";
+
+            else if (visited[j][i]) cout << "\033[30;1m. \033[0m";
 
             else { // events and battles (and nothing)
-                if (map[j][i] == 'c' || map[j][i] == 'd') cout << ". "; // accidents
+                if (map[j][i] == 'c' || map[j][i] == 'd') cout << "\033[30;2m. \033[0m"; // accidents
+                else if (map[j][i] == '.') cout << "\033[30;1m. \033[0m";
                 else cout << map[j][i] << " "; // others
-                //cout << map[j][i] << " ";
-                //cout << ". ";
             }
             
         }
@@ -143,11 +314,11 @@ void printMaze (bool visited[][MAP_W], Player& player) {
 }
 
 
-void animateString(string str) {
+void animateString(string str, int ms) {
     for(int i=0; i<str.length(); i++) {
         cout << str[i];
         cout.flush();
-        this_thread::sleep_for(chrono::milliseconds(100));
+        this_thread::sleep_for(chrono::milliseconds(ms));
     }
 }
 
@@ -218,9 +389,9 @@ void detectEvent (Player& player, bool visited[][MAP_W], bool triggeredChance[],
                 triggerDestiny(player, triggeredDestiny, skillNumber); //pass skillNumber by reference
             }
             else if (c == 'B') {
+                clearScreen();
                 cout << string(30, ' ') << "Battle!\n";
                 triggerBattle(player);
-                cin.ignore();
             }
 
             buffer();
@@ -283,10 +454,14 @@ void printLine(int length) {
 void detectChanceCnt(bool visited[][MAP_W], Player& player) {
         if (chanceEncounteredCnt == TERM_CHANCE_CNT / 2 && !midterms) {
             // midterms
-            cout << string(20, ' ');
-            animateString("警告: 兩個月不知不覺地過去了，期中考來臨 :(");
+            cout << string(30, ' ');
+            animateString("\033[31m警告: 兩個月不知不覺地過去了，期中考來臨 :(\033[0m", 50);
             this_thread::sleep_for(500ms);
             clearScreen();
+
+            //midterms boss battle
+            triggerMidterms(player);
+
             buffer();
             clearScreen();
             printMaze(visited, player);
@@ -296,10 +471,14 @@ void detectChanceCnt(bool visited[][MAP_W], Player& player) {
 
         else if (chanceEncounteredCnt == TERM_CHANCE_CNT && !finals) {
             // finals
-            cout << string(20, ' ');
-            animateString("警告: 兩個月不知不覺地過去了，期末考來臨 :(");
+            cout << string(30, ' ');
+            animateString("\033[31m警告: 兩個月不知不覺地過去了，期末考來臨 :(\033[0m", 50);
             this_thread::sleep_for(500ms);
             clearScreen();
+
+            //final boss battle
+            triggerMidterms(player);
+
             buffer();
             clearScreen();
             finals = true;
@@ -334,7 +513,7 @@ bool detectEnding(Player& player) {
 
 void buffer() {
     this_thread::sleep_for(100ms);
-    cout << "Press Enter to Continue ";
+    cout << "\033[4mPress Enter to Continue\033[0m ";
     cin.ignore();
 }
 
@@ -345,8 +524,6 @@ void clearScreen() {
     system("clear");
     #endif
 }
-
-
 
 
 void replaceSkillScreen(Player& player, int skillNumber) {
@@ -366,45 +543,10 @@ void replaceSkillScreen(Player& player, int skillNumber) {
 
     cout << "你獲得了新技能! \n";
     newSkill.printnewSkill();
-
-    /*
-    cout << "現在有的技能: \n";
-    cout << "1. ";
-    player.printnewSkill(0);
-    cout << "2. ";
-    player.printnewSkill(1);
-    cout << "3. ";
-    player.printnewSkill(2);
     cout << endl;
-    */
-
-    int strLength = 0;
-    //string str;
-    for(int i=0; i<3; i++) {
-        player.printSkillName(i);
-        printSpace(25 - (player.getSkill(i)->getName().length())/3*2);
-    }
-    //cout << str;
+    cout << "【現有技能】" << endl << endl;
+    player.printSkillNeatly();
     cout << endl;
-    
-    for(int i = 0; i < 3; i++) {
-        player.printSkillType(i);
-        printSpace(25 - player.getSkill(i)->getType().length());
-    }
-    cout << endl;
-
-    for(int i = 0; i < 3; i++) {
-        cout << player.getSkill(i)->getCoolRound();
-        printSpace(25 - to_string(player.getSkill(i)->getCoolRound()).length());
-    }
-    cout << endl;
-    
-    for(int i = 0; i < 3; i++) {
-        cout << player.getSkill(i)->getPercent() << "%";
-        printSpace(25 - to_string(player.getSkill(i)->getPercent()).length() - 1);
-    }
-    cout << endl;
-    
 
     // print the name of the gotten skill somehow
     cout << "你想用它取代現有技能嗎? [Press Y/N] "; 
@@ -433,9 +575,11 @@ int main () {
 
     setCodePage(); // for WIN32
 
-    //rtScreen();
-
     readMap();
+
+    gameStartScreen();
+    gameInfoScreen();
+    gameMechanicScreen();
 
     printMaze(visited, player);
 

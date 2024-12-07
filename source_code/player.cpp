@@ -1,7 +1,6 @@
 #include "player.h"
 //#include "skill.h"
 //#include "entity.h"
-#include <fstream>
 // entity member and related functions
 
 int threshold[6] = {5, 8, 10, 15, 20, 30};
@@ -17,6 +16,7 @@ Player::Player(int hp, int atk, int def) : Entity(hp, atk, def) {
     skill[0] = fetchSkill(1);
     skill[1] = fetchSkill(2);
     skill[2] = fetchSkill(3);
+    name = "你";
 }
 
 
@@ -65,6 +65,7 @@ void Player::updateStatus() {
 void Player::fullRecover(){
     skillReset();
     hpCurr = hpMax;
+    alive = true;
 }
 
 void Player::printStatRight() {
@@ -162,7 +163,7 @@ void Player::replaceSkill(int filenumber){
     cin.ignore();
     cout << "Replaced " << skill[stoi(changeNumber)-1]->getName();
     skill[stoi(changeNumber)-1] = fetchSkill(filenumber);
-    cout << "with " <<  skill[stoi(changeNumber)-1]->getName() << "!\n";
+    cout << " with " <<  skill[stoi(changeNumber)-1]->getName() << "!\n";
 
 }
 
@@ -237,6 +238,40 @@ void Player::printSkillPercent(int skillIndex){
         skill[skillIndex]->printPercent();
     }
     else cout << "error index!\n";
+}
+
+void Player::printSkillNeatly() {
+    for (int i = 0; i < 3; i++) {
+        cout << ">" << i+1;
+        cout << string(23, ' ');
+        }
+        cout << endl;
+
+        // print current skills
+        for(int i=0; i<3; i++) {
+            printSkillName(i);
+            cout << string(25 - (getSkill(i)->getName().length())/3*2, ' ');
+        }
+        //cout << str;
+        cout << endl;
+        
+        for(int i = 0; i < 3; i++) {
+            printSkillType(i);
+            cout << string(25 - getSkill(i)->getType().length(), ' ');
+        }
+        cout << endl;
+
+        for(int i = 0; i < 3; i++) {
+            cout << getSkill(i)->getCoolRound();
+            cout << string(25 - to_string(getSkill(i)->getCoolRound()).length(), ' ');
+        }
+        cout << endl;
+        
+        for(int i = 0; i < 3; i++) {
+            cout << getSkill(i)->getPercent() << "%";
+            cout << string(25 - to_string(getSkill(i)->getPercent()).length() - 1, ' ');
+        }
+        cout << endl;
 }
 
 void Player::skillCool(){
