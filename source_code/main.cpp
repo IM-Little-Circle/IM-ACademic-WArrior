@@ -142,7 +142,7 @@ void gameStartScreen() {
     this_thread::sleep_for(300ms);
     
     printSpace(43);
-    cout << "製作者: 邱浚祐、喻慈恩、黃靖媛、林妤娟" << endl;
+    cout << "製作者: 喻慈恩、黃靖媛、林妤娟、邱浚祐" << endl;
     this_thread::sleep_for(300ms);
 
     printSpace(52);
