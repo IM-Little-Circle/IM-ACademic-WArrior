@@ -292,15 +292,13 @@ void printMaze (bool visited[][MAP_W], Player& player) {
             else if (i == x && j == y) {
                 cout << "@ "; // player marker
             }
- 
-            else if (visited[j][i]) cout << "\033[37;2m. \033[0m";
+
+            else if (visited[j][i]) cout << "\033[30;1m. \033[0m";
 
             else { // events and battles (and nothing)
-                if (map[j][i] == 'c' || map[j][i] == 'd') cout << "\033[37;2m. \033[0m"; // accidents
-                else if (map[j][i] == '.') cout << "\033[37;2m. \033[0m";
+                if (map[j][i] == 'c' || map[j][i] == 'd') cout << "\033[30;2m. \033[0m"; // accidents
+                else if (map[j][i] == '.') cout << "\033[30;1m. \033[0m";
                 else cout << map[j][i] << " "; // others
-                //cout << map[j][i] << " ";
-                //cout << ". ";
             }
             
         }
@@ -546,56 +544,9 @@ void replaceSkillScreen(Player& player, int skillNumber) {
     cout << "你獲得了新技能! \n";
     newSkill.printnewSkill();
     cout << endl;
-
-    /*
-    cout << "現在有的技能: \n";
-    cout << "1. ";
-    player.printnewSkill(0);
-    cout << "2. ";
-    player.printnewSkill(1);
-    cout << "3. ";
-    player.printnewSkill(2);
-    cout << endl;
-    */
     cout << "【現有技能】" << endl << endl;
     player.printSkillNeatly();
     cout << endl;
-    /*int strLength = 0;
-    //string str;
-
-    // numbering
-    for (int i = 0; i < 3; i++) {
-        cout << ">" << i+1;
-        printSpace(23);
-    }
-    cout << endl;
-
-    // print current skills
-    for(int i=0; i<3; i++) {
-        player.printSkillName(i);
-        printSpace(25 - (player.getSkill(i)->getName().length())/3*2);
-    }
-    //cout << str;
-    cout << endl;
-    
-    for(int i = 0; i < 3; i++) {
-        player.printSkillType(i);
-        printSpace(25 - player.getSkill(i)->getType().length());
-    }
-    cout << endl;
-
-    for(int i = 0; i < 3; i++) {
-        cout << player.getSkill(i)->getCoolRound();
-        printSpace(25 - to_string(player.getSkill(i)->getCoolRound()).length());
-    }
-    cout << endl;
-    
-    for(int i = 0; i < 3; i++) {
-        cout << player.getSkill(i)->getPercent() << "%";
-        printSpace(25 - to_string(player.getSkill(i)->getPercent()).length() - 1);
-    }
-    cout << endl;*/
-    
 
     // print the name of the gotten skill somehow
     cout << "你想用它取代現有技能嗎? [Press Y/N] "; 
@@ -626,9 +577,9 @@ int main () {
 
     readMap();
 
-    gameStartScreen();
-    gameInfoScreen();
-    gameMechanicScreen();
+    //gameStartScreen();
+    //gameInfoScreen();
+    //gameMechanicScreen();
 
     printMaze(visited, player);
 
