@@ -67,7 +67,7 @@ bool battle(Player& player, Entity &opponent) { // should these be references in
     else
         cout << "oops! you fail :(" << endl;
     return player.living();
-
+}
 void triggerBattle(Player& player){
     srand(time(NULL));
     Entity enemy(rand() % ENEMY_CNT + 1);
