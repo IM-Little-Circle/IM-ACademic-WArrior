@@ -543,7 +543,7 @@ void replaceSkillScreen(Player& player, int skillNumber) {
     newSkill.printnewSkill();
     cout << endl;
     cout << "【現有技能】" << endl << endl;
-    player.printSkillNeatly();
+    player.printSkillNeatly(0);
     cout << endl;
 
     // print the name of the gotten skill somehow

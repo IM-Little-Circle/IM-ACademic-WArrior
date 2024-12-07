@@ -240,7 +240,7 @@ void Player::printSkillPercent(int skillIndex){
     else cout << "error index!\n";
 }
 
-void Player::printSkillNeatly() {
+void Player::printSkillNeatly(int coolOrRest) {
     for (int i = 0; i < 3; i++) {
         cout << ">" << i+1;
         cout << string(23, ' ');
@@ -260,12 +260,21 @@ void Player::printSkillNeatly() {
             cout << string(25 - getSkill(i)->getType().length(), ' ');
         }
         cout << endl;
-
-        for(int i = 0; i < 3; i++) {
-            cout << getSkill(i)->getRestRound();
-            cout << string(25 - to_string(getSkill(i)->getRestRound()).length(), ' ');
+        if (coolOrRest == 1){
+            for(int i = 0; i < 3; i++) {
+                cout << getSkill(i)->getRestRound();
+                cout << string(25 - to_string(getSkill(i)->getRestRound()).length(), ' ');
+            }
+            cout << endl;
         }
-        cout << endl;
+        else{
+            for(int i = 0; i < 3; i++) {
+                cout << getSkill(i)->getCoolRound();
+                cout << string(25 - to_string(getSkill(i)->getCoolRound()).length(), ' ');
+            }
+            cout << endl;
+        }
+        
         
         for(int i = 0; i < 3; i++) {
             cout << getSkill(i)->getPercent() << "%";

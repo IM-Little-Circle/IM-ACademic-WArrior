@@ -17,7 +17,7 @@ void battle(Player& player, Entity opponent) { // should these be references ins
 
                 cout << "【現有技能】" << endl << endl;
                 // print current skills
-                player.printSkillNeatly();
+                player.printSkillNeatly(1);
                 cout << endl;
     
                 cout << "選擇技能 ";

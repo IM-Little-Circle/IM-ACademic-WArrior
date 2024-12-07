@@ -124,10 +124,19 @@ void Entity::printHealth() {
 }
 
 void Entity::adjust(int level){
+	/*cout << "before adjust\n";
+	cout << "hp = " << hpMax << "\natk = " << atk << "\ndef = " << def << endl;*/
 	hpMax += 5 * level;
 	hpCurr = hpMax;
-	atk += 3 * level;
-	def += double(1.3 * level);
+	atk += 2 * level;
+	def += 1.5 * level;
+	while(level > 3){
+		level -= 5;
+		atk += 2 * level;
+		def += 1.5 * level;
+	}
+	/*cout << "after adjust\n";
+	cout << "hp = " << hpMax << "\natk = " << atk << "\ndef = " << def << endl;*/
 }
 
 string Entity::getName() {
