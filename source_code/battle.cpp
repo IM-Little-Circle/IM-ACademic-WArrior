@@ -1,6 +1,6 @@
 #include "battle.h"
 
-void battle(Player& player, Entity &opponent) { // should these be references instead?
+bool battle(Player& player, Entity &opponent) { // should these be references instead?
     string input;
     int round = 0;
     while (opponent.living() && player.living()) {
@@ -61,12 +61,12 @@ void battle(Player& player, Entity &opponent) { // should these be references in
 
     if (player.living()){
         cout << "Congratulation! you win!" << endl;
-        player.getExp(10);
+        player.getExp(15);
     }
         
     else
         cout << "oops! you fail :(" << endl;
-}
+    return player.living();
 
 void triggerBattle(Player& player){
     srand(time(NULL));
@@ -82,7 +82,15 @@ void triggerMidterms(Player& player) {
     Entity enemy("midtermBoss");
     enemy.adjust(player.getLevel());
     player.fullRecover();
-    battle(player, enemy);
+    bool result = battle(player, enemy);
+    if (result){
+        cout << "恭喜成功通過期中考啦\n";
+        player.modifyAcademic(5);
+    }
+    else{
+        cout << "可惜，再接再厲！\n";
+    }
+        
     cin.ignore();
 }
 
