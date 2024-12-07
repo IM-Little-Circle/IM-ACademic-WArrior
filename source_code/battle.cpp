@@ -11,7 +11,11 @@ void battle(Player& player, Entity opponent) { // should these be references ins
         {
             cout << "Round " << (round + 1) / 2 << endl;
             player.skillCool();
-
+            if (player.allSkillCooling()){
+                cout << "所有技能冷卻中，回合被迫跳過\n";
+                continue;
+            }
+            
             //select a skill!
             while (!(input == "1" || input == "2" || input == "3")) {
 

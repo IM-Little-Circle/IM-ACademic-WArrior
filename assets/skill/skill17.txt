@@ -1,4 +1,4 @@
 麻將局
 socialAttack
 2
-200
+125

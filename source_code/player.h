@@ -57,5 +57,6 @@ class Player : public Entity {
         void skillCool();
         bool isCool(int skillNumber);
         void skillReset();
+        bool allSkillCooling();
 };
 

@@ -303,3 +303,12 @@ void Player::skillReset(){
     }
 }
 
+bool Player::allSkillCooling(){
+    bool is = 1;
+    for (int i = 0; i < 3; i++){
+        if (skill[i]->getRestRound() <= 0)
+            return false;
+    }
+    return true;
+}
+
