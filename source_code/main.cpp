@@ -527,8 +527,6 @@ void clearScreen() {
 
 
 void replaceSkillScreen(Player& player, int skillNumber) {
-    // get random skill
-    //int skillNumber = rand() % (SKILL_CNT) + 4;
     if(skillNumber < 1 || skillNumber > SKILL_CNT) 
         return;
     string choice = "";
