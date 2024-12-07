@@ -174,19 +174,30 @@ void printPreface() {
     cout << endl;
     printSpace(30);
     cout << "本遊戲由資管一的喻慈恩、黃靖媛、林妤娟、邱浚祐製作" << endl;
+    this_thread::sleep_for(chrono::milliseconds(300));
+
     printSpace(30);
     cout << "內容取材自我們的生活經驗" << endl;
+    this_thread::sleep_for(chrono::milliseconds(300));
+
     printSpace(30);
     cout << "如與你有任何雷同，純屬巧合" << endl;
+    this_thread::sleep_for(chrono::milliseconds(300));
+
     printSpace(30);
     cout << "希望大家玩得愉快！" << endl;
+    this_thread::sleep_for(chrono::milliseconds(300));
+
     cout << endl;
     printSpace(30);
     cout << "2024.12" << endl;
+    this_thread::sleep_for(chrono::milliseconds(300));
+
     cout<<endl<<endl<<endl;
     
     printSpace(30);
     printLine(20+14+25);
+    this_thread::sleep_for(chrono::milliseconds(300));
 
     cout<<endl;
     printSpace(30+20+18);
@@ -301,10 +312,47 @@ void gameMechanicScreen() {
     clearScreen();
 }
 
+void printInstruction() {
+    printSpace(30);
+    printLine(20+14+25);
+    cout<<endl<<endl;
+    
+    printSpace(50);
+    cout << "----- 操作說明 -----"<<endl;
+    this_thread::sleep_for(chrono::milliseconds(300));
+    cout << endl;
+
+    printSpace(30);
+    cout << "◆ 在迷宮裡，請以【WASD】控制角色移動以探索地圖" << endl;
+    this_thread::sleep_for(chrono::milliseconds(300));
+    cout<<endl;
+
+    printSpace(30);
+    cout << "◆ 遇上選擇時，請按【Y/N】以進行互動" << endl;
+    this_thread::sleep_for(chrono::milliseconds(300));
+    cout<<endl;
+
+    printSpace(30);
+    cout << "◆ 攻擊時，請按【1、2、3】以選擇技能" << endl;
+    this_thread::sleep_for(chrono::milliseconds(300));
+    cout<<endl<<endl;
+
+    printSpace(30);
+    printLine(20+14+25);
+    
+    cout<<endl;
+    printSpace(30+20+18);
+    this_thread::sleep_for(chrono::milliseconds(300));
+    cout << "按 “ENTER” 進入下一頁" <<endl;
+        
+    cin.ignore();
+    clearScreen();
+}
+
 void printGameStart() {
     cout<<endl<<endl<<endl<<endl;
     printSpace(50);
-    string s = "那麼，讓我們開始吧！";
+    string s = "“那麼，讓我們開始吧！”";
     cout << "\033[32m"; 
     for(int i=0; i<s.length(); i++) {
         cout << s[i];
@@ -623,10 +671,11 @@ int main () {
 
     readMap();
 
+    clearScreen();
     gameStartScreen();
     printPreface();
     printSummary();
-    gameMechanicScreen();
+    printInstruction();
     printGameStart();
 
     printMaze(visited, player);
