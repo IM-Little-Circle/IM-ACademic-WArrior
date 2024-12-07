@@ -61,7 +61,7 @@ bool battle(Player& player, Entity &opponent) { // should these be references in
 
     if (player.living()){
         cout << "恭喜你贏啦！" << endl;
-        player.getExp(20);
+        player.getExp(15);
     }
         
     else

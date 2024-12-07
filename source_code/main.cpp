@@ -692,11 +692,11 @@ int main () {
     readMap();
 
     clearScreen();
-    //gameStartScreen();
-    //printPreface();
-    //printSummary();
+    gameStartScreen();
+    printPreface();
+    printSummary();
     printInstruction();
-    //printGameStart();
+    printGameStart();
 
     printMaze(visited, player);
 

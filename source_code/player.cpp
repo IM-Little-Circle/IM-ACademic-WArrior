@@ -90,9 +90,7 @@ void Player::setInitialStat(int aca, int soc, int e) {
 void Player::levelUp() {
 	level++;
 	atk *= 1.3;
-    atk++;
 	def *= 1.2;
-    def++;
 	hpMax += level * 2 + 1;
 	hpCurr = hpMax;
 	
