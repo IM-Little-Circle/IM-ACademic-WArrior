@@ -53,7 +53,8 @@ void buffer(); // press enter to continue
 void setCodePage();
 void clearScreen(); // system cls/clear
 void gameStartScreen();
-void animateString(string str); 
+void gameInfoScreen();
+void animateString(string str, int ms); 
 void animateStringForEnding(ifstream& inFile);
 void timeBar();
 void readMap();
@@ -90,13 +91,140 @@ void setCodePage() {
 }
 
 void gameStartScreen() {
-    cout << "GAME START\n";
-    buffer();
+    
+    printSpace(30);
+    printLine(65);
+    this_thread::sleep_for(200ms);
+    cout << endl;
+    this_thread::sleep_for(200ms);
+    cout << endl;
+    this_thread::sleep_for(200ms);
+
+    printSpace(30);
+    cout << "  |_ _|  \\/  |    / \\  / ___|__ _  __| | ___ _ __ ___ (_) ___" << endl;
+    this_thread::sleep_for(300ms);
+    
+    printSpace(30);
+    cout << "   | || |\\/| |   / _ \\| |   / _` |/ _` |/ _ \\ '_ ` _ \\| |/ __|" << endl;
+    this_thread::sleep_for(300ms);
+    
+    printSpace(30);
+    cout << "   | || |  | |  / ___ \\ |__| (_| | (_| |  __/ | | | | | | (__ " << endl;
+    this_thread::sleep_for(300ms);
+    
+    printSpace(30);
+    cout << "  |___|_|  |_|_/_/   \\_\\____\\__,_|\\__,_|\\___|_| |_| |_|_|\\___|" << endl;
+    this_thread::sleep_for(300ms);
+    
+    printSpace(30);
+    cout << "  \\ \\      / / \\   _ __ _ __(_) ___  _ __                     " << endl;
+    this_thread::sleep_for(300ms);
+    
+    printSpace(30);
+    cout << "   \\ \\ /\\ / / _ \\ | '__| '__| |/ _ \\| '__|                    " << endl;
+    this_thread::sleep_for(300ms);
+    
+    printSpace(30);
+    cout << "    \\ V  V / ___ \\| |  | |  | | (_) | |                       " << endl;
+    this_thread::sleep_for(300ms);
+    
+    printSpace(30);
+    cout << "     \\_/\\_/_/   \\_\\_|  |_|  |_|\\___/|_|                     " << endl;
+    this_thread::sleep_for(300ms);
+    
+    cout << endl;
+    this_thread::sleep_for(300ms);
+
+    cout << endl;
+    this_thread::sleep_for(300ms);
+    
+    printSpace(43);
+    cout << "製作者: 邱浚祐、喻慈恩、黃靖媛、林妤娟" << endl;
+    this_thread::sleep_for(300ms);
+
+    printSpace(52);
+    cout << "Press “ENTER” to start" << endl;
+    this_thread::sleep_for(300ms);
+
+    cout << endl;
+    this_thread::sleep_for(300ms);
+
+    printSpace(30);
+    printLine(65);
+    this_thread::sleep_for(500ms);
+    
+    cin.ignore();
+
     clearScreen();
 }
 
+void gameInfoScreen() {
+    printSpace(30);
+    printLine(65);
+
+    cout << endl;
+    this_thread::sleep_for(chrono::milliseconds(300));
+    printSpace(58);
+    cout << "----- 前情提要 -----" << endl;
+    this_thread::sleep_for(chrono::milliseconds(300));
+
+    printSpace(27);
+    animateString("你是臺大資管的大一菜鳥，帶著滿腔熱血與一絲忐忑，踏入這座名為「大學」的迷宮。", 15);
+    cout << endl;
+    this_thread::sleep_for(chrono::milliseconds(300));
+
+    printSpace(27);
+    animateString("這裡充滿了未知的挑戰與無窮的可能性——", 15);
+    cout << endl;
+    this_thread::sleep_for(chrono::milliseconds(300));
+
+    printSpace(27);
+    animateString("從初次見面的同學到眼花繚亂的選課系統；從期待已久的社團活動到令人頭痛的GPA壓力。", 15);
+    cout << endl;
+    this_thread::sleep_for(chrono::milliseconds(300));
+    
+    printSpace(27);
+    animateString("然而，大學生活並非如想像般地一帆風順……", 15);
+    cout << endl;
+    this_thread::sleep_for(chrono::milliseconds(300));
+    
+    printSpace(27);
+    animateString("「命運」猶如一道無形的力量，冷不防地將你推向天堂或是深淵；", 15);
+    cout << endl;
+    this_thread::sleep_for(chrono::milliseconds(300));
+    
+    printSpace(27);
+    animateString("而「機會」的天秤兩端總是令人難以取捨。", 15);
+    cout << endl;
+    this_thread::sleep_for(chrono::milliseconds(300));
+    
+    printSpace(27);
+    animateString("你能否抓住它們，改變自己的未來？", 15);
+    cout << endl;
+    this_thread::sleep_for(chrono::milliseconds(300));
+    
+    printSpace(27);
+    animateString("作為一名新手冒險者，你準備好踏上這段喜淚交織的大學旅程了嗎？", 15);
+    cout << endl;
+    this_thread::sleep_for(chrono::milliseconds(300));
+
+    cout << endl;
+    this_thread::sleep_for(chrono::milliseconds(300));
+
+    printSpace(52);
+    cout << "Press “ENTER” to continue" << endl;
+    this_thread::sleep_for(500ms);
+
+    cout << endl;
+    this_thread::sleep_for(chrono::milliseconds(300));
+
+    printSpace(30);
+    printLine(65);
+
+    cin.ignore();
+    clearScreen();
+}
 // for updating camera screen
-// question: how should we print the guide (press i for smtn smtn), at the right or bottom?
 // to do here: figure out/design the guide!
 void printMaze (bool visited[][MAP_W], Player& player) {
 
@@ -143,11 +271,11 @@ void printMaze (bool visited[][MAP_W], Player& player) {
 }
 
 
-void animateString(string str) {
+void animateString(string str, int ms) {
     for(int i=0; i<str.length(); i++) {
         cout << str[i];
         cout.flush();
-        this_thread::sleep_for(chrono::milliseconds(100));
+        this_thread::sleep_for(chrono::milliseconds(ms));
     }
 }
 
@@ -284,7 +412,7 @@ void detectChanceCnt(bool visited[][MAP_W], Player& player) {
         if (chanceEncounteredCnt == TERM_CHANCE_CNT / 2 && !midterms) {
             // midterms
             cout << string(20, ' ');
-            animateString("警告: 兩個月不知不覺地過去了，期中考來臨 :(");
+            animateString("警告: 兩個月不知不覺地過去了，期中考來臨 :(", 50);
             this_thread::sleep_for(500ms);
             clearScreen();
 
@@ -301,7 +429,7 @@ void detectChanceCnt(bool visited[][MAP_W], Player& player) {
         else if (chanceEncounteredCnt == TERM_CHANCE_CNT && !finals) {
             // finals
             cout << string(20, ' ');
-            animateString("警告: 兩個月不知不覺地過去了，期末考來臨 :(");
+            animateString("警告: 兩個月不知不覺地過去了，期末考來臨 :(", 50);
             this_thread::sleep_for(500ms);
             clearScreen();
 
@@ -452,6 +580,9 @@ int main () {
     setCodePage(); // for WIN32
 
     readMap();
+
+    gameStartScreen();
+    gameInfoScreen();
 
     printMaze(visited, player);
 
