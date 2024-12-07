@@ -163,7 +163,7 @@ void Player::replaceSkill(int filenumber){
     cin.ignore();
     cout << "Replaced " << skill[stoi(changeNumber)-1]->getName();
     skill[stoi(changeNumber)-1] = fetchSkill(filenumber);
-    cout << "with " <<  skill[stoi(changeNumber)-1]->getName() << "!\n";
+    cout << " with " <<  skill[stoi(changeNumber)-1]->getName() << "!\n";
 
 }
 
