@@ -577,9 +577,9 @@ int main () {
 
     readMap();
 
-    //gameStartScreen();
-    //gameInfoScreen();
-    //gameMechanicScreen();
+    gameStartScreen();
+    gameInfoScreen();
+    gameMechanicScreen();
 
     printMaze(visited, player);
 
