@@ -31,7 +31,7 @@ bool battle(Player& player, Entity &opponent) { // should these be references in
 
                 // error input
                 if (!(input == "1" || input == "2" || input == "3") ) {
-                    cout << "Wrong input, try again.\n";
+                    cout << "輸入錯誤，請再次輸入.\n";
                 }
                 else if (player.isCool(stoi(input))){
                     cout << "技能正在冷卻，請重新選擇\n";
@@ -60,12 +60,12 @@ bool battle(Player& player, Entity &opponent) { // should these be references in
     }
 
     if (player.living()){
-        cout << "Congratulation! you win!" << endl;
+        cout << "恭喜你贏啦！" << endl;
         player.getExp(15);
     }
         
     else
-        cout << "oops! you fail :(" << endl;
+        cout << "喔喔，你失敗了 :(" << endl;
     return player.living();
 }
 
@@ -85,7 +85,7 @@ void triggerMidterms(Player& player) {
     player.fullRecover();
     bool result = battle(player, enemy);
     if (result){
-        cout << "恭喜成功通過期中考啦\n";
+        cout << "成功通過期中考！\n";
         player.modifyAcademic(5);
     }
     else{
@@ -99,6 +99,13 @@ void triggerFinal(Player& player) {
     Entity enemy("finalBoss");
     enemy.adjust(player.getLevel());
     player.fullRecover();
-    battle(player, enemy);
+    bool result = battle(player, enemy);
+    if (result){
+        cout << "敢死線對我不過小菜一碟！\n";
+        player.modifyAcademic(5);
+    }
+    else{
+        cout << "下學期還是修少一點學分吧...！\n";
+    }
     cin.ignore();
 }
