@@ -129,11 +129,12 @@ void Entity::adjust(int level){
 	hpMax += 5 * level;
 	hpCurr = hpMax;
 	atk += 2 * level;
-	def += 1.5 * level;
+	def += 1.2 * level;
 	while(level > 3){
 		level -= 5;
 		atk += 2 * level;
 		def += 1.5 * level;
+		hpMax += 3 * level;
 	}
 	/*cout << "after adjust\n";
 	cout << "hp = " << hpMax << "\natk = " << atk << "\ndef = " << def << endl;*/
