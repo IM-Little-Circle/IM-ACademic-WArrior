@@ -101,7 +101,7 @@ void triggerFinal(Player& player) {
     player.fullRecover();
     bool result = battle(player, enemy);
     if (result){
-        cout << "敢死線對我不過小菜一碟！\n";
+        cout << "趕死線對我不過小菜一碟！\n";
         player.modifyAcademic(5);
     }
     else{
