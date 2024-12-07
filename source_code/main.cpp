@@ -285,7 +285,7 @@ void detectChanceCnt(bool visited[][MAP_W], Player& player) {
         if (chanceEncounteredCnt == TERM_CHANCE_CNT / 2 && !midterms) {
             // midterms
             cout << string(30, ' ');
-            animateString("警告: 兩個月不知不覺地過去了，期中考來臨 :(");
+            animateString("\033[31m警告: 兩個月不知不覺地過去了，期中考來臨 :(\033[0m");
             this_thread::sleep_for(500ms);
             clearScreen();
 
@@ -302,7 +302,7 @@ void detectChanceCnt(bool visited[][MAP_W], Player& player) {
         else if (chanceEncounteredCnt == TERM_CHANCE_CNT && !finals) {
             // finals
             cout << string(30, ' ');
-            animateString("警告: 兩個月不知不覺地過去了，期末考來臨 :(");
+            animateString("\033[31m警告: 兩個月不知不覺地過去了，期末考來臨 :(\033[0m");
             this_thread::sleep_for(500ms);
             clearScreen();
 
@@ -343,7 +343,7 @@ bool detectEnding(Player& player) {
 
 void buffer() {
     this_thread::sleep_for(100ms);
-    cout << "Press Enter to Continue ";
+    cout << "\033[4mPress Enter to Continue\033[0m ";
     cin.ignore();
 }
 
