@@ -609,7 +609,7 @@ bool detectEnding(Player& player) {
 
 void buffer() {
     this_thread::sleep_for(100ms);
-    cout << string(30, ' ') << "\033[4m按 “ENTER” 進入下一頁\033[0m ";
+    cout << "\033[4m按 “ENTER” 進入下一頁\033[0m ";
     cin.ignore();
 }
 
@@ -672,11 +672,11 @@ int main () {
     readMap();
 
     clearScreen();
-    gameStartScreen();
-    printPreface();
-    printSummary();
-    printInstruction();
-    printGameStart();
+    //gameStartScreen();
+    //printPreface();
+    //printSummary();
+    //printInstruction();
+    //printGameStart();
 
     printMaze(visited, player);
 

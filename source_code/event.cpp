@@ -81,6 +81,7 @@ void parseChance(ifstream& inFile, Player& player, int& skillNumber) {
     modifyParameters(player, parameters, choice);
     cout << string(30, ' ');
     player.getExp(10);
+    cout << endl;
     skillNumber = getSkillNum(inFile, choice);
 }
 
@@ -100,6 +101,7 @@ void parseDestiny(ifstream& inFile, Player& player, int& skillNumber) {
     modifyParameters(player, parameters, choice);
     cout << string(30, ' ');
     player.getExp(10);
+    cout << endl;
     skillNumber = getSkillNum(inFile, choice);
 }
 
