@@ -568,7 +568,7 @@ void detectChanceCnt(bool visited[][MAP_W], Player& player) {
         else if (chanceEncounteredCnt == TERM_CHANCE_CNT && !finals) {
             // finals
             cout << string(30, ' ');
-            animateString("\033[31m警告: 兩個月不知不覺地過去了，期末考來臨 :(\033[0m", 50);
+            animateString("\033[31m警告: 兩個月不知不覺地過去了，期末專案來臨 :(\033[0m", 50);
             this_thread::sleep_for(500ms);
             clearScreen();
 

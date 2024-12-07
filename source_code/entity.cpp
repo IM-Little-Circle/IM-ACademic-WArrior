@@ -70,7 +70,7 @@ void Entity::socialAttack(Entity& enemy, int percent) {
 	cout << "now enemy's mentalRes = " << mentalRes << endl;*/
 	int defCurr = enemy.def;
 	if (enemy.weakness == "social")
-		atkCurr *= 1.1;
+		atkCurr *= 1.2;
 /*
 	cout << "atkCurr = " << atkCurr << endl;
 	cout << "Enemy's def = " << defCurr << endl;
@@ -89,7 +89,7 @@ void Entity::studyAttack(Entity& enemy, int percent) {
 	int atkCurr = double(atk * (1 + studyBuff)) * percent /100;
 	int defCurr = enemy.def;
 	if (enemy.weakness == "study")
-		atkCurr *= 1.1;
+		atkCurr *= 1.;
 /*
 	cout << "atkCurr = " << atkCurr << endl;
 	cout << "defCurr = " << defCurr << endl;
