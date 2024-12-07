@@ -586,13 +586,18 @@ bool detectEnding(Player& player) {
         player.printStatRight();
         cout << endl;
         // FIX CONDITIONS
-        if (player.getAcademic() > 25) {
-            ifstream inFile("../assets/ending/ending1.txt");
+        if (player.getEmo() >= 12) {
+            ifstream inFile("../assets/ending/ending3.txt");
             animateStringForEnding(inFile);
             inFile.close();
         }
-        else if (player.getSocial() > 20) {
+        else if (player.getAcademic() + player.getSocial() >= 30) {
             ifstream inFile("../assets/ending/ending2.txt");
+            animateStringForEnding(inFile);
+            inFile.close();
+        }
+        else if (player.getAcademic() >= 10) {
+            ifstream inFile("../assets/ending/ending1.txt");
             animateStringForEnding(inFile);
             inFile.close();
         }
