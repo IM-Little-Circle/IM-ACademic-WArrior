@@ -204,53 +204,53 @@ void printSummary() {
     cout<<endl<<endl;
     
     printSpace(50);
-    animateString("----- 前情提要 -----",20);
+    animateString("----- 前情提要 -----",18);
     cout << endl << endl;
     
     printSpace(30);
-    animateString("你是臺大資管的大一菜鳥，帶著滿腔熱血與一絲忐忑",20);
+    animateString("你是臺大資管的大一菜鳥，帶著滿腔熱血與一絲忐忑",18);
     cout << endl;
     this_thread::sleep_for(chrono::milliseconds(300));
 
     printSpace(30);
-    animateString("踏入這座名為「大學」的迷宮",20);
+    animateString("踏入這座名為「大學」的迷宮",18);
     this_thread::sleep_for(chrono::milliseconds(300));
     cout << endl;
 
     printSpace(30);
-    animateString("這裡充滿了未知的挑戰與無窮的可能性——",20);
+    animateString("這裡充滿了未知的挑戰與無窮的可能性——",18);
     this_thread::sleep_for(chrono::milliseconds(300));
     cout << endl;
 
     printSpace(30);
-    animateString("從初次見面的同學到眼花繚亂的選課系統",20);
+    animateString("從初次見面的同學到眼花繚亂的選課系統",18);
     this_thread::sleep_for(chrono::milliseconds(300));
     cout << endl;
 
     printSpace(30);
-    animateString("從期待已久的社團活動到令人頭痛的GPA壓力",20);
+    animateString("從期待已久的社團活動到令人頭痛的GPA壓力",18);
     this_thread::sleep_for(chrono::milliseconds(300));
     cout << endl;
 
     cout<<endl;
     printSpace(30);
-    animateString("然而，大學生活並非如想像般地一帆風順……",20);
+    animateString("然而，大學生活並非如想像般地一帆風順……",18);
     this_thread::sleep_for(chrono::milliseconds(300));
     cout<<endl;
 
     printSpace(30);
-    animateString("「命運」猶如一道無形的力量，冷不防地將你推向天堂或是深淵",20);
+    animateString("「命運」猶如一道無形的力量，冷不防地將你推向天堂或是深淵",18);
     this_thread::sleep_for(chrono::milliseconds(300));
     cout<<endl;
 
     printSpace(30);
-    animateString("而「機會」的天秤兩端總是令人難以取捨",20);
+    animateString("而「機會」的天秤兩端總是令人難以取捨",18);
     this_thread::sleep_for(chrono::milliseconds(300));
     cout<<endl;
 
     cout<<endl;
     printSpace(30);
-    animateString("作為一名新手冒險者，你準備好踏上這段喜淚交織的大學旅程了嗎？",20);
+    animateString("作為一名新手冒險者，你準備好踏上這段喜淚交織的大學旅程了嗎？",18);
     this_thread::sleep_for(chrono::milliseconds(300));
     cout << endl << endl;
 
@@ -305,7 +305,7 @@ void printGameStart() {
     cout<<endl<<endl<<endl<<endl;
     printSpace(50);
     string s = "那麼，讓我們開始吧！";
-    cout << "\033[34m"; 
+    cout << "\033[32m"; 
     for(int i=0; i<s.length(); i++) {
         cout << s[i];
         cout.flush();
@@ -623,8 +623,11 @@ int main () {
 
     readMap();
 
-    //gameStartScreen();
-    //gameMechanicScreen();
+    gameStartScreen();
+    printPreface();
+    printSummary();
+    gameMechanicScreen();
+    printGameStart();
 
     printMaze(visited, player);
 
