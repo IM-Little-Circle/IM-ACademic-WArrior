@@ -100,7 +100,9 @@ void gameStartScreen() {
     this_thread::sleep_for(200ms);
     cout << endl;
     this_thread::sleep_for(200ms);
-
+    
+    printSpace(30);
+    cout << "   ___ __  __      _    ____          _                _      " << endl;
     printSpace(30);
     cout << "  |_ _|  \\/  |    / \\  / ___|__ _  __| | ___ _ __ ___ (_) ___" << endl;
     this_thread::sleep_for(300ms);
@@ -152,6 +154,7 @@ void gameStartScreen() {
 
     printSpace(30);
     printLine(65);
+    cout << endl;
     this_thread::sleep_for(500ms);
     
     cin.ignore();
@@ -160,13 +163,14 @@ void gameStartScreen() {
 }
 
 void gameInfoScreen() {
-    printSpace(30);
-    printLine(65);
+    printSpace(27);
+    printLine(75);
 
-    cout << endl;
+    cout << endl <<endl;
     this_thread::sleep_for(chrono::milliseconds(300));
     printSpace(58);
     cout << "----- 前情提要 -----" << endl;
+    cout << endl;
     this_thread::sleep_for(chrono::milliseconds(300));
 
     printSpace(27);
@@ -184,6 +188,7 @@ void gameInfoScreen() {
     cout << endl;
     this_thread::sleep_for(chrono::milliseconds(300));
     
+    cout << endl;
     printSpace(27);
     animateString("然而，大學生活並非如想像般地一帆風順……", 15);
     cout << endl;
@@ -204,6 +209,7 @@ void gameInfoScreen() {
     cout << endl;
     this_thread::sleep_for(chrono::milliseconds(300));
     
+    cout << endl;
     printSpace(27);
     animateString("作為一名新手冒險者，你準備好踏上這段喜淚交織的大學旅程了嗎？", 15);
     cout << endl;
@@ -219,8 +225,8 @@ void gameInfoScreen() {
     cout << endl;
     this_thread::sleep_for(chrono::milliseconds(300));
 
-    printSpace(30);
-    printLine(65);
+    printSpace(27);
+    printLine(75);
 
     cin.ignore();
     clearScreen();
