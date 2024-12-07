@@ -106,7 +106,7 @@ void Entity::studyAttack(Entity& enemy, int percent) {
 
 void Entity::heal(int percent){
 	//cout << "atk = " << atk << " healBuff = " << healBuff << endl;
-	int recover = atk * double(1 + healBuff) * percent / 100;
+	int recover = double(atk * (1 + healBuff) / 3) * percent / 100;
 	cout << "回復了" << recover << "的血量！" << endl;
 	hpCurr = min(hpCurr + recover, hpMax);
 }

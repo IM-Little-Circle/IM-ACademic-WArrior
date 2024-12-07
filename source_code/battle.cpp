@@ -69,8 +69,11 @@ void triggerBattle(Player& player){
     Entity enemy(rand() % ENEMY_CNT + 1);
     enemy.adjust(player.getLevel());
     player.fullRecover();
+    cout << "觸發戰鬥：【" << enemy.getName() << "】\n";
     battle(player, enemy);
     cin.ignore();
+    
+
 }
 
 void triggerMidterms(Player& player) {
