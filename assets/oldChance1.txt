@@ -1,9 +1,0 @@
-d01
-i10
-d20
-false
-//the first three indicates academic, social, emo respectively. i for increase, d for deduct. 
-//the forth indicates whether this event is rejectable.
-
-//the following is the plot
-Someone who's really adorable ask you to go out for a date.
