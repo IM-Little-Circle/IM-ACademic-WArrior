@@ -143,7 +143,7 @@ void triggerChance(Player& player, bool triggeredChance[], int& skillNumber) {
     
     if (!allTriggered) {
         triggeredChance[i - 1] = true;
-        ifstream inFile("../sourses/chance/chance" + to_string(i) + ".txt");
+        ifstream inFile("../sources/chance/chance" + to_string(i) + ".txt");
 
         if (inFile.fail()) {
             cout << "File not found\n";
@@ -178,7 +178,7 @@ void triggerDestiny(Player& player, bool triggeredDestiny[], int& skillNumber) {
     
     if (!allTriggered) {
         triggeredDestiny[i - 1] = true;
-        ifstream inFile("../sourses/destiny/destiny" + to_string(i) + ".txt");
+        ifstream inFile("../sources/destiny/destiny" + to_string(i) + ".txt");
 
         if (inFile.fail()) {
             cout << "File not found\n";

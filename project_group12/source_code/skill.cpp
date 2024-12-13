@@ -13,7 +13,7 @@ Skill::Skill(string skillName, string skillType, int coolRound, int percent){
 Skill::Skill(int filenumber){
     string skillName, skillType;
     int restRound, percent;
-    ifstream inFile("../sourses/skill/skill" + to_string(filenumber) + ".txt");
+    ifstream inFile("../sources/skill/skill" + to_string(filenumber) + ".txt");
     if (inFile.fail()) {
         cout << "File not found\n";
     }
