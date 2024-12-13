@@ -1,6 +1,3 @@
-/*
-放一些暫時想到的數值和可能用到的函式
-*/
 #include <iostream>
 using namespace std;
 class Entity {

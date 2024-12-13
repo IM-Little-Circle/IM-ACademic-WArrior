@@ -1,12 +1,7 @@
 #include <iostream>
 using namespace std;
 
-const int SKILL_CNT = 20; // number of skills, note that skill 1-3 are starters, not included here
-
-/*
-要添加buff嗎?
-但不知道buff的到期怎麼處理...
-*/
+const int SKILL_CNT = 20; // number of skills
 
 class Skill {
     private:
@@ -16,13 +11,12 @@ class Skill {
         int percent; // 1 = 100%
         string skillName;
     public:
-         // 讀檔?
         Skill();
         Skill(int fileNumber);
         Skill (string skillName, string skillType, int restRound, int percent);
         string getType();
         string getName();
-        void printSkill(); // added by liz, for  debugging
+        void printSkill(); 
         void printnewSkill();
         int getCoolRound();
         int getRestRound();
@@ -31,7 +25,8 @@ class Skill {
         void coolReset();
         void cool();
 
-        void printName(); // added by Mia
+        // for print
+        void printName();
         void printType();
         void printCoolRound();
         void printPercent();

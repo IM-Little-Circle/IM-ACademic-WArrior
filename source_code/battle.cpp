@@ -6,9 +6,8 @@ bool battle(Player& player, Entity &opponent) { // should these be references in
     while (opponent.living() && player.living()) {
         input = "0";
         round ++;
-        
-        if (round % 2) // player's round
-        {
+        // player's round
+        if (round % 2) {
             cout << "Round " << (round + 1) / 2 << endl;
             player.skillCool();
             if (player.allSkillCooling()){
@@ -20,10 +19,8 @@ bool battle(Player& player, Entity &opponent) { // should these be references in
             while (!(input == "1" || input == "2" || input == "3")) {
 
                 cout << "【現有技能】" << endl << endl;
-                // print current skills
                 player.printSkillNeatly(1);
                 cout << endl;
-    
                 cout << "選擇技能 ";
 
                 // input choice

@@ -1,16 +1,8 @@
 #include "skill.h"
 #include <fstream>
 using namespace std;
-/*
-先選擇新獲得的skill
-再替換現有的skill
-好像不會放在skill.cpp而是應該放在Player.cpp
-*/
 
-// added skill 4-6 for testing
-
-Skill::Skill(string skillName, string skillType, int coolRound, int percent)
-{
+Skill::Skill(string skillName, string skillType, int coolRound, int percent){
     this->skillName = skillName;
     this->skillType = skillType;
     this->restRound = 0;
@@ -37,8 +29,7 @@ Skill::Skill(int filenumber){
     this->coolRound = coolRound;
 }
 
-Skill::Skill()
-{
+Skill::Skill(){
     skillName = "";
     skillType = "";
     percent = 100;

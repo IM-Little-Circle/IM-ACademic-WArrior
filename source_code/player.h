@@ -12,7 +12,6 @@ class Player : public Entity {
         int x;
         int y;
         int exp = 0;
-        // initialized for testing
         int academic = 0; 
         int social = 0;
         int emo = 0;
@@ -36,7 +35,7 @@ class Player : public Entity {
 
         void levelUp();
         void getExp(int experience);
-        // below added for testing
+        // below added for showint stat and skill
         void printStatRight();
         void printStatRight(int oriAca, int oriSoc, int oriEmo);
         void printSkill(int skillnumber);

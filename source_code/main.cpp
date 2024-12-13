@@ -9,19 +9,9 @@
 
 // below are user-made header files
 #include "myconio.h"
-//#include "player.h"
 #include "event.h"
 
 using namespace std;
-/* ###bug notes###
-found new bug: if arrow key pressed for too long (more than 25ms i think)
-console will keep running the input 
-fix, maybe with this_thread sleep or something
-new issue found @2024/11/24: if right arrow key pressed for a while and then ran into a chance, 
-                             as cin >> choice is waiting for input, 
-**the issue has been fixed** the right arrow key will result in a 'y' input.
-                             note that 'y' could be the last input before the cin
-*/
 
 //// conio.h keys ////
 #define KEY_UP 119
@@ -74,16 +64,11 @@ void printLine(int length);
 void printSpace(int length);
 void printStatRight(Player& player, int index);
 void printStatLeft(Player& player, int index);
-//void battle(Player& player, Entity oppoment);
-// add things here later
-
 
 //// functions (for game loop) ////
 void readMap() {
     string line;
     ifstream file(mapFilePath); 
-    // note to self: the current path setting will not run from VSCode execution
-    // you will have to rely on batch compiling and exe for now
 
     while (getline(file, line)) {
         map.push_back(line);
@@ -380,7 +365,6 @@ void printGameStart() {
 }
 
 // for updating camera screen
-// to do here: figure out/design the guide!
 void printMaze (bool visited[][MAP_W], Player& player) {
 
     printSpace(30);
@@ -415,9 +399,7 @@ void printMaze (bool visited[][MAP_W], Player& player) {
         }
         printStatRight(player, j-(y-SCRN_HW));
         cout << "\n";
-    }
-    //cout << "Chance encountered: " << chanceEncounteredCnt << endl;
-    
+    }    
     cout << endl;
     printSpace(30);
     printLine(20+14+25);
@@ -487,7 +469,6 @@ void detectEvent (Player& player, bool visited[][MAP_W], bool triggeredChance[],
         char c = map[y][x];
         // replace cout below with functions to call
         if (c != '.') {
-            //detectedEvent = true;
             int skillNumber = -1;
             if (c == 'c' || c == 'C') {
                 cout << string(30, ' ') << "機會！\n";
@@ -495,7 +476,7 @@ void detectEvent (Player& player, bool visited[][MAP_W], bool triggeredChance[],
                 chanceEncounteredCnt++;
                 cin.ignore();
             }
-            else if (c == 'd' || c== 'D') {        //original: || c == 'D'
+            else if (c == 'd' || c== 'D') {   
                 cout << string(30, ' ') << "命運！\n";
                 triggerDestiny(player, triggeredDestiny, skillNumber); //pass skillNumber by reference
             }
@@ -507,7 +488,7 @@ void detectEvent (Player& player, bool visited[][MAP_W], bool triggeredChance[],
 
             buffer();
 
-            // BELOW IS FOR TESTING REPLACESKILL (TEMP)
+            // BELOW IS FOR REPLACESKILL 
             cout << endl << skillNumber << endl;
             replaceSkillScreen(player, skillNumber);
             if(skillNumber >= 1 && skillNumber <= SKILL_CNT) {
@@ -648,12 +629,6 @@ void replaceSkillScreen(Player& player, int skillNumber) {
     string choice = "";
     Skill newSkill = Skill(skillNumber);
     clearScreen();
-    
-    /*
-    printSpace(30);
-    printLine(20+14+25);
-    cout<<endl<<endl;
-    */
 
     cout << "你獲得了新技能! \n";
     newSkill.printnewSkill();
@@ -684,7 +659,7 @@ int main () {
     bool triggeredDestiny[DESTINY_CNT] = {0};
     string input;
 
-    // initialize player (test)
+    // initialize player 
     Player player(20, 12, 8);
 
     setCodePage(); // for WIN32
@@ -707,7 +682,6 @@ int main () {
         if (c_kbhit()) {
             ch = c_getch(); // for modifications, see testMaze.cpp for ref
             if (ch == KEY_UP||ch == KEY_DOWN ||ch == KEY_LEFT||ch == KEY_RIGHT) {
-                //cerr << "";
 
                 moveCamera(ch);
                 clearScreen();

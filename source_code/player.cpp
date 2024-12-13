@@ -78,8 +78,6 @@ void Player::printStatRight(int oriAca, int oriSoc, int oriEmo){
 }
 
 // to set initial stat
-// (so we don't have to come back to player.h to change every time)
-// tbh you can just set the initial value at initialization
 void Player::setInitialStat(int aca, int soc, int e) {
     academic = aca;
     social = soc;
@@ -93,7 +91,6 @@ void Player::levelUp() {
 	def *= 1.2;
 	hpMax += level * 2 + 1;
 	hpCurr = hpMax;
-	
 }
 
 void Player::getExp(int experience){
@@ -121,9 +118,6 @@ Skill* Player::getSkill(int skillIndex) {
     return this->skill[skillIndex];
 }
 
-/*
-最難的是getskill這邊理論上要有介面的切換
-*/
 Skill* Player::fetchSkill(int filenumber){
     string skillName, skillType;
     int restRound, percent;
@@ -136,28 +130,15 @@ Skill* Player::fetchSkill(int filenumber){
         getline(inFile, skillType);
         inFile >> restRound >> percent;
     }
-    /*
-    放skill
-    skillName;
-    skillType;
-    restRound;
-    */
    return new Skill(skillName, skillType, restRound, percent);
 }
 
 
 
 void Player::replaceSkill(int filenumber){
-    
-    /*cout << "you get a new skill!" << endl;
-    輸出得到的skill
-
-    列出現在有的skill，讓他輸入1、2、3決定要換掉哪一個
-    */
     string changeNumber;
     cin >> changeNumber;
 
-    // 以下的偵測條件有點白癡，看需不需要改？
     while (!(changeNumber == "1" || changeNumber == "2" || changeNumber == "3")){
             cout << "Wrong input, please choose your number again" << endl;
             cin >> changeNumber;
@@ -170,7 +151,7 @@ void Player::replaceSkill(int filenumber){
 }
 
 void Player::useSkill(Entity& enemy, Skill skill){
-    if (skill.getCoolRound() != 0) return; //輸錯要給甚麼回饋?
+    if (skill.getCoolRound() != 0) return; 
     if (skill.getType() == "heal"){
         heal(skill.getPercent());
     }
@@ -185,7 +166,6 @@ void Player::useSkill(Entity& enemy, Skill skill){
 
 void Player::useSkill(Entity& enemy, int chooseNumber){
     Skill usedSkill = *skill[chooseNumber];
-    //if (usedSkill.getCoolRound() != 0) return; //輸錯要給甚麼回饋?
     if (usedSkill.getType() == "heal"){
         heal(usedSkill.getPercent());
     }
@@ -197,8 +177,6 @@ void Player::useSkill(Entity& enemy, int chooseNumber){
     }
     skill[chooseNumber]->cool();
 }
-
-// added for testing
 
 void Player::printSkill(int skillIndex) {
     if (skillIndex >= 0 && skillIndex < 3) {
@@ -254,7 +232,6 @@ void Player::printSkillNeatly(int coolOrRest) {
             printSkillName(i);
             cout << string(25 - (getSkill(i)->getName().length())/3*2, ' ');
         }
-        //cout << str;
         cout << endl;
         
         for(int i = 0; i < 3; i++) {
@@ -263,6 +240,7 @@ void Player::printSkillNeatly(int coolOrRest) {
             cout << string(15 - getSkill(i)->getType().length(), ' ');
         }
         cout << endl;
+        
         if (coolOrRest == 1){
             for(int i = 0; i < 3; i++) {
                 cout << "剩餘冷卻回合：" << getSkill(i)->getRestRound();
@@ -277,8 +255,7 @@ void Player::printSkillNeatly(int coolOrRest) {
             }
             cout << endl;
         }
-        
-        
+           
         for(int i = 0; i < 3; i++) {
             cout << "倍率：";
             cout << getSkill(i)->getPercent() << "%";
