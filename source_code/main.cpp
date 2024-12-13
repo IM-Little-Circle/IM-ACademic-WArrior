@@ -49,8 +49,6 @@ void printSummary();
 void printInstruction();
 void printGameStart();
 
-void gameStartScreen();
-void gameMechanicScreen();
 void animateString(string str, int ms); 
 void animateStringForEnding(ifstream& inFile);
 void timeBar();
@@ -82,7 +80,7 @@ void setCodePage() {
     #endif
 }
 
-void gameStartScreen() {
+void printTitle() {
     
     printSpace(30);
     printLine(65);
@@ -256,42 +254,6 @@ void printSummary() {
     cout<<endl;
     printSpace(30+20+18);
     cout << "按 “ENTER” 進入下一頁" <<endl;
-
-    cin.ignore();
-    clearScreen();
-}
-
-void gameMechanicScreen() {
-    printSpace(30);
-    printLine(65);
-
-    cout << endl;
-    this_thread::sleep_for(chrono::milliseconds(300));
-    cout << endl;
-    this_thread::sleep_for(chrono::milliseconds(300));
-
-    printSpace(58);
-    cout << "----- 玩法說明 -----" << endl;
-    this_thread::sleep_for(chrono::milliseconds(300));
-
-    cout << endl;
-    this_thread::sleep_for(chrono::milliseconds(300));
-    cout << endl;
-    this_thread::sleep_for(chrono::milliseconds(300));
-    cout << endl;
-    this_thread::sleep_for(chrono::milliseconds(300));
-
-    printSpace(35);
-    cout << "WASD探索地圖          Y/N決定選項          ENTER進入下一頁" << endl;
-    this_thread::sleep_for(chrono::milliseconds(300));
-
-    cout << endl;
-    this_thread::sleep_for(chrono::milliseconds(300));
-    cout << endl;
-    this_thread::sleep_for(chrono::milliseconds(300));
-
-    printSpace(30);
-    printLine(65);
 
     cin.ignore();
     clearScreen();
@@ -667,7 +629,7 @@ int main () {
     readMap();
 
     clearScreen();
-    gameStartScreen();
+    printTitle();
     printPreface();
     printSummary();
     printInstruction();
