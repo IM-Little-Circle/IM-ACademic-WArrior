@@ -1,4 +1,0 @@
-怪物的名字
-弱點屬性(study or social)
-atk def hp
-mentalRes physicalRes (這個可能有小數點)

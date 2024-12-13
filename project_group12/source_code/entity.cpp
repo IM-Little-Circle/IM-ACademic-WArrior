@@ -19,7 +19,7 @@ Entity::Entity(int fileNumber) {
     string enemyName, enemyWeakness;
     int attack, defence, health;
 	double menR, phyR;
-    ifstream inFile("../assets/enemy/enemy" + to_string(fileNumber) + ".txt");
+    ifstream inFile("../sourses/enemy/enemy" + to_string(fileNumber) + ".txt");
     if (inFile.fail()) {
         cout << "File not found\n";
     }
@@ -43,7 +43,7 @@ Entity::Entity(string fileName) {
     string enemyName, enemyWeakness;
     int attack, defence, health;
 	double menR, phyR;
-    ifstream inFile("../assets/enemy/" + fileName + ".txt");
+    ifstream inFile("../sourses/enemy/" + fileName + ".txt");
     if (inFile.fail()) {
         cout << "File not found\n";
     }
