@@ -121,7 +121,7 @@ Skill* Player::getSkill(int skillIndex) {
 Skill* Player::fetchSkill(int filenumber){
     string skillName, skillType;
     int restRound, percent;
-    ifstream inFile("../assets/skill/skill" + to_string(filenumber) + ".txt");
+    ifstream inFile("./sources/skill/skill" + to_string(filenumber) + ".txt");
     if (inFile.fail()) {
         cout << "File not found\n";
     }

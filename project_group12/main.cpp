@@ -36,7 +36,7 @@ bool midterms = false, finals = false;
 extern const int CHANCE_CNT; //number of chances, must >= 1
 extern const int DESTINY_CNT; //number of destinies, must >= 1
 extern const int SKILL_CNT; // number of skills, note that skill 1-3 are starters, not included here
-string mapFilePath = "../assets/map/testEventMap5.txt";
+string mapFilePath = "./sources/map/testEventMap5.txt";
 
 //// declare functions ////
 void buffer(); // press enter to continue
@@ -545,22 +545,22 @@ bool detectEnding(Player& player) {
         cout << endl;
         // FIX CONDITIONS
         if (player.getEmo() >= 12) {
-            ifstream inFile("../assets/ending/ending3.txt");
+            ifstream inFile("./sources/ending/ending3.txt");
             animateStringForEnding(inFile);
             inFile.close();
         }
         else if (player.getAcademic() + player.getSocial() >= 30) {
-            ifstream inFile("../assets/ending/ending2.txt");
+            ifstream inFile("./sources/ending/ending2.txt");
             animateStringForEnding(inFile);
             inFile.close();
         }
         else if (player.getAcademic() >= 10) {
-            ifstream inFile("../assets/ending/ending1.txt");
+            ifstream inFile("./sources/ending/ending1.txt");
             animateStringForEnding(inFile);
             inFile.close();
         }
         else {
-            ifstream inFile("../assets/ending/ending3.txt");
+            ifstream inFile("./sources/ending/ending3.txt");
             animateStringForEnding(inFile);
             inFile.close();
         }
