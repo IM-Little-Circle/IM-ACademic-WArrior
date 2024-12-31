@@ -1,6 +1,8 @@
 # **IM-ACademic-WArrior**
+![image](https://github.com/IM-Little-Circle/IM-ACademic-WArrior/blob/main/assets/game_cover.jpg)
+<br>
 ## 專案介紹
-此為程式設計（113-1）期末專案<br>
+此為程式設計（113-1）期末專案 <br>
 <br>
 ## 製作團隊
 喻慈恩 [@MiaYu1102](https://github.com/MiaYu1102) <br>
