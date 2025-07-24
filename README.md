@@ -30,6 +30,7 @@
 在迷宮裡，請以【WASD】控制角色移動以探索地圖 <br>
 遇上選擇時，請按【Y/N】以進行互動 <br>
 攻擊時，請按【1、2、3】以選擇技能 <br>
+![game_cover](https://github.com/IM-Little-Circle/IM-ACademic-WArrior/blob/main/assets/game_demo.jpg)
 <br>
 
 ## 聯繫方式
